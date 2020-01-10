@@ -29,10 +29,10 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             boolean isNeedHidden = savedInstanceState.getBoolean(FRAGMENT_VIEW_STATE);
             FragmentTransaction ft = this.getFragmentManager().beginTransaction();
             if (isNeedHidden) {
-                currentViewStateShow=false;
+                currentViewStateShow = false;
                 ft.hide(this);
             } else {
-                currentViewStateShow=true;
+                currentViewStateShow = true;
                 ft.show(this);
             }
             ft.commitAllowingStateLoss();
@@ -80,33 +80,34 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        isFirstShow=true;
-        isFirstHidden=true;
+        isFirstShow = true;
+        isFirstHidden = true;
         setIsCreateView(true);
-        if(needLazyLoad()){
-            if(getUserVisibleHint()&&isFirstLoadData()){
+        if (needLazyLoad()) {
+            if (getUserVisibleHint() && isFirstLoadData()) {
                 setIsFirstLoadData(false);
                 initData();
             }
-        }else{
+        } else {
             initData();
         }
     }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (!needLazyLoad()) {
-            return;
-        }
-        if (isCreateView() && isVisibleToUser && isFirstLoadData()) {
-            setIsFirstLoadData(false);
-            initData();
-        }
-        if(isCreateView()){
-            if(isVisibleToUser){
+        if (isCreateView()) {
+            if (isVisibleToUser) {
                 checkViewShow();
-            }else{
+            } else {
                 checkViewHidden();
+            }
+        }
+
+        if (needLazyLoad()) {
+            if (isCreateView() && isVisibleToUser && isFirstLoadData()) {
+                setIsFirstLoadData(false);
+                initData();
             }
         }
     }
@@ -120,36 +121,42 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             getArguments().putBoolean(FLAG_LAZY_IS_FIRST_LOAD, value);
         }
     }
-    private boolean isFirstLoadData(){
+
+    private boolean isFirstLoadData() {
         if (getArguments() == null) {
             return true;
         }
         return getArguments().getBoolean(FLAG_LAZY_IS_FIRST_LOAD, true);
     }
+
     private void setIsCreateView(boolean value) {
-        if(getArguments()==null){
-            Bundle bundle=new Bundle();
-            bundle.putBoolean(FLAG_LAZY_IS_DESTROY_VIEW,value);
+        if (getArguments() == null) {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(FLAG_LAZY_IS_DESTROY_VIEW, value);
             setArguments(bundle);
-        }else{
-            getArguments().putBoolean(FLAG_LAZY_IS_DESTROY_VIEW,value);
+        } else {
+            getArguments().putBoolean(FLAG_LAZY_IS_DESTROY_VIEW, value);
         }
     }
+
     private boolean isCreateView() {
-        if(getArguments()==null){
+        if (getArguments() == null) {
             return false;
         }
-        return getArguments().getBoolean(FLAG_LAZY_IS_DESTROY_VIEW,false);
+        return getArguments().getBoolean(FLAG_LAZY_IS_DESTROY_VIEW, false);
     }
+
     public boolean needLazyLoad() {
         return true;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         resetTempViewFlag();
         ClickTools.get().removeLastClickTime(clickTimeFlag);
     }
+
     private void resetTempViewFlag() {
         setIsCreateView(false);
         setIsFirstLoadData(true);
@@ -199,24 +206,25 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public void onResume() {
         super.onResume();
         isDestroyed = false;
-        if(!isHidden()&&getUserVisibleHint()){
+        if (!isHidden() && getUserVisibleHint()) {
             checkViewShow();
         }
     }
 
 
-
     protected void onViewStateShow(boolean isFirstShow) {
 
     }
+
     protected void onViewStateHidden(boolean isFirstHidden) {
 
     }
+
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
             checkViewHidden();
-        }else{
+        } else {
             checkViewShow();
         }
     }
@@ -232,27 +240,30 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         super.onStop();
         checkViewHidden();
     }
+
     private void checkViewShow() {
-        currentViewStateShow=true;
+        currentViewStateShow = true;
         this.onViewStateShow(isFirstShow);
-        if(isFirstShow){
-            this.isFirstShow=false;
+        if (isFirstShow) {
+            this.isFirstShow = false;
         }
     }
-    private void checkViewHidden(){
-        if(isFirstShow){
+
+    private void checkViewHidden() {
+        if (isFirstShow) {
             return;
         }
-        if(!currentViewStateShow){
+        if (!currentViewStateShow) {
             //隐藏之前判断之前是否显示，如果之前是隐藏，那么就不管
             return;
         }
-        currentViewStateShow=false;
+        currentViewStateShow = false;
         onViewStateHidden(isFirstHidden);
-        if(isFirstHidden){
-            isFirstHidden=false;
+        if (isFirstHidden) {
+            isFirstHidden = false;
         }
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

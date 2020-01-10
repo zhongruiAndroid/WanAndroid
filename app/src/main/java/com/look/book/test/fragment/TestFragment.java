@@ -70,31 +70,20 @@ public class TestFragment extends BaseFragment {
     @Override
     protected void onViewStateShow(boolean isFirstShow) {
         super.onViewStateShow(isFirstShow);
-        Log.i("=====",getIndex()+"===onResume==="+isFirstShow);
+        Log.i("=====",getIndex()+"===onViewStateShow==="+isFirstShow);
     }
     @Override
     protected void onViewStateHidden(boolean isFirstHidden) {
         super.onViewStateHidden(isFirstHidden);
-        Log.i("=====",getIndex()+"===onHidden==="+isFirstHidden);
+        Log.i("=====",getIndex()+"===onViewStateHidden==="+isFirstHidden);
     }
 
     @Override
     public boolean needLazyLoad() {
-        return true;
+        return false;
     }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.i("=====",getIndex()+"===onAttach===");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.i("=====",getIndex()+"===onDetach===");
-    }
 
     @Nullable
     @Override
