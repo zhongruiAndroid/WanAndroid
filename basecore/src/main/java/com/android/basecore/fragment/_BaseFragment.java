@@ -29,8 +29,10 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             boolean isNeedHidden = savedInstanceState.getBoolean(FRAGMENT_VIEW_STATE);
             FragmentTransaction ft = this.getFragmentManager().beginTransaction();
             if (isNeedHidden) {
+                currentViewStateShow=false;
                 ft.hide(this);
             } else {
+                currentViewStateShow=true;
                 ft.show(this);
             }
             ft.commitAllowingStateLoss();
@@ -103,8 +105,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         if(isCreateView()){
             if(isVisibleToUser){
                 checkViewShow();
-            }else if(currentViewStateShow){
-                //隐藏之前判断之前是否显示，如果之前是隐藏，那么就不管
+            }else{
                 checkViewHidden();
             }
         }
@@ -245,6 +246,10 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         if(isFirstShow){
             return;
         }
+        if(!currentViewStateShow){
+            //隐藏之前判断之前是否显示，如果之前是隐藏，那么就不管
+            return;
+        }
         currentViewStateShow=false;
         onViewStateHidden(isFirstHidden);
         if(isFirstHidden){
@@ -288,4 +293,5 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             return isDestroyed;
         }
     }
+
 }

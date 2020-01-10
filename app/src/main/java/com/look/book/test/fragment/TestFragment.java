@@ -52,7 +52,6 @@ public class TestFragment extends BaseFragment {
     public void onNoDoubleClick(View v) {
         switch (v.getId()){
             case R.id.btTestClick:
-                Log.i("=====",getIndex()+"===onNoDoubleClick===");
                 ActBridge.toEmptyActivity(mActivity);
             break;
         }
@@ -61,7 +60,6 @@ public class TestFragment extends BaseFragment {
     @Override
     public void onViewClick(View v) {
         super.onViewClick(v);
-        Log.i("=====",getIndex()+"===onViewClick===");
     }
 
     @Override
