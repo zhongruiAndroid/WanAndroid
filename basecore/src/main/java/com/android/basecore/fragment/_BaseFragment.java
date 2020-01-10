@@ -214,10 +214,10 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     }
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden) {
-            checkViewShow();
-        }else{
+        if (hidden) {
             checkViewHidden();
+        }else{
+            checkViewShow();
         }
     }
 

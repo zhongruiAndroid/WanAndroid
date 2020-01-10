@@ -6,11 +6,13 @@ import android.widget.Button;
 import com.android.basecore.tools.ActTools;
 import com.look.book.R;
 import com.look.book.base.BaseActivity;
+import com.look.book.bridge.ActBridge;
 import com.look.book.test.fragment.TestFragment;
 
 public class TestActivity extends BaseActivity {
     Button btHidden;
     Button btShow;
+    View tvTest;
     private TestFragment testFragment;
 
     @Override
@@ -25,12 +27,14 @@ public class TestActivity extends BaseActivity {
 
         btHidden = findViewById(R.id.btHidden);
         btShow = findViewById(R.id.btShow);
+        tvTest = findViewById(R.id.tvTest);
     }
 
     @Override
     public void setViewListener() {
         btHidden.setOnClickListener(this);
         btShow.setOnClickListener(this);
+        tvTest.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +55,9 @@ public class TestActivity extends BaseActivity {
             break;
             case R.id.btShow:
                 ActTools.showFragment(mActivity,testFragment);
+            break;
+            case R.id.tvTest:
+                ActBridge.toEmptyActivity(mActivity);
             break;
         }
     }
