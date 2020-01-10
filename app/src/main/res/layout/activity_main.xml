@@ -13,5 +13,18 @@
        android:textAllCaps="false"
        android:text="测试activity"
        />
-
+   <Button
+       android:id="@+id/btTest2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textAllCaps="false"
+       android:text="测试activity2"
+       />
+   <Button
+       android:id="@+id/btTest3"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textAllCaps="false"
+       android:text="测试activity3"
+       />
 </LinearLayout>

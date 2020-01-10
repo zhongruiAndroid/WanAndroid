@@ -1,11 +1,19 @@
 package com.look.book.home.activity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
+import com.android.basecore.tools.ActTools;
 import com.look.book.R;
 import com.look.book.base.BaseActivity;
+import com.look.book.home.fragment.TestFragment;
 
 public class TestActivity extends BaseActivity {
+    Button btHidden;
+    Button btShow;
+    private TestFragment testFragment;
+
     @Override
     public int getContentView() {
         return R.layout.test_activity;
@@ -13,12 +21,17 @@ public class TestActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        testFragment = TestFragment.newInstance(1);
+        ActTools.addFragment(mActivity, R.id.fl, testFragment);
 
+        btHidden = findViewById(R.id.btHidden);
+        btShow = findViewById(R.id.btShow);
     }
 
     @Override
     public void setViewListener() {
-
+        btHidden.setOnClickListener(this);
+        btShow.setOnClickListener(this);
     }
 
     @Override
@@ -32,7 +45,14 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    public void onNoDoubleClick(View view) {
-
+    public void onNoDoubleClick(View v) {
+        switch (v.getId()){
+            case R.id.btHidden:
+                ActTools.hideFragment(mActivity,testFragment);
+            break;
+            case R.id.btShow:
+                ActTools.showFragment(mActivity,testFragment);
+            break;
+        }
     }
 }

@@ -61,11 +61,10 @@ public class ClickTools {
 
     public void removeLastClickTime(Long key) {
         if (map != null) {
-            ConcurrentHashMap concurrentHashMap = map.get(key);
+            ConcurrentHashMap concurrentHashMap = map.remove(key);
             if (concurrentHashMap != null) {
                 concurrentHashMap.clear();
                 concurrentHashMap = null;
-                map.remove(key);
             }
         }
     }

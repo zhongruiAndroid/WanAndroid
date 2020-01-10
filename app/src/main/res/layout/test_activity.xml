@@ -4,11 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
    <TextView
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:gravity="center"
+       android:text="test" />
+   <LinearLayout
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="test"
-       />
+       android:orientation="horizontal"
+       android:gravity="center_vertical"
+       >
+       <Button
+           android:id="@+id/btHidden"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content"
+           android:textAllCaps="false"
+           android:text="隐藏fragment"
+           />
+      <Button
+          android:id="@+id/btShow"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textAllCaps="false"
+          android:text="显示fragment"
+          />
+   </LinearLayout>
+   <FrameLayout
+       android:id="@+id/fl"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+   </FrameLayout>
 </LinearLayout>

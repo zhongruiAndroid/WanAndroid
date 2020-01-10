@@ -4,20 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
    <TextView
-       android:id="@+id/tvTest"
        android:layout_width="match_parent"
-       android:layout_height="50dp"
+       android:layout_height="match_parent"
+       android:text="test2"
        android:gravity="center"
-       android:text="testFragment" />
-   <Button
-       android:id="@+id/btTestClick"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textAllCaps="false"
-       android:text="快速点击测试"
        />
 </LinearLayout>
