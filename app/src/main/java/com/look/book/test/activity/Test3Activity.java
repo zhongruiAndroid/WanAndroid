@@ -40,6 +40,8 @@ public class Test3Activity extends BaseActivity {
         fragmentAdapter=new FragmentStateAdapter(getSupportFragmentManager());
         fragmentAdapter.setList(list);
 
+
+//        vp.setOffscreenPageLimit(list.size()-1);
         vp.setAdapter(fragmentAdapter);
     }
 

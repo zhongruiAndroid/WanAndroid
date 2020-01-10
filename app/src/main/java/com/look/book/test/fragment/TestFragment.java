@@ -1,8 +1,13 @@
 package com.look.book.test.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -76,5 +81,48 @@ public class TestFragment extends BaseFragment {
     @Override
     public boolean needLazyLoad() {
         return true;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.i("=====",getIndex()+"===onAttach===");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.i("=====",getIndex()+"===onDetach===");
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i("=====",getIndex()+"===onCreateView==aaa===");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.i("=====",getIndex()+"===onViewCreated==bbb===");
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i("=====",getIndex()+"===onDestroyView===");
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("=====",getIndex()+"===onDestroy===");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i("=====",getIndex()+"===onCreate===");
     }
 }
