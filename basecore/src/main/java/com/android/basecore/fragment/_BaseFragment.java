@@ -100,11 +100,8 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             setIsFirstLoadData(false);
             initData();
         }
-        if(!isVisibleToUser){
-            onHidden(isFirstHidden);
-            if(isFirstHidden){
-                isFirstHidden=false;
-            }
+        if(isCreateView()&&!isVisibleToUser){
+            checkHidden();
         }
     }
 
