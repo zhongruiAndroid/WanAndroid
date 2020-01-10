@@ -1,11 +1,11 @@
-package com.look.book.home.activity;
+package com.look.book.test.activity;
 
 import android.view.View;
 
 import com.look.book.R;
 import com.look.book.base.BaseActivity;
 
-public class Test3Activity extends BaseActivity {
+public class Test2Activity extends BaseActivity {
     @Override
     public int getContentView() {
         return R.layout.test2_activity;

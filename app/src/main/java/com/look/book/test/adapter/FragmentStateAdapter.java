@@ -1,4 +1,4 @@
-package com.look.book.home.adapter;
+package com.look.book.test.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

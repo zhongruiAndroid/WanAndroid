@@ -1,13 +1,12 @@
-package com.look.book.home.activity;
+package com.look.book.test.activity;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.android.basecore.tools.ActTools;
 import com.look.book.R;
 import com.look.book.base.BaseActivity;
-import com.look.book.home.fragment.TestFragment;
+import com.look.book.test.fragment.TestFragment;
 
 public class TestActivity extends BaseActivity {
     Button btHidden;
