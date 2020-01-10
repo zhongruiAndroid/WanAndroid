@@ -44,9 +44,9 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     }
 
 
-    public abstract void onNoDoubleClick(View view);
+    public abstract void onNoDoubleClick(View v);
 
-    public void onViewClick(View view) {
+    public void onViewClick(View v) {
     }
 
     public View getContentLayout() {

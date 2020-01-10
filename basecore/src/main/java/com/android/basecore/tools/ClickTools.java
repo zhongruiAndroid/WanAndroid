@@ -44,14 +44,15 @@ public class ClickTools {
     }
 
     public boolean isFastClickById(Long key, int itemId, long time) {
-        ConcurrentHashMap<Integer, Long> sparseLongArray = map.get(key);
-        if (sparseLongArray == null) {
-            sparseLongArray = new ConcurrentHashMap();
-            map.put(key, sparseLongArray);
+        ConcurrentHashMap<Integer, Long> concurrentHashMap = map.get(key);
+        if (concurrentHashMap == null) {
+            concurrentHashMap = new ConcurrentHashMap();
+            concurrentHashMap.put(itemId,0L);
+            map.put(key, concurrentHashMap);
         }
         long currentTime = Calendar.getInstance().getTimeInMillis();
-        if (currentTime - sparseLongArray.get(itemId) > time) {
-            sparseLongArray.put(itemId, currentTime);
+        if (currentTime - concurrentHashMap.get(itemId) > time) {
+            concurrentHashMap.put(itemId, currentTime);
             return false;
         }
         return true;
@@ -60,10 +61,10 @@ public class ClickTools {
 
     public void removeLastClickTime(Long key) {
         if (map != null) {
-            ConcurrentHashMap sparseLongArray = map.get(key);
-            if (sparseLongArray != null) {
-                sparseLongArray.clear();
-                sparseLongArray = null;
+            ConcurrentHashMap concurrentHashMap = map.get(key);
+            if (concurrentHashMap != null) {
+                concurrentHashMap.clear();
+                concurrentHashMap = null;
                 map.remove(key);
             }
         }
@@ -71,9 +72,9 @@ public class ClickTools {
 
     public void clearLastClickTime(Long key) {
         if (map != null) {
-            ConcurrentHashMap sparseLongArray = map.get(key);
-            if (sparseLongArray != null) {
-                sparseLongArray.clear();
+            ConcurrentHashMap concurrentHashMap = map.get(key);
+            if (concurrentHashMap != null) {
+                concurrentHashMap.clear();
             }
         }
     }

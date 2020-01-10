@@ -166,9 +166,9 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     }
 
 
-    public abstract void onNoDoubleClick(View view);
+    public abstract void onNoDoubleClick(View v);
 
-    public void onViewClick(View view) {
+    public void onViewClick(View v) {
     }
 
     public View getContentLayout() {
