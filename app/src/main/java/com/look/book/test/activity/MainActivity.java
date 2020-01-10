@@ -64,4 +64,9 @@ public class MainActivity extends BaseActivity {
         Log.i("=====","====isFirstInto="+isFirstInto);
     }
 
+    @Override
+    protected void onStop(boolean isFirstHidden) {
+        super.onStop(isFirstHidden);
+        Log.i("=====","====isFirstHidden="+isFirstHidden);
+    }
 }

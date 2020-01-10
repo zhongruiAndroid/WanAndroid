@@ -19,6 +19,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     private Long clickTimeFlag;
     protected FragmentActivity mActivity;
     protected boolean isFirstInto = true;
+    protected boolean isFirstHidden = true;
     private boolean isDestroyed=false;
 
     public @StyleRes
@@ -32,9 +33,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
 
     public abstract void initView();
     public abstract void setViewListener();
-    protected void onReStart(boolean isFirstShow) {
 
-    }
     public abstract void initViewAfter();
 
     public abstract void initData();
@@ -58,6 +57,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     private void initAttr() {
         isDestroyed=false;
         isFirstInto=true;
+        isFirstHidden=true;
         mActivity = this;
         clickTimeFlag = new Long(hashCode());
     }
@@ -107,7 +107,19 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        onStop(isFirstHidden);
+        if (isFirstHidden) {
+            this.isFirstHidden = false;
+        }
+    }
+
     protected void onResume(boolean isFirstInto) {
+
+    }
+    protected void onStop(boolean isFirstHidden) {
 
     }
 
