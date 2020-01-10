@@ -31,14 +31,13 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     int getContentView();
 
     public abstract void initView();
+    public abstract void setViewListener();
     protected void onReStart(boolean isFirstShow) {
 
     }
     public abstract void initViewAfter();
 
     public abstract void initData();
-
-    public abstract void setViewListener();
 
     public long getNoDoubleClickInterval() {
         return 900;

@@ -52,6 +52,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     protected FragmentActivity mActivity;
     protected View mView;
     protected boolean isFirstShow = true;
+    protected boolean isFirstHidden = true;
     private boolean isDestroyed = false;
 
     public abstract @LayoutRes
@@ -78,6 +79,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isFirstShow=true;
+        isFirstHidden=true;
         setIsCreateView(true);
         if(needLazyLoad()){
             if(getUserVisibleHint()&&isFirstLoadData()){
@@ -97,6 +99,12 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         if (isCreateView() && isVisibleToUser && isFirstLoadData()) {
             setIsFirstLoadData(false);
             initData();
+        }
+        if(!isVisibleToUser){
+            onHidden(isFirstHidden);
+            if(isFirstHidden){
+                isFirstHidden=false;
+            }
         }
     }
 
@@ -146,11 +154,12 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
 
     public abstract void initView();
 
+    public abstract void setViewListener();
+
     public abstract void initViewAfter();
 
     public abstract void initData();
 
-    public abstract void setViewListener();
 
     public long getNoDoubleClickInterval() {
         return 900;
@@ -197,6 +206,9 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     protected void onResume(boolean isFirstShow) {
 
     }
+    protected void onHidden(boolean isFirstHidden) {
+
+    }
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
@@ -204,6 +216,8 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             if(isFirstShow){
                 this.isFirstShow=false;
             }
+        }else{
+            checkHidden();
         }
     }
 
@@ -213,6 +227,20 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         ClickTools.get().clearLastClickTime(clickTimeFlag);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        checkHidden();
+    }
+    private void checkHidden(){
+        if(isFirstShow){
+            return;
+        }
+        onHidden(isFirstHidden);
+        if(isFirstHidden){
+            isFirstHidden=false;
+        }
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
