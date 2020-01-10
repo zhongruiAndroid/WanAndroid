@@ -51,7 +51,11 @@ public class ClickTools {
             map.put(key, concurrentHashMap);
         }
         long currentTime = Calendar.getInstance().getTimeInMillis();
-        if (currentTime - concurrentHashMap.get(itemId) > time) {
+        Long preTime = concurrentHashMap.get(itemId);
+        if(preTime==null){
+            preTime=new Long(0);
+        }
+        if (currentTime - preTime > time) {
             concurrentHashMap.put(itemId, currentTime);
             return false;
         }
