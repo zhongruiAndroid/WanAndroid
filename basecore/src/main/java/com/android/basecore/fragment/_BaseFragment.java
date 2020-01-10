@@ -1,7 +1,5 @@
 package com.android.basecore.fragment;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -53,6 +51,8 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     protected View mView;
     protected boolean isFirstShow = true;
     protected boolean isFirstHidden = true;
+    protected boolean currentViewStateShow;
+
     private boolean isDestroyed = false;
 
     public abstract @LayoutRes
@@ -100,8 +100,13 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             setIsFirstLoadData(false);
             initData();
         }
-        if(isCreateView()&&!isVisibleToUser){
-            checkHidden();
+        if(isCreateView()){
+            if(isVisibleToUser){
+                checkViewShow();
+            }else if(currentViewStateShow){
+                //隐藏之前判断之前是否显示，如果之前是隐藏，那么就不管
+                checkViewHidden();
+            }
         }
     }
 
@@ -193,28 +198,28 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public void onResume() {
         super.onResume();
         isDestroyed = false;
-        if(!isHidden()){
-            this.onResume(isFirstShow);
-            if(isFirstShow){
-                this.isFirstShow=false;
-            }
+        if(!isHidden()&&getUserVisibleHint()){
+            checkViewShow();
         }
     }
-    protected void onResume(boolean isFirstShow) {
+
+
+
+    protected void onViewStateShow(boolean isFirstShow) {
 
     }
-    protected void onHidden(boolean isFirstHidden) {
+    protected void onViewStateHidden(boolean isFirstHidden) {
 
     }
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            this.onResume(isFirstShow);
+            this.onViewStateShow(isFirstShow);
             if(isFirstShow){
                 this.isFirstShow=false;
             }
         }else{
-            checkHidden();
+            checkViewHidden();
         }
     }
 
@@ -227,13 +232,21 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     @Override
     public void onStop() {
         super.onStop();
-        checkHidden();
+        checkViewHidden();
     }
-    private void checkHidden(){
+    private void checkViewShow() {
+        currentViewStateShow=true;
+        this.onViewStateShow(isFirstShow);
+        if(isFirstShow){
+            this.isFirstShow=false;
+        }
+    }
+    private void checkViewHidden(){
         if(isFirstShow){
             return;
         }
-        onHidden(isFirstHidden);
+        currentViewStateShow=false;
+        onViewStateHidden(isFirstHidden);
         if(isFirstHidden){
             isFirstHidden=false;
         }

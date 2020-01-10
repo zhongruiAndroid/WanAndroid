@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.basecore.tools.ActTools;
 import com.look.book.R;
 import com.look.book.base.BaseFragment;
+import com.look.book.bridge.ActBridge;
 
 public class TestFragment extends BaseFragment {
     TextView tvTest;
@@ -51,6 +53,7 @@ public class TestFragment extends BaseFragment {
         switch (v.getId()){
             case R.id.btTestClick:
                 Log.i("=====",getIndex()+"===onNoDoubleClick===");
+                ActBridge.toEmptyActivity(mActivity);
             break;
         }
     }
@@ -62,13 +65,13 @@ public class TestFragment extends BaseFragment {
     }
 
     @Override
-    protected void onResume(boolean isFirstShow) {
-        super.onResume(isFirstShow);
+    protected void onViewStateShow(boolean isFirstShow) {
+        super.onViewStateShow(isFirstShow);
         Log.i("=====",getIndex()+"===onResume==="+isFirstShow);
     }
     @Override
-    protected void onHidden(boolean isFirstHidden) {
-        super.onHidden(isFirstHidden);
+    protected void onViewStateHidden(boolean isFirstHidden) {
+        super.onViewStateHidden(isFirstHidden);
         Log.i("=====",getIndex()+"===onHidden==="+isFirstHidden);
     }
 

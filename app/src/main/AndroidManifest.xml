@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".test.activity.TestActivity" />
         <activity android:name=".test.activity.Test2Activity" />
+        <activity android:name=".test.activity.EmptyActivity" />
     </application>
 
 </manifest>
