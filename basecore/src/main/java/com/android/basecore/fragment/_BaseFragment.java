@@ -72,7 +72,6 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             mView = getContentLayout();
         }
         initView();
-        setViewListener();
         initViewAfter();
         return mView;
     }
@@ -163,8 +162,6 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     }
 
     public abstract void initView();
-
-    public abstract void setViewListener();
 
     public abstract void initViewAfter();
 
@@ -286,20 +283,13 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         }
         if (mActivity == null) {
             return true;
-        } else {
-            boolean isDestroyed = false;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                isDestroyed = mActivity.isDestroyed();
-            } else {
-                if (mActivity instanceof FragmentActivity) {
-                    FragmentManager supportFragmentManager = ((FragmentActivity) mActivity).getSupportFragmentManager();
-                    if (supportFragmentManager != null) {
-                        isDestroyed = supportFragmentManager.isDestroyed();
-                    }
-                }
-            }
-            return isDestroyed;
+        } else if (mActivity.isFinishing()) {
+            return true;
+        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            boolean destroyed = mActivity.isDestroyed();
+            return destroyed;
         }
+        return false;
     }
 
 }

@@ -32,7 +32,6 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     int getContentView();
 
     public abstract void initView();
-    public abstract void setViewListener();
 
     public abstract void initViewAfter();
 
@@ -74,7 +73,6 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         }
 
         initView();
-        setViewListener();
         initViewAfter();
         initData();
     }
@@ -149,7 +147,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return isDestroyed();
         }else{
-            return isDestroyed;
+            return isFinishing()||isDestroyed;
         }
     }
 
