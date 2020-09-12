@@ -27,15 +27,11 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void setViewListener() {
+    public void initViewAfter() {
+
         btTest1.setOnClickListener(this);
         btTest2.setOnClickListener(this);
         btTest3.setOnClickListener(this);
-    }
-
-    @Override
-    public void initViewAfter() {
-
     }
 
     @Override

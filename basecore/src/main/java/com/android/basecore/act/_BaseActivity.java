@@ -1,18 +1,14 @@
 package com.android.basecore.act;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.basecore.R;
 import com.android.basecore.tools.ClickTools;
 
 public abstract class _BaseActivity extends AppCompatActivity implements View.OnClickListener {

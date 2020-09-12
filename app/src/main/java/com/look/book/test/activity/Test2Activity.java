@@ -24,10 +24,6 @@ public class Test2Activity extends BaseActivity {
         vp=findViewById(R.id.vp);
     }
 
-    @Override
-    public void setViewListener() {
-
-    }
 
     @Override
     public void initViewAfter() {

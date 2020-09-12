@@ -15,10 +15,6 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void setViewListener() {
-
-    }
 
     @Override
     public void initViewAfter() {

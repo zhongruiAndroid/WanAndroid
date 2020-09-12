@@ -31,14 +31,10 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    public void setViewListener() {
+    public void initViewAfter() {
         btHidden.setOnClickListener(this);
         btShow.setOnClickListener(this);
         tvTest.setOnClickListener(this);
-    }
-
-    @Override
-    public void initViewAfter() {
 
     }
 

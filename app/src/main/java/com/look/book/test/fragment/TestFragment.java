@@ -37,13 +37,10 @@ public class TestFragment extends BaseFragment {
         btTestClick=findViewById(R.id.btTestClick);
     }
 
-    @Override
-    public void setViewListener() {
-        btTestClick.setOnClickListener(this);
-    }
 
     @Override
     public void initViewAfter() {
+        btTestClick.setOnClickListener(this);
         tvTest.setText("testFragment"+getIndex());
     }
     public String getIndex(){

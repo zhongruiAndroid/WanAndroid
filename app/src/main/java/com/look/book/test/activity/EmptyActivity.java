@@ -16,10 +16,7 @@ public class EmptyActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void setViewListener() {
 
-    }
 
     @Override
     public void initViewAfter() {
