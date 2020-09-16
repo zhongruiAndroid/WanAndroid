@@ -1,13 +1,11 @@
 package com.android.basecore.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -180,7 +178,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
 
     public View getContentLayout() {
         TextView textView = new TextView(mActivity);
-        textView.setText("getContentLayout()");
+        textView.setText(this.getClass().getSimpleName()+":getContentLayout()");
         return textView;
     }
 

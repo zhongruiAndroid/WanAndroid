@@ -45,7 +45,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
 
     public View getContentLayout() {
         TextView textView = new TextView(this);
-        textView.setText("getContentLayout()");
+        textView.setText(this.getClass().getSimpleName()+":getContentLayout()");
         return textView;
     }
 
@@ -92,7 +92,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     }
 
     @Override
-    protected void onResume() {
+    protected final void onResume() {
         super.onResume();
         isDestroyed=false;
         onResume(isFirstInto);
@@ -102,7 +102,7 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     }
 
     @Override
-    protected void onStop() {
+    protected final void onStop() {
         super.onStop();
         onStop(isFirstHidden);
         if (isFirstHidden) {
