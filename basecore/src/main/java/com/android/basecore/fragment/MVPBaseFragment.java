@@ -9,9 +9,10 @@ import android.support.annotation.Nullable;
 
 import com.android.basecore.act._BaseActivity;
 import com.android.basecore.presenter._BasePresenter;
+import com.android.basecore.presenter._BaseView;
 import com.android.basecore.tools.AutoInstance;
 
-public abstract class MVPBaseFragment<P extends _BasePresenter> extends _BaseFragment{
+public abstract class MVPBaseFragment<P extends _BasePresenter> extends _BaseFragment implements _BaseView {
     protected P mPresenter;
     protected P createPresenter(){
         return null;
@@ -32,7 +33,22 @@ public abstract class MVPBaseFragment<P extends _BasePresenter> extends _BaseFra
         if(mPresenter==null){
             mPresenter= AutoInstance.autoCreatePresenter(getClass());
         }
+        if(mPresenter!=null){
+            mPresenter.setView(this);
+        }
         super.onCreate(savedInstanceState);
+    }
+    @Override
+    public void showLoading() {
+
+    }
+    @Override
+    public void dismissLoading() {
+
+    }
+    @Override
+    public void toast(String content) {
+
     }
 
     @Override

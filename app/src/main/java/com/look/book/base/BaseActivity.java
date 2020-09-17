@@ -1,9 +1,9 @@
 package com.look.book.base;
 
-import android.view.View;
 
-import com.android.basecore.act._BaseActivity;
+import com.android.basecore.act.MVPBaseActivity;
+import com.android.basecore.presenter._BasePresenter;
 
-public abstract class BaseActivity extends _BaseActivity {
+public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> {
 
 }

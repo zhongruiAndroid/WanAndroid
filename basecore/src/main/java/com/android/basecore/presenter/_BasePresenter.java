@@ -6,12 +6,21 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.KeyEvent;
 
-import com.android.basecore.tools.AutoInstance;
+public  class _BasePresenter<V> {
+    public V view;
 
-public  class _BasePresenter {
-
+    public _BasePresenter() {
+    }
+    public void setView(V view){
+        if(view==null){
+            return;
+        }
+        this.view=view;
+    }
+    public V getView() {
+        return view;
+    }
     public void onCreate(Bundle savedInstanceState) {
     }
     public void onResume(boolean isFirstInto) {

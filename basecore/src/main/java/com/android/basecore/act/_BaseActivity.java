@@ -60,12 +60,12 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         isDestroyed=false;
         isFirstInto=true;
         isFirstHidden=true;
-        mActivity = this;
         clickTimeFlag = new Long(hashCode());
     }
     private boolean useAnim=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mActivity = this;
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if(intent!=null){

@@ -21,6 +21,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        mActivity = getActivity();
         super.onCreate(savedInstanceState);
         initAttr();
         if (savedInstanceState != null) {
@@ -62,6 +63,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mActivity = getActivity();
         isDestroyed = false;
         int contentViewId = getContentView();
         if (contentViewId > 0) {
@@ -183,7 +185,6 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     }
 
     private void initAttr() {
-        mActivity = getActivity();
         clickTimeFlag = new Long(hashCode());
     }
 
