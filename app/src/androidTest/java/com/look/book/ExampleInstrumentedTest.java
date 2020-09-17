@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,5 +24,16 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.look.book", appContext.getPackageName());
+    }
+    @Test
+    public void afds() {
+        String json="{\"code\":-1,\"msg\":\"参数缺失\",\"data\":null}";
+        try {
+            JSONObject jsonObject=new JSONObject(json);
+            System.out.println("============"+jsonObject.optString("code"));
+        } catch (JSONException e) {
+            System.out.println("============error");
+            e.printStackTrace();
+        }
     }
 }

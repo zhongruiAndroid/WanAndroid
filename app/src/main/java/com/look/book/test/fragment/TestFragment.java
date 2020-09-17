@@ -33,8 +33,8 @@ public class TestFragment extends BaseFragment {
     }
     @Override
     public void initView() {
-        tvTest=findViewById(R.id.tvTest);
-        btTestClick=findViewById(R.id.btTestClick);
+        btTestClick=mView.findViewById(R.id.btTestClick);
+        tvTest= mView.findViewById(R.id.tvTest);
     }
 
 
