@@ -1,17 +1,24 @@
 package com.android.basecore.act;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.android.basecore.R;
 import com.android.basecore.tools.ClickTools;
 
 public abstract class _BaseActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String USE_ANIM="USE_ANIM";
     private Long clickTimeFlag;
     protected FragmentActivity mActivity;
     protected boolean isFirstInto = true;
@@ -56,9 +63,20 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         mActivity = this;
         clickTimeFlag = new Long(hashCode());
     }
+    private boolean useAnim=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        if(intent!=null){
+            useAnim=intent.getBooleanExtra(USE_ANIM, true);
+        }
+        if(useAnim){
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }else{
+            overridePendingTransition(0, 0);
+        }
+
         initAttr();
         _setTheme(getThemeId());
         int contentViewId = getContentView();
@@ -74,6 +92,31 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     }
 
 
+    @Override
+    public void finish() {
+        super.finish();
+        hiddenKeyBoard(this,getWindow());
+        if (useAnim) {
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        } else {
+            overridePendingTransition(0, 0);
+        }
+    }
+    private void hiddenKeyBoard(Context context, Window window) {
+        if(window==null||context==null){
+            return;
+        }
+        View focusView=window.getCurrentFocus();
+        if(focusView==null){
+            return;
+        }
+        ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(window.getCurrentFocus().getWindowToken(), 0);
+    }
+    @Override
+    public void overridePendingTransition(int enterAnim, int exitAnim) {
+        super.overridePendingTransition(enterAnim, exitAnim);
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
