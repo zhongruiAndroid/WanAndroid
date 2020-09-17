@@ -113,10 +113,6 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow(window.getCurrentFocus().getWindowToken(), 0);
     }
-    @Override
-    public void overridePendingTransition(int enterAnim, int exitAnim) {
-        super.overridePendingTransition(enterAnim, exitAnim);
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
