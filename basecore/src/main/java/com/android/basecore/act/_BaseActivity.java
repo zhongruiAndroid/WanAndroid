@@ -65,6 +65,11 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
     private boolean useAnim=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*进入的第一个Activity需要加上
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }*/
         mActivity = this;
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
