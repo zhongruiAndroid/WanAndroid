@@ -28,4 +28,17 @@ dependencies {
     implementation project(':basecore')
     implementation files('libs/utils.jar')
     implementation "com.android.support:recyclerview-v7:28.+"
+
+
+    implementation 'com.github:MyCardView:1.0.2'//阴影效果
+    implementation 'com.github:MyPermissions:1.0.2'//权限请求
+    implementation 'com.github:StatusBarUtils:1.0.1'//沉浸式状态栏
+    implementation 'com.github:TheOkHttp:1.0.3'//okHttp网球请求封装
+    implementation 'com.github:SimpleDialog:1.0.3'//魔改dialog
+    implementation 'com.github:FlowLayout:1.0.2'//流式布局
+    implementation 'com.github:MyTask:1.0.1'//线程切换封装
+    implementation 'com.github:Load:1.0.3'//loading框
+    implementation 'com.github:InterBus:1.0.5'//事件通信
+    implementation 'com.github:DividerLine:1.0.1'//recyclerview万能分割线
+    implementation 'com.github:fastshape:1.0.9'//自定义属性实现shape，layer-list效果
 }
