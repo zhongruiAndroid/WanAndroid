@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/flHomeContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_gravity="bottom"
+        android:background="@color/c_white"
+        android:elevation="3dp"
+        android:orientation="horizontal"
+        android:paddingTop="4dp">
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbHomeTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="首页"
+            app:checked_drawable_top="@drawable/home_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/home_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbKnowledgeSystemTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="知识体系"
+            app:checked_drawable_top="@drawable/tixi_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/tixi_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbNavigationTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="导航"
+            app:checked_drawable_top="@drawable/navigation_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/navigation_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbOfficialTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="公众号"
+            app:checked_drawable_top="@drawable/official_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/official_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbQuestionTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="问答"
+            app:checked_drawable_top="@drawable/question_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/question_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+
+        <com.github.fastshape.MyRadioButton
+            android:id="@+id/rbMyTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="我的"
+            app:checked_drawable_top="@drawable/my_tab"
+            app:checked_drawable_top_color="@color/c_57b7e9"
+            app:checked_textColor="@color/c_57b7e9"
+            app:normal_drawable_top="@drawable/my_tab"
+            app:normal_drawable_top_color="@color/c_666666"
+            app:normal_textColor="@color/c_666666" />
+    </RadioGroup>
+</LinearLayout>

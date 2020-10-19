@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.android.basecore.R;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

@@ -1,21 +1,20 @@
-package com.zr.wanandroid.module.home.activity;
+package com.zr.wanandroid.module.home.fragment;
 
 import android.view.View;
 
-import com.zr.wanandroid.R;
-import com.zr.wanandroid.base.BaseActivity;
-import com.zr.wanandroid.module.home.presenter.HomePresenter;
+import com.zr.wanandroid.base.BaseFragment;
 
-public class HomeActivity extends BaseActivity<HomePresenter> {
+public class HomeFragment extends BaseFragment {
     @Override
     public int getContentView() {
-        return R.layout.main_act;
+        return 0;
     }
 
     @Override
     public void initView() {
 
     }
+
     @Override
     public void initViewAfter() {
 

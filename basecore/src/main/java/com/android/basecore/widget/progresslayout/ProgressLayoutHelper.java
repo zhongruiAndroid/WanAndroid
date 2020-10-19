@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.android.basecore.R;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

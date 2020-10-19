@@ -9,19 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".MyApplication"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.zr.wanandroid.test.activity.MainActivity">
+
+        </activity>
+        <activity android:name="com.zr.wanandroid.test.activity.TestActivity" />
+        <activity android:name="com.zr.wanandroid.test.activity.Test2Activity" />
+        <activity android:name="com.zr.wanandroid.test.activity.EmptyActivity" />
+        <activity android:name="com.zr.wanandroid.test.activity.Test3Activity" />
+        <activity android:name=".module.home.activity.HomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zr.wanandroid.test.activity.TestActivity" />
-        <activity android:name="com.zr.wanandroid.test.activity.Test2Activity" />
-        <activity android:name="com.zr.wanandroid.test.activity.EmptyActivity" />
-        <activity android:name="com.zr.wanandroid.test.activity.Test3Activity" />
-        <activity android:name=".module.home.activity.HomeActivity" />
     </application>
 
 </manifest>
