@@ -59,7 +59,9 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public abstract @LayoutRes
     int getContentView();
 
-
+    public View getView(){
+        return mView;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

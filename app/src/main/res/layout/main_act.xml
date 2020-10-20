@@ -19,7 +19,7 @@
         android:layout_height="53dp"
         android:layout_gravity="bottom"
         android:background="@color/c_white"
-        android:elevation="3dp"
+        android:elevation="20dp"
         android:orientation="horizontal"
         android:paddingTop="4dp">
 
