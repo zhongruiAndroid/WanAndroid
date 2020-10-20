@@ -1,14 +1,26 @@
 package com.zr.wanandroid.module.home.activity;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.FrameLayout;
 
 import com.android.basecore.tools.ActTools;
+import com.github.developtools.ActivityUtils;
+import com.github.developtools.N;
 import com.github.fastshape.MyRadioButton;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.fragment.HomeFragment;
 import com.zr.wanandroid.module.home.presenter.HomeActPresenter;
+import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeSystemFragment;
+import com.zr.wanandroid.module.my.fragment.MyFragment;
+import com.zr.wanandroid.module.navigation.fragment.NavigationFragment;
+import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountFragment;
+import com.zr.wanandroid.module.question.fragment.QuestionFragment;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends BaseActivity<HomeActPresenter> {
     private FrameLayout flHomeContent;
@@ -17,12 +29,20 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     private MyRadioButton rbHomeTab;
     private MyRadioButton rbKnowledgeSystemTab;
     private MyRadioButton rbNavigationTab;
-    private MyRadioButton rbOfficialTab;
+    private MyRadioButton rbOfficialAccountTab;
     private MyRadioButton rbQuestionTab;
     private MyRadioButton rbMyTab;
 
 
     private HomeFragment homeFragment;
+    private NavigationFragment navigationFragment;
+    private OfficialAccountFragment officialAccountFragment;
+    private QuestionFragment questionFragment;
+    private MyFragment myFragment;
+    private KnowledgeSystemFragment knowledgeSystemFragment;
+
+    private Map<Integer, Fragment> fragmentMap = new HashMap<>();
+
     @Override
     public int getContentView() {
         return R.layout.main_act;
@@ -35,49 +55,64 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         rbHomeTab = findViewById(R.id.rbHomeTab);
         rbKnowledgeSystemTab = findViewById(R.id.rbKnowledgeSystemTab);
         rbNavigationTab = findViewById(R.id.rbNavigationTab);
-        rbOfficialTab = findViewById(R.id.rbOfficialTab);
+        rbOfficialAccountTab = findViewById(R.id.rbOfficialAccountTab);
         rbQuestionTab = findViewById(R.id.rbQuestionTab);
         rbMyTab = findViewById(R.id.rbMyTab);
 
-        selectView=rbHomeTab;
+        selectView = rbHomeTab;
     }
+
     @Override
     public void initViewAfter() {
         rbHomeTab.setOnClickListener(this);
         rbKnowledgeSystemTab.setOnClickListener(this);
         rbNavigationTab.setOnClickListener(this);
-        rbOfficialTab.setOnClickListener(this);
+        rbOfficialAccountTab.setOnClickListener(this);
         rbQuestionTab.setOnClickListener(this);
         rbMyTab.setOnClickListener(this);
     }
 
     @Override
     public void initData() {
-        homeFragment=HomeFragment.newInstance();
-        ActTools.addFragment(this,R.id.flHomeContent,homeFragment);
+        homeFragment = HomeFragment.newInstance();
+        ActTools.addFragment(this, R.id.flHomeContent, homeFragment);
+
+
+        knowledgeSystemFragment = KnowledgeSystemFragment.newInstance();
+        navigationFragment = NavigationFragment.newInstance();
+        officialAccountFragment = OfficialAccountFragment.newInstance();
+        questionFragment = QuestionFragment.newInstance();
+        myFragment = MyFragment.newInstance();
+
+        fragmentMap.put(R.id.rbHomeTab, homeFragment);
+        fragmentMap.put(R.id.rbKnowledgeSystemTab, knowledgeSystemFragment);
+        fragmentMap.put(R.id.rbNavigationTab, navigationFragment);
+        fragmentMap.put(R.id.rbOfficialAccountTab, officialAccountFragment);
+        fragmentMap.put(R.id.rbQuestionTab, questionFragment);
+        fragmentMap.put(R.id.rbMyTab, myFragment);
     }
 
     @Override
     public void onNoDoubleClick(View v) {
-        switch (v.getId()){
-            case R.id.rbHomeTab:
+        selectTab(v,v.getId());
+    }
 
-            break;
-            case R.id.rbKnowledgeSystemTab:
-
-            break;
-            case R.id.rbNavigationTab:
-
-            break;
-            case R.id.rbOfficialTab:
-
-            break;
-            case R.id.rbQuestionTab:
-
-            break;
-            case R.id.rbMyTab:
-
-            break;
+    private void selectTab(View v, int id) {
+        if (selectView.getId() == id) {
+            return;
         }
+        Fragment fragment = fragmentMap.get(id);
+        Fragment preFragment = fragmentMap.get(selectView.getId());
+        if(fragment==null){
+            return;
+        }
+        if(fragment.isAdded()){
+            ActTools.showFragment(this,fragment);
+        }else{
+            ActTools.addFragment(this,R.id.flHomeContent,fragment);
+        }
+        ActTools.hideFragment(this,preFragment);
+        selectView= (MyRadioButton) v;
+        selectView.setChecked(true);
     }
 }

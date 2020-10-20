@@ -70,7 +70,7 @@
             app:normal_textColor="@color/c_666666" />
 
         <com.github.fastshape.MyRadioButton
-            android:id="@+id/rbOfficialTab"
+            android:id="@+id/rbOfficialAccountTab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

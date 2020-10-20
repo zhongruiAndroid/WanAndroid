@@ -11,9 +11,10 @@ import android.widget.FrameLayout;
 
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
+import com.zr.wanandroid.common.listener.CreateFragmentInterface;
 import com.zr.wanandroid.test.video.SplashPlayVideoView;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment  {
 
     private FrameLayout llRoot;
 
