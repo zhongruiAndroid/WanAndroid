@@ -59,9 +59,10 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public abstract @LayoutRes
     int getContentView();
 
-    public View getView(){
+    public View getView() {
         return mView;
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,9 +74,14 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         } else {
             mView = getContentLayout();
         }
+        initViewPrevious();
         initView();
         initViewAfter();
         return mView;
+    }
+
+    protected void initViewPrevious() {
+
     }
 
     @Override
@@ -182,7 +188,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
 
     public View getContentLayout() {
         TextView textView = new TextView(mActivity);
-        textView.setText(this.getClass().getSimpleName()+":getContentLayout()");
+        textView.setText(this.getClass().getSimpleName() + ":getContentLayout()");
         return textView;
     }
 

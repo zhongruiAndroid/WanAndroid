@@ -27,6 +27,7 @@ public abstract class MVPBaseActivity<P extends _BasePresenter> extends _BaseAct
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mPresenter = createPresenter();
         if (mPresenter == null) {
             mPresenter = AutoInstance.autoCreatePresenter(getClass());

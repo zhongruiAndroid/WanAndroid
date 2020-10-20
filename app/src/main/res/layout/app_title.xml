@@ -1,72 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@id/appRlTitle"
+<com.zr.wanandroid.widget.TitleView
+    android:id="@id/titleView"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/app_title_height"
     android:background="#ffffff"
     android:orientation="vertical"
-    android:elevation="3dp"
-    >
-
-    <TextView
-        android:id="@id/appTvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textColor="#323232"
-        android:textSize="@dimen/app_title_size"
-        tools:text="title"
-        android:layout_centerInParent="true"
-        android:textStyle="bold"
-        />
-
-    <ImageButton
-        android:id="@id/appIbBack"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:paddingLeft="15dp"
-        android:paddingRight="20dp"
-        android:src="@drawable/app_back_black"
-        android:background="#00000000"
-        />
-    <TextView
-        android:id="@id/appTvRightTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="right"
-        android:layout_marginRight="10dp"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:textColor="#323232"
-        android:textSize="@dimen/app_right_title_size"
-        tools:text="right_title"
-        />
-
-    <ImageButton
-        android:id="@id/appIbRight"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:background="#00000000"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        tools:src="@drawable/app_back_black"
-        android:visibility="invisible"
-        />
-    <View
-        android:id="@id/appBottomLine"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:background="#B9B8B8"
-        android:visibility="gone"
-        />
-</RelativeLayout>
+    android:elevation="3dp">
+</com.zr.wanandroid.widget.TitleView>

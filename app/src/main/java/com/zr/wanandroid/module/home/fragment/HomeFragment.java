@@ -24,7 +24,6 @@ public class HomeFragment extends BaseFragment  {
     }
 
     public static HomeFragment newInstance() {
-
         Bundle args = new Bundle();
 
         HomeFragment fragment = new HomeFragment();
@@ -33,7 +32,6 @@ public class HomeFragment extends BaseFragment  {
     }
     @Override
     public void initView() {
-
     }
 
     @Override
@@ -49,8 +47,9 @@ public class HomeFragment extends BaseFragment  {
     @Override
     public void onNoDoubleClick(View v) {
         switch (v.getId()){
-            case R.id.bt:
+            case R.id.disableHome:
             break;
         }
     }
+
 }

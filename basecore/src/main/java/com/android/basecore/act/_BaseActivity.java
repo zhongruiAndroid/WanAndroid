@@ -90,10 +90,14 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         } else {
             setContentView(getContentLayout());
         }
-
+        initViewPrevious();
         initView();
         initViewAfter();
         initData();
+    }
+
+    protected void initViewPrevious() {
+
     }
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="appRlTitle" type="id"/>
+    <item name="titleView" type="id"/>
     <item name="appTvTitle" type="id"/>
     <item name="appTvRightTitle" type="id"/>
     <item name="appIbBack" type="id"/>
