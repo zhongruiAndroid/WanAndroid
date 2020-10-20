@@ -1,15 +1,18 @@
 package com.zr.wanandroid.base;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.android.basecore.fragment.MVPBaseFragment;
 import com.android.basecore.presenter._BasePresenter;
-import com.github.progress.ProgressFrameLayout;
-import com.github.progress.ProgressInter;
-import com.github.progress.ProgressLinearLayout;
-import com.github.progress.ProgressRelativeLayout;
+import com.github.progresslayout.ProgressFrameLayout;
+import com.github.progresslayout.ProgressInter;
+import com.github.progresslayout.ProgressLinearLayout;
+import com.github.progresslayout.ProgressListener;
+import com.github.progresslayout.ProgressRelativeLayout;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.widget.TitleView;
 
@@ -17,7 +20,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFragment<P> implements  com.github.progress.ProgressInter.ErrorOnClickListener, com.github.progress.ProgressInter.NoNetworkOnClickListener{
+public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFragment<P> implements ProgressListener.ErrorOnClickListener, ProgressListener.NoNetworkOnClickListener{
 
 
     private ProgressInter progressInter;
@@ -28,7 +31,9 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     protected final void initViewPrevious() {
         titleView = getView().findViewById(R.id.titleView);
     }
-
+    public <T extends View>T findViewById( @IdRes int id){
+        return  (T)getView().findViewById(id);
+    }
     @Override
     public void initViewAfter() {
         View pcflRefreshView = getView().findViewById(R.id.pcflRefresh);

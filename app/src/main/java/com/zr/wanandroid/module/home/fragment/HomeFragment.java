@@ -3,6 +3,7 @@ package com.zr.wanandroid.module.home.fragment;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
@@ -17,6 +18,7 @@ import com.zr.wanandroid.test.video.SplashPlayVideoView;
 public class HomeFragment extends BaseFragment  {
 
     private FrameLayout llRoot;
+    private RecyclerView rvHomeList;
 
     @Override
     public int getContentView() {
@@ -32,6 +34,7 @@ public class HomeFragment extends BaseFragment  {
     }
     @Override
     public void initView() {
+        rvHomeList = (RecyclerView) findViewById(R.id.rvHomeList);
     }
 
     @Override

@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.android.basecore.act.MVPBaseActivity;
 import com.android.basecore.presenter._BasePresenter;
-import com.github.progress.ProgressFrameLayout;
-import com.github.progress.ProgressInter;
-import com.github.progress.ProgressLinearLayout;
-import com.github.progress.ProgressRelativeLayout;
+import com.github.progresslayout.ProgressFrameLayout;
+import com.github.progresslayout.ProgressInter;
+import com.github.progresslayout.ProgressLinearLayout;
+import com.github.progresslayout.ProgressListener;
+import com.github.progresslayout.ProgressRelativeLayout;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.widget.TitleView;
 
@@ -18,7 +19,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements com.github.progress.ProgressInter.ErrorOnClickListener, com.github.progress.ProgressInter.NoNetworkOnClickListener {
+public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements ProgressListener.ErrorOnClickListener,  ProgressListener.NoNetworkOnClickListener {
 
     private ProgressInter progressInter;
     protected PtrClassicFrameLayout pcflRefresh;
