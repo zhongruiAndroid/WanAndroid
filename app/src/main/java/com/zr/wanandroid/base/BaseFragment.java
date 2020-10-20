@@ -23,6 +23,8 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFragment<P> implements ProgressListener.ErrorOnClickListener, ProgressListener.NoNetworkOnClickListener{
 
 
+    public int pageNum = 2;
+    public int pageSize = 15;
     private ProgressInter progressInter;
     protected PtrClassicFrameLayout pcflRefresh;
     public TitleView titleView;

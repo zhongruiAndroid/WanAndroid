@@ -1,25 +1,19 @@
 package com.zr.wanandroid.module.home.fragment;
 
-import android.graphics.SurfaceTexture;
-import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
-import android.widget.FrameLayout;
 
+import com.android.basecore.widget.adapter.LoadMoreAdapter;
+import com.github.dividerline.BaseItemDivider;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
-import com.zr.wanandroid.common.listener.CreateFragmentInterface;
-import com.zr.wanandroid.test.video.SplashPlayVideoView;
+import com.zr.wanandroid.module.home.presenter.HomeFragPresenter;
 
-public class HomeFragment extends BaseFragment  {
+public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
 
-    private FrameLayout llRoot;
     private RecyclerView rvHomeList;
-
     @Override
     public int getContentView() {
         return R.layout.home_frag;
@@ -35,6 +29,10 @@ public class HomeFragment extends BaseFragment  {
     @Override
     public void initView() {
         rvHomeList = (RecyclerView) findViewById(R.id.rvHomeList);
+
+        rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHomeList.addItemDecoration(new BaseItemDivider(getContext(),2));
+        rvHomeList.setAdapter(getPresenter().initAdapter());
     }
 
     @Override
@@ -44,7 +42,13 @@ public class HomeFragment extends BaseFragment  {
 
     @Override
     public void initData() {
+        showProgress();
+        getData(1,false);
+    }
 
+    @Override
+    protected void getData(int page, boolean isLoad) {
+        getPresenter().getData(page,isLoad);
     }
 
     @Override
