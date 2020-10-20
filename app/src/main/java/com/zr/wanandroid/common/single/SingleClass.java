@@ -1,21 +1,32 @@
 package com.zr.wanandroid.common.single;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public abstract class SingleClass{
+public abstract class SingleClass {
     /**********************************************************/
-    private static Map<Class,SingleClass> singleClassMap=new ConcurrentHashMap<>();
+    private static WeakReference<ConcurrentHashMap<Class, SingleClass>> weakReference = new WeakReference<>(new ConcurrentHashMap<Class, SingleClass>());
+
     public SingleClass() {
     }
+
+    public static ConcurrentHashMap<Class, SingleClass> getMap() {
+        ConcurrentHashMap<Class, SingleClass> classSingleClassConcurrentHashMap = weakReference.get();
+        if (classSingleClassConcurrentHashMap == null) {
+            classSingleClassConcurrentHashMap = new ConcurrentHashMap<Class, SingleClass>();
+        }
+        return classSingleClassConcurrentHashMap;
+    }
+
     public static <T extends SingleClass> T getInstance(Class<T> clazz) {
-        SingleClass singleClass = singleClassMap.get(clazz);
-        if(singleClass==null){
-            synchronized (SingleClass.class){
-                if(singleClass==null){
+        SingleClass singleClass = getMap().get(clazz);
+        if (singleClass == null) {
+            synchronized (SingleClass.class) {
+                if (singleClass == null) {
                     try {
-                        singleClass=clazz.newInstance();
-                        singleClassMap.put(clazz,singleClass);
+                        singleClass = clazz.newInstance();
+                        getMap().put(clazz, singleClass);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InstantiationException e) {
