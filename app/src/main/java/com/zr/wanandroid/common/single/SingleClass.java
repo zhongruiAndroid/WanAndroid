@@ -1,5 +1,7 @@
 package com.zr.wanandroid.common.single;
 
+import com.zr.wanandroid.common.listener.RequestListener;
+
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,5 +38,16 @@ public abstract class SingleClass {
             }
         }
         return (T) singleClass;
+    }
+
+    public <T>void success(RequestListener<T> listener,T obj){
+        if (listener != null) {
+            listener.onSuccess(obj);
+        }
+    }
+    public <T>void error(RequestListener<T> listener, String code, String errorMsg){
+        if (listener != null) {
+            listener.onError(code,errorMsg);
+        }
     }
 }

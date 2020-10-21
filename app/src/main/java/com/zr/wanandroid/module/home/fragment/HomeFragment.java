@@ -1,12 +1,15 @@
 package com.zr.wanandroid.module.home.fragment;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
-import com.android.basecore.widget.adapter.LoadMoreAdapter;
 import com.github.dividerline.BaseItemDivider;
+import com.github.theokhttp.NetworkUtils;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
 import com.zr.wanandroid.module.home.presenter.HomeFragPresenter;
@@ -28,11 +31,13 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
     }
     @Override
     public void initView() {
-        rvHomeList = (RecyclerView) findViewById(R.id.rvHomeList);
+        rvHomeList =   findViewById(R.id.rvHomeList);
 
         rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHomeList.addItemDecoration(new BaseItemDivider(getContext(),2));
         rvHomeList.setAdapter(getPresenter().initAdapter());
+
+
     }
 
     @Override

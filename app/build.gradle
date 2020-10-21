@@ -6,14 +6,28 @@ android {
         applicationId "com.look.book"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            storeFile file("../myapp.jks")
+            storePassword "zhongrui"
+            keyAlias "zhongrui"
+            keyPassword "zhongrui"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -22,6 +36,11 @@ android {
             dirs 'libs'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -40,7 +59,8 @@ dependencies {
     implementation 'com.github:MyCardView:1.0.2'//阴影效果
     implementation 'com.github:MyPermissions:1.0.2'//权限请求
     implementation 'com.github:StatusBarUtils:1.0.1'//沉浸式状态栏
-    implementation 'com.github:TheOkHttp:1.0.3'//okHttp网球请求封装
+    implementation(name:'TheOkHttp2',ext:'aar')
+//    implementation 'com.github:TheOkHttp:1.0.3'//okHttp网球请求封装
     implementation 'com.github:SimpleDialog:1.0.3'//魔改dialog
     implementation 'com.github:FlowLayout:1.0.2'//流式布局
     implementation 'com.github:MyTask:1.0.1'//线程切换封装
@@ -50,4 +70,7 @@ dependencies {
     implementation 'com.github:fastshape:1.0.9'//自定义属性实现shape，layer-list效果
     implementation 'com.github:MyProgressLayout:1.0.4'//loading视图
     implementation 'com.github:MyBanner:1.0.6'//banner
+
+
+    implementation 'com.squareup.okhttp3:okhttp:3.14.3'
 }
