@@ -29,12 +29,12 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
             FragmentTransaction ft = this.getFragmentManager().beginTransaction();
             if (isNeedHidden) {
                 currentViewStateShow = false;
-                ft.hide(this);
+//                ft.hide(this);
             } else {
                 currentViewStateShow = true;
-                ft.show(this);
+//                ft.show(this);
             }
-            ft.commitAllowingStateLoss();
+//            ft.commitAllowingStateLoss();
         }
     }
 

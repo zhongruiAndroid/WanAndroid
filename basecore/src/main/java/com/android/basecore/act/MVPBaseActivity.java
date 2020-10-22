@@ -47,7 +47,7 @@ public abstract class MVPBaseActivity<P extends _BasePresenter> extends _BaseAct
 
     }
     @Override
-    public void toast(String content) {
+    public void showToast(String content) {
 
     }
     @Override

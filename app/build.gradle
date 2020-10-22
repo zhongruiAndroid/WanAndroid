@@ -72,5 +72,7 @@ dependencies {
     implementation 'com.github:MyBanner:1.0.6'//banner
 
 
+    implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.okhttp3:okhttp:3.14.3'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }

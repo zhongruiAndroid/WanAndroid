@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-public  class _BasePresenter<V> {
+public  class _BasePresenter<V extends _BaseView> {
     public V view;
 
     public _BasePresenter() {

@@ -18,13 +18,16 @@
         <activity android:name="com.zr.wanandroid.test.activity.Test2Activity" />
         <activity android:name="com.zr.wanandroid.test.activity.EmptyActivity" />
         <activity android:name="com.zr.wanandroid.test.activity.Test3Activity" />
-        <activity android:name=".module.home.activity.HomeActivity" >
+        <activity android:name=".module.home.activity.HomeActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".module.web.act.WebActivity" />
     </application>
 
 </manifest>

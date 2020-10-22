@@ -3,6 +3,8 @@ package com.zr.wanandroid.module.home.fragment;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +33,7 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
     }
     @Override
     public void initView() {
+        pcflRefresh.disableWhenHorizontalMove(true);
         rvHomeList =   findViewById(R.id.rvHomeList);
 
         rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -46,11 +49,25 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
     }
 
     @Override
-    public void initData() {
-        showProgress();
-        getData(1,false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+    @Override
+    public void initData() {
+        showProgress();
+        getOtherData();
+        getData(1,false);
+    }
+    @Override
+    protected void getOtherData() {
+        getPresenter().getHomeBanner();
+        getPresenter().getHomeTopArticleList();
+    }
     @Override
     protected void getData(int page, boolean isLoad) {
         getPresenter().getData(page,isLoad);

@@ -40,12 +40,12 @@ public abstract class SingleClass {
         return (T) singleClass;
     }
 
-    public <T>void success(RequestListener<T> listener,T obj){
+    public <T>void toSuccess(RequestListener<T> listener,T obj){
         if (listener != null) {
             listener.onSuccess(obj);
         }
     }
-    public <T>void error(RequestListener<T> listener, String code, String errorMsg){
+    public <T>void toError(RequestListener<T> listener, String code, String errorMsg){
         if (listener != null) {
             listener.onError(code,errorMsg);
         }

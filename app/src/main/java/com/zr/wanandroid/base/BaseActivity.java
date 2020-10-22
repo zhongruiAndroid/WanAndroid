@@ -4,6 +4,7 @@ package com.zr.wanandroid.base;
 import android.os.Bundle;
 import android.os.RecoverySystem;
 import android.view.View;
+import android.view.Window;
 
 import com.android.basecore.act.MVPBaseActivity;
 import com.android.basecore.presenter._BasePresenter;
@@ -19,19 +20,21 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements ProgressListener.ErrorOnClickListener,  ProgressListener.NoNetworkOnClickListener {
+public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements ProgressListener.ErrorOnClickListener,  ProgressListener.NoNetworkOnClickListener ,BaseView{
 
     public int pageNum = 2;
     public int pageSize = 15;
     private ProgressInter progressInter;
     protected PtrClassicFrameLayout pcflRefresh;
     public TitleView titleView;
+    public void refreshComplete(){
+        if (pcflRefresh != null) {
+            pcflRefresh.refreshComplete();
+        }
+    }
     @Override
     protected final void initViewPrevious() {
         titleView =findViewById(R.id.titleView);
-    }
-    @Override
-    public void initViewAfter() {
         View pcflRefreshView = findViewById(R.id.pcflRefresh);
         if (null != pcflRefreshView) {
             pcflRefresh = (PtrClassicFrameLayout) pcflRefreshView;
@@ -56,6 +59,10 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
                 progressInter.setErrorOnClickListener(this);
             }
         }
+    }
+    @Override
+    public void initViewAfter() {
+
     }
 
     protected void getOtherData() {

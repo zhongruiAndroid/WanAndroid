@@ -46,8 +46,7 @@ public abstract class MVPBaseFragment<P extends _BasePresenter> extends _BaseFra
     public void dismissLoading() {
 
     }
-    @Override
-    public void toast(String content) {
+    public void showToast(String content) {
 
     }
 
