@@ -10,4 +10,6 @@
     <color name="c_999999">#999999</color>
     <color name="c_white">#ffffff</color>
     <color name="colorText">#848484</color>
+    <color name="c_home_tag_border">#D0F14E26</color>
+    <color name="c_home_tag_new">#57b7e9</color>
 </resources>

@@ -1,5 +1,7 @@
 package com.zr.wanandroid;
 
+import com.zr.wanandroid.utils.HtmlUtils;
+
 import org.junit.Test;
 
 import java.net.SocketTimeoutException;
@@ -15,6 +17,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+    @Test
+    public void sdd() {
+        HtmlUtils.test();
     }
     @Test
     public void s() {

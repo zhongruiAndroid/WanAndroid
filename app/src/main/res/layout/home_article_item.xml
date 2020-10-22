@@ -4,6 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
+    <LinearLayout
+        android:id="@+id/llHomeArticleTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
+
+        <com.github.fastshape.MyTextView
+            android:id="@+id/tvHomeArticleTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="1dp"
+            android:text="新"
+            android:textColor="@color/c_home_tag_new"
+            android:textSize="11sp"
+            app:borderColor="@color/c_home_tag_new"
+            app:borderWidth="2px"
+            app:radius="2dp" />
+
+        <com.github.fastshape.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="1dp"
+            android:text="置顶"
+            android:textColor="@color/c_home_tag_border"
+            android:textSize="11sp"
+            app:borderColor="@color/c_home_tag_border"
+            app:borderWidth="2px"
+            app:radius="2dp" />
+
+        <com.github.fastshape.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="1dp"
+            android:text="本站发布"
+            android:textColor="@color/c_home_tag_border"
+            android:textSize="11sp"
+            app:borderColor="@color/c_home_tag_border"
+            app:borderWidth="2px"
+            app:radius="2dp" />
+
+        <com.github.fastshape.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="1dp"
+            android:text="问答"
+            android:textColor="@color/c_home_tag_border"
+            android:textSize="11sp"
+            app:borderColor="@color/c_home_tag_border"
+            app:borderWidth="2px"
+            app:radius="2dp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvHomeArticleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingBottom="5dp"
+        android:textColor="@color/c_333333"
+        android:textSize="15sp"
+        tools:text="每日一问 | 属性动画与硬件加速的相遇，不是你想的那么简单？" />
+
+    <TextView
+        android:id="@+id/tvHomeArticleDes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:paddingBottom="5dp"
+        android:textColor="@color/c_333333"
+        android:textSize="12sp"
+        tools:text="每当大家有在编译期间有修改字节码的需求，第一反应应该就是使用Transform吧，我们知道每个Transform都有它的输入、输出，问几个问题：\\在编译过程中，有哪些“系统Transform”执行？自定义Transform和其他系统Transform执行的顺序是怎么样的？Transform和gradletask的关系是怎么样的？" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvHomeArticleAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            tools:text="作者:xiaoyang"
+            android:textColor="@color/c_666666"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tvHomeArticleChapterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="分类: 问答 / 官方"
+            android:textColor="@color/c_666666"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tvHomeArticleTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            tools:text="2020-10-03 11:43"
+            android:textColor="@color/c_666666"
+            android:textSize="11sp" />
+    </LinearLayout>
 </LinearLayout>
