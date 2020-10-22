@@ -1,9 +1,11 @@
 package com.zr.wanandroid.base;
 
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,6 +37,9 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
         if (pcflRefresh != null) {
             pcflRefresh.refreshComplete();
         }
+    }
+    public int color(@ColorRes int colorId){
+        return ContextCompat.getColor(getActivity(),colorId);
     }
     @Override
     protected final void initViewPrevious() {

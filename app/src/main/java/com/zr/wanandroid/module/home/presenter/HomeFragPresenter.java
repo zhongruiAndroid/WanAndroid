@@ -26,38 +26,39 @@ import java.util.List;
 
 public class HomeFragPresenter extends BasePresenter<HomeFragment> implements LoadMoreAdapter.OnLoadMoreListener {
     private HomeAdapter adapter;
-    private BannerLayout bannerLayout;
+//    private BannerLayout bannerLayout;
     public RecyclerView.Adapter initAdapter() {
         adapter=new HomeAdapter();
         adapter.setList(new ArrayList());
         adapter.setOnLoadMoreListener(this);
 
-        bannerLayout=new BannerLayout(getView().getActivity());
-        adapter.addHeaderView(bannerLayout);
+//        bannerLayout=new BannerLayout(getView().getActivity());
+//        adapter.addHeaderView(bannerLayout);
         return adapter;
     }
 
     @Override
     public void onResumeForFragment() {
         super.onResumeForFragment();
-        if (bannerLayout != null) {
-            bannerLayout.startAutoPlay();
-        }
+//        if (bannerLayout != null) {
+//            bannerLayout.startAutoPlay();
+//        }
     }
     @Override
     public void onStopForFragment() {
         super.onStopForFragment();
-        if (bannerLayout != null) {
-            bannerLayout.stopAutoPlay();
-        }
+//        if (bannerLayout != null) {
+//            bannerLayout.stopAutoPlay();
+//        }
     }
     public void getHomeBanner() {
         HomeModel.getInstance().getHomeBanner(new RequestListener<List<HomeBannerBean>>() {
             @Override
             public void onSuccess(List<HomeBannerBean> obj) {
-                if (bannerLayout != null) {
-                    bannerLayout.setData(obj);
-                }
+//                if (bannerLayout != null) {
+
+                getView().setBannerData( obj);
+//                }
             }
             @Override
             public void onError(String code, String errorMsg) {

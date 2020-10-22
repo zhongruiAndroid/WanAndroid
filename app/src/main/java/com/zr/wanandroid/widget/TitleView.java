@@ -3,10 +3,12 @@ package com.zr.wanandroid.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.RequiresApi;
@@ -61,10 +63,11 @@ public class TitleView extends RelativeLayout {
     private Drawable appBackIcon;
     private Drawable appRightImg;
 
-    private int appTitleBackground = R.color.app_bar;
+    private int appTitleBackground ;
 
     private boolean hiddenBottomLine = false;
     private void initView() {
+        appTitleBackground=ContextCompat.getColor(getContext(),R.color.app_bar);
         appRlTitle=this;
         appBackIcon=ContextCompat.getDrawable(getContext(),R.drawable.app_back_black);
         this.appIbBack =findViewById(R.id.appIbBack);
@@ -72,7 +75,7 @@ public class TitleView extends RelativeLayout {
         stateListDrawable.addState(new int[]{-android.R.attr.state_pressed},new ColorDrawable(Color.TRANSPARENT));
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(Color.parseColor("#e2e2e2")));
         stateListDrawable.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
-        this.appIbBack.setBackground(stateListDrawable);
+//        this.appIbBack.setBackground(stateListDrawable);
         setAppBackIcon(appBackIcon);
         this.appIbBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
@@ -91,6 +94,15 @@ public class TitleView extends RelativeLayout {
         }
         appBottomLine.setVisibility(View.GONE);
     }
+    public void setAppBackIconColor(@ColorInt int color) {
+        if(appBackIcon==null){
+            return;
+        }
+        appBackIcon=appBackIcon.mutate();
+        appBackIcon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        setAppBackIcon(appBackIcon);
+
+    }
     public void setAppBackIcon(Drawable appBackIcon) {
         this.appBackIcon = appBackIcon;
         if(appIbBack==null){
@@ -108,7 +120,7 @@ public class TitleView extends RelativeLayout {
     public void setAppBackIcon(@DrawableRes int appBackIconResId) {
         setAppBackIcon(ContextCompat.getDrawable(getContext(),appBackIconResId));
     }
-    protected void setAppTitle(String title, boolean isShort, int textLength) {
+    public void setAppTitle(String title, boolean isShort, int textLength) {
         if (isShort && !TextUtils.isEmpty(title) && title.length() > textLength) {
             appTitle = title.substring(0, textLength) + "...";
         } else {
@@ -123,10 +135,10 @@ public class TitleView extends RelativeLayout {
             appTvTitle.setText(appTitle == null ? "" : appTitle);
         }
     }
-    protected void setAppTitle(String title, boolean isShort) {
+    public void setAppTitle(String title, boolean isShort) {
         setAppTitle(title, isShort, 9);
     }
-    protected void setAppTitle(String title) {
+    public void setAppTitle(String title) {
         setAppTitle(title, true, 9);
     }
 
@@ -158,29 +170,29 @@ public class TitleView extends RelativeLayout {
         setAppRightImg(ContextCompat.getDrawable(getContext(),appRightImgResId),onClickListener);
     }
 
-    public void setAppTitleBackground(@ColorRes int titleBackground) {
+    public void setAppTitleBackground(@ColorInt int titleBackground) {
         this.appTitleBackground = titleBackground;
         if (appRlTitle != null&&this.appTitleBackground!=0) {
-            appRlTitle.setBackgroundColor(ContextCompat.getColor(getContext(), appTitleBackground));
+            appRlTitle.setBackgroundColor(appTitleBackground);
         }
     }
-    public void setAppTitleColor(@ColorRes int appTitleColor) {
+    public void setAppTitleColor(@ColorInt int appTitleColor) {
         if(appTvTitle==null){
             appTvTitle=findViewById(R.id.appTvTitle);
         }
         this.appTitleColor = appTitleColor;
         if(this.appTitleColor!=0){
-            this.appTvTitle.setTextColor(ContextCompat.getColor(getContext(),this.appTitleColor));
+            this.appTvTitle.setTextColor(this.appTitleColor);
         }
     }
 
-    public void setAppRightTitleColor(@ColorRes int appRightTitleColor) {
+    public void setAppRightTitleColor(@ColorInt int appRightTitleColor) {
         if (appTvRightTitle == null) {
             appTvRightTitle=findViewById(R.id.appTvRightTitle);
         }
         this.appRightTitleColor = appRightTitleColor;
         if(this.appRightTitleColor!=0){
-            this.appTvRightTitle.setTextColor(ContextCompat.getColor(getContext(),this.appRightTitleColor));
+            this.appTvRightTitle.setTextColor(appRightTitleColor);
         }
     }
 }

@@ -3,6 +3,9 @@ package com.zr.wanandroid.base;
 
 import android.os.Bundle;
 import android.os.RecoverySystem;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 
@@ -27,6 +30,9 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
     private ProgressInter progressInter;
     protected PtrClassicFrameLayout pcflRefresh;
     public TitleView titleView;
+    public int color(@ColorRes int colorId){
+        return ContextCompat.getColor(this,colorId);
+    }
     public void refreshComplete(){
         if (pcflRefresh != null) {
             pcflRefresh.refreshComplete();

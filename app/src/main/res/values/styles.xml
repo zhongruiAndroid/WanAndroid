@@ -7,13 +7,23 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="AppTheme.NoActionBar" >
+
+    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color</item><!--光标颜色-->
         <item name="android:configChanges">keyboardHidden|orientation|layoutDirection</item>
-<!--        <item name="android:editTextStyle">@style/editTextStyle</item>-->
+        <!--        <item name="android:editTextStyle">@style/editTextStyle</item>-->
     </style>
+
+    <style name="AppTheme.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

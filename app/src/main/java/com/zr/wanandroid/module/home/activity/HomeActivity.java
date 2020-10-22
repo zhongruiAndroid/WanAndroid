@@ -9,6 +9,7 @@ import com.android.basecore.tools.ActTools;
 import com.github.developtools.ActivityUtils;
 import com.github.developtools.N;
 import com.github.fastshape.MyRadioButton;
+import com.github.statusbar.StatusBarUtils;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.fragment.HomeFragment;
@@ -50,6 +51,11 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 
     @Override
     public void initView() {
+        StatusBarUtils.setStatusColor(this,color(R.color.colorAccent),false);
+        titleView.setAppTitle("首页");
+        titleView.setAppTitleBackground(color(R.color.colorAccent));
+        titleView.setAppTitleColor(color(R.color.c_white));
+        titleView.setAppBackIcon(null);
 
         flHomeContent = findViewById(R.id.flHomeContent);
         rbHomeTab = findViewById(R.id.rbHomeTab);

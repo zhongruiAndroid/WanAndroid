@@ -14,11 +14,17 @@ import com.github.dividerline.BaseItemDivider;
 import com.github.theokhttp.NetworkUtils;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
+import com.zr.wanandroid.module.home.bean.HomeBannerBean;
+import com.zr.wanandroid.module.home.layout.BannerLayout;
 import com.zr.wanandroid.module.home.presenter.HomeFragPresenter;
+
+import java.util.List;
 
 public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
 
     private RecyclerView rvHomeList;
+    private BannerLayout
+            bannerLayout;
     @Override
     public int getContentView() {
         return R.layout.home_frag;
@@ -35,6 +41,7 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
     public void initView() {
         pcflRefresh.disableWhenHorizontalMove(true);
         rvHomeList =   findViewById(R.id.rvHomeList);
+        bannerLayout =   findViewById(R.id.bannerLayout);
 
         rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHomeList.addItemDecoration(new BaseItemDivider(getContext(),2));
@@ -47,7 +54,11 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter>  {
     public void initViewAfter() {
 
     }
-
+    public void setBannerData(List<HomeBannerBean> list){
+        if (bannerLayout != null) {
+            bannerLayout.setData(list);
+        }
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
