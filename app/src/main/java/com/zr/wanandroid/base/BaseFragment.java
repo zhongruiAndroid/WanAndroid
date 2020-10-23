@@ -116,11 +116,13 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     }
     @Override
     public void errorOnClick() {
-
+        getOtherData();
+        getData(1,false);
     }
     @Override
     public void noNetworkOnClick() {
-
+        getOtherData();
+        getData(1,false);
     }
 
     @Override

@@ -54,6 +54,7 @@ public class HomeFragPresenter extends BasePresenter<HomeFragment> implements Lo
             }
             @Override
             public void onError(String code, String errorMsg) {
+                getView().showError();
             }
         });
     }

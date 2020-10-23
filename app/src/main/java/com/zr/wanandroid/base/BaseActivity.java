@@ -108,12 +108,15 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
             progressInter.showNoNetwork();
         }
     }
+
     @Override
     public void errorOnClick() {
-
+        getOtherData();
+        getData(1,false);
     }
     @Override
     public void noNetworkOnClick() {
-
+        getOtherData();
+        getData(1,false);
     }
 }
