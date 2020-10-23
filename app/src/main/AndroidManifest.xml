@@ -13,10 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".module.home.activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
         <activity android:name=".test.activity.MainActivity"></activity>
         <activity android:name=".test.activity.TestActivity" />
         <activity android:name=".test.activity.Test2Activity" />
@@ -24,14 +20,16 @@
         <activity android:name=".test.activity.Test3Activity" />
         <activity
             android:name=".module.home.activity.HomeActivity"
-            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.web.act.WebActivity" />
+        <activity
+            android:name=".module.web.act.WebActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

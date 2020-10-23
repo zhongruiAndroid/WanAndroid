@@ -14,7 +14,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color</item><!--光标颜色-->
-        <item name="android:configChanges">keyboardHidden|orientation|layoutDirection</item>
+        <item name="android:configChanges">layoutDirection|orientation|keyboardHidden|keyboard</item>
         <!--        <item name="android:editTextStyle">@style/editTextStyle</item>-->
     </style>
 

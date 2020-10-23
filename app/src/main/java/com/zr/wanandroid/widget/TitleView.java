@@ -76,6 +76,7 @@ public class TitleView extends RelativeLayout {
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(Color.parseColor("#e2e2e2")));
         stateListDrawable.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
 //        this.appIbBack.setBackground(stateListDrawable);
+        appBackIcon.mutate().setColorFilter(ContextCompat.getColor(getContext(),R.color.app_bar), PorterDuff.Mode.SRC_IN);
         setAppBackIcon(appBackIcon);
         this.appIbBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
@@ -86,6 +87,11 @@ public class TitleView extends RelativeLayout {
                 }
             }
         });
+
+
+        setAppTitleBackground(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        setAppTitleColor(ContextCompat.getColor(getContext(),R.color.c_white));
+
     }
     public void hiddenBottomLine() {
         hiddenBottomLine = true;

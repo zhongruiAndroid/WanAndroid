@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter> {
         bannerLayout = new BannerLayout(getActivity());
 
         rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvHomeList.addItemDecoration(new BaseItemDivider(getContext(), DensityUtils.dp2px(15)));
+        rvHomeList.addItemDecoration(new BaseItemDivider(getContext(), DensityUtils.dp2px(20)));
         HomeAdapter adapter = getPresenter().initAdapter();
         adapter.addHeaderView(bannerLayout);
         rvHomeList.setAdapter(adapter);

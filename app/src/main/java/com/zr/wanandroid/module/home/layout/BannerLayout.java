@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.github.banner.BannerHolder;
 import com.github.banner.MyBannerView;
@@ -37,6 +38,7 @@ public class BannerLayout extends MyBannerView {
     private void initView() {
         fullWidth=ScreenUtils.getScreenWidth(getContext());
         imageHeight=fullWidth*5/9;
+        setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,imageHeight));
     }
     private int fullWidth;
     private int imageHeight;
