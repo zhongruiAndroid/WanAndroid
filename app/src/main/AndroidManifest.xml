@@ -30,6 +30,8 @@
         <activity
             android:name=".module.web.act.WebActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
+        <activity android:name=".module.home.activity.SearchActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard"/>
     </application>
 
 </manifest>
