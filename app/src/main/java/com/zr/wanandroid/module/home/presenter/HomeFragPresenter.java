@@ -28,7 +28,7 @@ import java.util.List;
 public class HomeFragPresenter extends BasePresenter<HomeFragment> implements LoadMoreAdapter.OnLoadMoreListener {
     private HomeAdapter adapter;
     private List<HomeArticleBean> topArticleList;
-    public RecyclerView.Adapter initAdapter() {
+    public HomeAdapter initAdapter() {
         topArticleList=new ArrayList<>();
         adapter=new HomeAdapter();
         adapter.setList(topArticleList);

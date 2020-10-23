@@ -21,7 +21,7 @@ public class BasePresenter<V extends BaseView> extends _BasePresenter<V>  {
         if(isLoad){
             pageNum+=1;
         }else{
-            pageNum=1;
+            pageNum=2;
         }
     }
     public void loadError(LoadMoreAdapter adapter) {

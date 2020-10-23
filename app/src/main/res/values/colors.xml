@@ -8,6 +8,7 @@
     <color name="c_333333">#333333</color>
     <color name="c_666666">#666666</color>
     <color name="c_999999">#999999</color>
+    <color name="c_divider">#77CFCFCF</color>
     <color name="c_white">#ffffff</color>
     <color name="colorText">#848484</color>
     <color name="c_home_tag_border">#D0F14E26</color>

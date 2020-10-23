@@ -105,6 +105,7 @@ public class HtmlUtils {
         source = source.replace("&nbsp;", " ");
         source = source.replace("&ldquo;", "\"");
         source = source.replace("&rdquo;", "\"");
+        source = source.replace("&mdash;", "—");
         source = source.replace("\\r", "");
         source = source.replace("\\n", "");
 
