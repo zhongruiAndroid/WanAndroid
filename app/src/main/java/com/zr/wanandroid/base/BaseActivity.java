@@ -40,7 +40,10 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
     }
     @Override
     protected final void initViewPrevious() {
-        titleView =findViewById(R.id.titleView);
+        View rlTitleView = findViewById(R.id.titleView);
+        if(rlTitleView!=null){
+            titleView = (TitleView) rlTitleView;
+        }
         View pcflRefreshView = findViewById(R.id.pcflRefresh);
         if (null != pcflRefreshView) {
             pcflRefresh = (PtrClassicFrameLayout) pcflRefreshView;

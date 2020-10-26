@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-   <RelativeLayout
+   <com.zr.wanandroid.widget.TitleView
        android:id="@id/titleView"
        android:layout_width="match_parent"
        android:layout_height="@dimen/app_title_height"
        android:background="#ffffff"
        android:orientation="vertical"
        android:elevation="3dp"
+       app:useCustomTitleView="true"
        >
 
       <ImageButton
@@ -38,8 +39,31 @@
           android:maxLines="1"
           android:textColor="#323232"
           android:textSize="@dimen/app_right_title_size"
-          tools:text="right_title"
+          tools:text="搜索"
           />
-   </RelativeLayout>
+      <com.github.fastshape.MyEditText
+          android:layout_width="match_parent"
+          android:layout_height="30dp"
+          android:gravity="center_vertical"
+          android:textSize="13sp"
+          app:solidColor="@color/c_transparent_5"
+          android:hint="用空格隔开多个搜索词"
+          android:textColorHint="@color/c_88ffffff"
+          android:textColor="@color/c_white"
+          android:paddingTop="0dp"
+          android:paddingBottom="0dp"
+          android:paddingLeft="13dp"
+          android:paddingRight="13dp"
+          app:radius="15dp"
+          android:inputType="text"
+          android:imeOptions="actionDone"
+          android:layout_marginRight="10dp"
+          android:layout_centerInParent="true"
+          android:layout_toRightOf="@+id/appIbBack"
+          android:layout_toLeftOf="@+id/appTvRightTitle"
+          app:clearIconDrawable="@drawable/home_clear"
+          app:clearIcon_height="16dp"
+          />
+   </com.zr.wanandroid.widget.TitleView>
 
 </LinearLayout>

@@ -13,7 +13,8 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        titleView.setAppRightTitle("搜索");
+        titleView.setAppRightTitleColor(color(R.color.c_white));
     }
 
     @Override

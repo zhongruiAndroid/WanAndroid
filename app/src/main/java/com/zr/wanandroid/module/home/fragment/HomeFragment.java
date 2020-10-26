@@ -6,10 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.android.basecore.listener.NoDoubleClickListener;
 import com.github.developtools.DensityUtils;
 import com.github.dividerline.BaseItemDivider;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
+import com.zr.wanandroid.bridge.ActBridge;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
 import com.zr.wanandroid.module.home.layout.BannerLayout;
@@ -37,6 +39,18 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter> {
 
     @Override
     public void initView() {
+
+        titleView.setAppTitle("首页");
+        titleView.setAppTitleBackground(color(R.color.colorAccent));
+        titleView.setAppTitleColor(color(R.color.c_white));
+        titleView.setAppRightImg(R.drawable.home_search, new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View var1) {
+                ActBridge.toSearchActivity(mActivity);
+            }
+        });
+        titleView.setAppBackIcon(null);
+
         pcflRefresh.disableWhenHorizontalMove(true);
         rvHomeList = findViewById(R.id.rvHomeList);
         bannerLayout = new BannerLayout(getActivity());

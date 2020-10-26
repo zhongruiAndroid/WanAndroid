@@ -52,10 +52,6 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     @Override
     public void initView() {
         StatusBarUtils.setStatusColor(this,color(R.color.colorAccent),false);
-        titleView.setAppTitle("首页");
-        titleView.setAppTitleBackground(color(R.color.colorAccent));
-        titleView.setAppTitleColor(color(R.color.c_white));
-        titleView.setAppBackIcon(null);
 
         flHomeContent = findViewById(R.id.flHomeContent);
         rbHomeTab = findViewById(R.id.rbHomeTab);

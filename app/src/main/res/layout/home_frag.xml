@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@id/plLoad"
     android:orientation="vertical">
+    <include layout="@layout/app_title"></include>
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:id="@id/pcflRefresh"
         android:layout_width="match_parent"

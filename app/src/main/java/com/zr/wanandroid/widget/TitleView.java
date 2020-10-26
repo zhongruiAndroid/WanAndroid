@@ -2,6 +2,7 @@ package com.zr.wanandroid.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -27,26 +28,36 @@ import com.zr.wanandroid.BuildConfig;
 import com.zr.wanandroid.R;
 
 public class TitleView extends RelativeLayout {
+
+    private boolean useCustomTitleView;
+
     public TitleView(Context context) {
         super(context);
-        init();
+        init(null);
     }
     public TitleView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
     public TitleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs);
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public TitleView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        init(attrs);
     }
-    private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.layout_title, this);
-        initView();
+    private void init(AttributeSet attrs) {
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TitleView);
+        useCustomTitleView = typedArray.getBoolean(R.styleable.TitleView_useCustomTitleView, false);
+        typedArray.recycle();
+        if(useCustomTitleView){
+
+        }else{
+            LayoutInflater.from(getContext()).inflate(R.layout.layout_title, this);
+            initView();
+        }
     }
     /**************************************************************************/
     protected RelativeLayout appRlTitle;
@@ -66,6 +77,15 @@ public class TitleView extends RelativeLayout {
     private int appTitleBackground ;
 
     private boolean hiddenBottomLine = false;
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (useCustomTitleView) {
+            initView();
+        }
+    }
+
     private void initView() {
         appTitleBackground=ContextCompat.getColor(getContext(),R.color.app_bar);
         appRlTitle=this;
@@ -116,7 +136,7 @@ public class TitleView extends RelativeLayout {
         }
         if(this.appBackIcon==null){
             this.appIbBack.setVisibility(View.INVISIBLE);
-        }else{
+        }else if(appIbBack!=null){
             if(this.appIbBack.getVisibility()!=View.VISIBLE){
                 this.appIbBack.setVisibility(View.VISIBLE);
             }
@@ -134,6 +154,9 @@ public class TitleView extends RelativeLayout {
         }
         if(appTvTitle==null){
             appTvTitle=findViewById(R.id.appTvTitle);
+        }
+        if(appTvTitle==null){
+            return;
         }
         if (BuildConfig.DEBUG) {
             appTvTitle.setText(appTitle == null ? "" : appTitle + "(DeBug)");
@@ -165,9 +188,11 @@ public class TitleView extends RelativeLayout {
         this.appRightImg = appRightImg;
         if(appRightImg==null){
             appIbRight.setVisibility(View.INVISIBLE);
-        }else{
+        }else if(appIbRight!=null){
             appIbRight.setImageDrawable(appRightImg);
-            appTvRightTitle.setVisibility(View.INVISIBLE);
+            if(appTvRightTitle!=null){
+                appTvRightTitle.setVisibility(View.INVISIBLE);
+            }
             appIbRight.setVisibility(View.VISIBLE);
             appIbRight.setOnClickListener(onClickListener);
         }
@@ -187,7 +212,7 @@ public class TitleView extends RelativeLayout {
             appTvTitle=findViewById(R.id.appTvTitle);
         }
         this.appTitleColor = appTitleColor;
-        if(this.appTitleColor!=0){
+        if(this.appTitleColor!=0&&appTvTitle!=null){
             this.appTvTitle.setTextColor(this.appTitleColor);
         }
     }
@@ -197,7 +222,7 @@ public class TitleView extends RelativeLayout {
             appTvRightTitle=findViewById(R.id.appTvRightTitle);
         }
         this.appRightTitleColor = appRightTitleColor;
-        if(this.appRightTitleColor!=0){
+        if(this.appRightTitleColor!=0&&appTvRightTitle!=null){
             this.appTvRightTitle.setTextColor(appRightTitleColor);
         }
     }

@@ -3,6 +3,7 @@ package com.zr.wanandroid.bridge;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.zr.wanandroid.module.home.activity.SearchActivity;
 import com.zr.wanandroid.module.web.act.WebActivity;
 import com.zr.wanandroid.test.activity.EmptyActivity;
 import com.zr.wanandroid.test.activity.Test2Activity;
@@ -26,6 +27,10 @@ public class ActBridge {
         Intent intent = new Intent(activity, WebActivity.class);
         intent.putExtra(WebActivity.INTENT_TITLE,title);
         intent.putExtra(WebActivity.INTENT_URL,url);
+        activity.startActivity(intent);
+    }
+    public static void toSearchActivity(Activity activity ){
+        Intent intent = new Intent(activity, SearchActivity.class);
         activity.startActivity(intent);
     }
 }

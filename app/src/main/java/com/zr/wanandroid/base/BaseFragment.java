@@ -43,7 +43,10 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     }
     @Override
     protected final void initViewPrevious() {
-        titleView = getView().findViewById(R.id.titleView);
+        View rlTitleView = findViewById(R.id.titleView);
+        if(rlTitleView!=null){
+            titleView = (TitleView) rlTitleView;
+        }
         View pcflRefreshView = getView().findViewById(R.id.pcflRefresh);
         if (null !=pcflRefreshView) {
             pcflRefresh = (PtrClassicFrameLayout) pcflRefreshView;

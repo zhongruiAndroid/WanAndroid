@@ -14,4 +14,6 @@
     <color name="c_home_tag_border">#D0F14E26</color>
     <color name="c_home_tag_new">#57b7e9</color>
     <color name="c_transparent">#00000000</color>
+    <color name="c_transparent_5">#0C000000</color>
+    <color name="c_88ffffff">#88ffffff</color>
 </resources>
