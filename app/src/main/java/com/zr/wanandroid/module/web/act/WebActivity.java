@@ -1,11 +1,14 @@
 package com.zr.wanandroid.module.web.act;
 
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.github.developtools.N;
 import com.github.developtools.WebViewUtils;
 import com.github.progress.MyProgress;
 import com.zr.wanandroid.R;
@@ -13,8 +16,8 @@ import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.helper.ViewHelper;
 
 public class WebActivity extends BaseActivity {
-    public static final String INTENT_URL="INTENT_URL";
-    public static final String INTENT_TITLE="INTENT_TITLE";
+    public static final String INTENT_URL = "INTENT_URL";
+    public static final String INTENT_TITLE = "INTENT_TITLE";
 
 
     private WebView webView;
@@ -38,8 +41,8 @@ public class WebActivity extends BaseActivity {
         webProgress.setOnProgressInter(new MyProgress.OnProgressInter() {
             @Override
             public void progress(float scaleProgress, float progress, float max) {
-                if(scaleProgress>=100){
-                    ViewHelper.setVisibility(webProgress,View.INVISIBLE,500);
+                if (scaleProgress >= 100) {
+                    ViewHelper.setVisibility(webProgress, View.INVISIBLE, 500);
                 }
             }
         });
@@ -50,17 +53,26 @@ public class WebActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                if(webProgress!=null){
+                if (webProgress != null) {
                     webProgress.setNowProgress(newProgress);
                 }
             }
         });
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (!N.trimToEmptyNull(url) && !url.startsWith("http")) {
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
         webView.loadUrl(url);
-        WebViewUtils.configWebViewSetting(webView,false);
+        WebViewUtils.configWebViewSetting(webView, false);
     }
 
     @Override

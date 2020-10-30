@@ -15,12 +15,12 @@
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:background="@color/c_white"
         android:elevation="20dp"
         android:orientation="horizontal"
-        android:paddingTop="4dp">
+        android:paddingTop="5dp">
 
         <com.github.fastshape.MyRadioButton
             android:id="@+id/rbHomeTab"
