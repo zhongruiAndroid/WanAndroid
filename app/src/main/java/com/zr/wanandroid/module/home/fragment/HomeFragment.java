@@ -1,7 +1,6 @@
 package com.zr.wanandroid.module.home.fragment;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,6 +22,7 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter> {
 
     private RecyclerView rvHomeList;
     private BannerLayout bannerLayout;
+    private HomeAdapter adapter;
 
     @Override
     public int getContentView() {
@@ -56,8 +56,10 @@ public class HomeFragment extends BaseFragment<HomeFragPresenter> {
         bannerLayout = new BannerLayout(getActivity());
 
         rvHomeList.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvHomeList.addItemDecoration(new BaseItemDivider(getContext(), DensityUtils.dp2px(20)));
-        HomeAdapter adapter = getPresenter().initAdapter();
+        BaseItemDivider baseItemDivider = new BaseItemDivider(getContext(), DensityUtils.dp2px(20));
+        baseItemDivider.setSkipEndCount(2);
+        rvHomeList.addItemDecoration(baseItemDivider);
+        adapter = getPresenter().initAdapter();
         adapter.addHeaderView(bannerLayout);
         rvHomeList.setAdapter(adapter);
 

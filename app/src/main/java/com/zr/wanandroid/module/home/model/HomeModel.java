@@ -1,6 +1,7 @@
 package com.zr.wanandroid.module.home.model;
 
 import com.github.theokhttp.TheOkHttp;
+import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.common.net.NetUrl;
 import com.zr.wanandroid.common.net.bean.BaseResponse;
@@ -10,6 +11,7 @@ import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
 import com.zr.wanandroid.module.home.bean.SearchHotBean;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -36,13 +38,21 @@ public class HomeModel extends SingleClass {
         });
     }
 
-    public void getHomeArticleList(int page, final RequestListener listener) {
-        TheOkHttp.startGet(NetUrl.HOME_ARTICLE_LIST + (page - 1) + NetUrl.URL_JSON, new HttpCallback<List<HomeArticleBean>>() {
+    public void getHomeArticleList(int page, final BaseRequestListener listener) {
+        TheOkHttp.startGet(String.format(NetUrl.HOME_ARTICLE_LIST, (page - 1)), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);
+                try {
+                    JSONObject jsonObject=new JSONObject(result);
+                    boolean isOver = jsonObject.optJSONObject("data").optBoolean("over");
+                    if (listener != null) {
+                        listener.onCustomSuccess(data,!isOver);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
             public void error(String code, String errorMsg) {
                 toError(listener, code, errorMsg);
@@ -76,6 +86,7 @@ public class HomeModel extends SingleClass {
             public void success(List<SearchHotBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);
             }
+
             @Override
             public void error(String code, String errorMsg) {
                 toError(listener, code, errorMsg);
@@ -83,14 +94,15 @@ public class HomeModel extends SingleClass {
         });
     }
 
-    public void getSearchArticleList(int page, String searchKey,final RequestListener<List<HomeArticleBean>> listener) {
-        Map<String,String> map=new HashMap<String,String>();
-        map.put("k",searchKey);
-        TheOkHttp.postForm(map).start(NetUrl.HOME_SEARCH_ARTICLE + (page - 1) + NetUrl.URL_JSON, new HttpCallback<List<HomeArticleBean>>() {
+    public void getSearchArticleList(int page, String searchKey, final RequestListener<List<HomeArticleBean>> listener) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("k", searchKey);
+        TheOkHttp.postForm(map).start(String.format(NetUrl.HOME_SEARCH_ARTICLE, (page - 1)), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);
             }
+
             @Override
             public void error(String code, String errorMsg) {
                 toError(listener, code, errorMsg);

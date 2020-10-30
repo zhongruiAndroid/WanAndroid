@@ -23,11 +23,12 @@ import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.event.SearchArticleEvent;
 import com.zr.wanandroid.module.home.fragment.SearchHistoryFragment;
 import com.zr.wanandroid.module.home.fragment.SearchResultFragment;
+import com.zr.wanandroid.module.home.helper.ViewHelper;
 import com.zr.wanandroid.module.home.presenter.SearchPresenter;
 
 public class SearchActivity extends BaseActivity<SearchPresenter> {
     private MyEditText etHomeSearch;
-
+    private View ivSearchClear;
     private SearchHistoryFragment searchHistoryFragment;
     private SearchResultFragment searchResultFragment;
 
@@ -43,6 +44,9 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
         titleView.setAppRightTitleOnClickListener(this);
 
         etHomeSearch = findViewById(R.id.etHomeSearch);
+        ivSearchClear = findViewById(R.id.ivSearchClear);
+        ivSearchClear.setOnClickListener(this);
+        ViewHelper.setVisibility(ivSearchClear,View.INVISIBLE);
         etHomeSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -67,6 +71,9 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
             public void afterTextChanged(Editable s) {
                 if (N.trimToEmptyNull(s.toString())) {
                     showHistorySearch();
+                    ViewHelper.setVisibility(ivSearchClear,View.INVISIBLE);
+                }else{
+                    ViewHelper.setVisibility(ivSearchClear,View.VISIBLE);
                 }
             }
         });
@@ -120,6 +127,9 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
         switch (v.getId()) {
             case R.id.appTvRightTitle:
                 searchByText();
+                break;
+            case R.id.ivSearchClear:
+                etHomeSearch.setText("");
                 break;
         }
     }

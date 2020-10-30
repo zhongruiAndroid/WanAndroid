@@ -1,17 +1,23 @@
 package com.zr.wanandroid.module.home.presenter;
 
+import android.support.v7.widget.LinearLayoutManager;
+
 import com.github.adapter.LoadListener;
 import com.github.adapter.LoadMoreAdapter;
 import com.zr.wanandroid.base.BasePresenter;
+import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
 import com.zr.wanandroid.module.home.fragment.HomeFragment;
 import com.zr.wanandroid.module.home.model.HomeModel;
+import com.zr.wanandroid.utils.HandlerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.adapter.LoadMoreAdapter.status_load;
 
 public class HomeFragPresenter extends BasePresenter<HomeFragment> implements LoadMoreAdapter.OnLoadMoreListener {
     private HomeAdapter adapter;
@@ -62,13 +68,19 @@ public class HomeFragPresenter extends BasePresenter<HomeFragment> implements Lo
     }
     /*获取首页普通文章列表*/
     public void getData(int page,boolean isLoad) {
-        HomeModel.getInstance().getHomeArticleList(page,new RequestListener<List<HomeArticleBean>>() {
+        HomeModel.getInstance().getHomeArticleList(page,new BaseRequestListener<List<HomeArticleBean>,Boolean>() {
             @Override
             public void onSuccess(List<HomeArticleBean> obj) {
                 loadResult(isLoad);
                 adapter.addList(obj,true);
                 if(!isLoad){
                     getView().showContent();
+                }
+            }
+            @Override
+            public void onCustomSuccess(List<HomeArticleBean> obj, Boolean hasLoadMore) {
+                if(isLoad){
+                    adapter.loadHasMore(hasLoadMore);
                 }
             }
             @Override
