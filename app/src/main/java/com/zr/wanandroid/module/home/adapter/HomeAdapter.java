@@ -1,5 +1,6 @@
 package com.zr.wanandroid.module.home.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.text.HtmlCompat;
@@ -8,25 +9,33 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.basecore.widget.adapter.CustomViewHolder;
-import com.android.basecore.widget.adapter.LoadMoreAdapter;
+import com.github.adapter.CustomViewHolder;
+import com.github.adapter.LoadMoreAdapter;
+import com.github.adapter.listener.AdapterOnClickListener;
+import com.github.adapter.listener.NoDoubleAdapterOnClickListener;
 import com.github.developtools.DensityUtils;
 import com.github.developtools.N;
 import com.github.developtools.NumberUtils;
 import com.github.fastshape.MyTextView;
 import com.zr.wanandroid.R;
+import com.zr.wanandroid.bridge.ActBridge;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.helper.ViewHelper;
-import com.zr.wanandroid.utils.HtmlUtils;
 
-import java.util.List;
-
-public class HomeAdapter extends LoadMoreAdapter<HomeArticleBean> {
+public class HomeAdapter extends LoadMoreAdapter<HomeArticleBean> implements AdapterOnClickListener {
     /*置顶文章数量*/
     private int topArticleSize;
-
-    public HomeAdapter() {
-        super(R.layout.home_article_item, 20);
+    private Activity activity;
+    public HomeAdapter(Activity act) {
+        super(R.layout.home_article_item );
+        activity=act;
+        setOnItemClickListener(new NoDoubleAdapterOnClickListener() {
+            @Override
+            public void onNoDoubleClick(View itemView, int position) {
+                HomeArticleBean homeArticleBean =  getList().get(position);
+                ActBridge.toWebActivity(activity,homeArticleBean.getTitle(),homeArticleBean.getLink());
+            }
+        });
     }
 
     @Override
@@ -133,5 +142,9 @@ public class HomeAdapter extends LoadMoreAdapter<HomeArticleBean> {
         params.rightMargin = dp7;
         textView.setLayoutParams(params);
         return textView;
+    }
+
+    @Override
+    public void onItemClick(View itemView, int position) {
     }
 }

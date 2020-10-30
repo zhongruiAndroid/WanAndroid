@@ -19,6 +19,10 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
     @Test
+    public void dd() {
+        System.out.printf("100的一半是：%d", 100/2);
+    }
+    @Test
     public void sdd() {
         HtmlUtils.test();
     }

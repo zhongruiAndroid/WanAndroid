@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.progresslayout.ProgressLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/plLoad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvHomeSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/home_article_item"
+        />
+</com.github.progresslayout.ProgressLinearLayout>

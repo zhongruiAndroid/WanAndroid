@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llSearchHistory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="热门搜索"
+        android:textColor="@color/colorAccent" />
+
+    <com.github.flowview.FlowLayout
+        android:id="@+id/flHomeHotSearchRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        app:bothGap="10dp">
+
+    </com.github.flowview.FlowLayout>
+
+    <LinearLayout
+        android:id="@+id/llHomeHistorySearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="历史搜索"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tvHomeHistorySearchClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="清除" />
+    </LinearLayout>
+
+    <com.github.flowview.FlowLayout
+        android:id="@+id/flHomeHistorySearchRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:bothGap="10dp">
+
+    </com.github.flowview.FlowLayout>
+</LinearLayout>

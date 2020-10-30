@@ -226,4 +226,13 @@ public class TitleView extends RelativeLayout {
             this.appTvRightTitle.setTextColor(appRightTitleColor);
         }
     }
+
+//    private OnClickListener rightTitleOnClickListener;
+    public void setAppRightTitleOnClickListener(OnClickListener onClickListener) {
+//        rightTitleOnClickListener=onClickListener;
+        if (appTvRightTitle != null) {
+            appTvRightTitle.setOnClickListener(onClickListener);
+        }
+
+    }
 }

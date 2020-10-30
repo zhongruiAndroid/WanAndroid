@@ -8,10 +8,13 @@ import com.zr.wanandroid.common.net.callback.HttpCallback;
 import com.zr.wanandroid.common.single.SingleClass;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
+import com.zr.wanandroid.module.home.bean.SearchHotBean;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeModel extends SingleClass {
     public static HomeModel getInstance() {
@@ -19,27 +22,30 @@ public class HomeModel extends SingleClass {
     }
 
 
-    public void getHomeBanner(final RequestListener listener){
+    public void getHomeBanner(final RequestListener listener) {
         TheOkHttp.startGet(NetUrl.HOME_BANNER, new HttpCallback<List<HomeBannerBean>>() {
             @Override
             public void success(List<HomeBannerBean> data, BaseResponse server, String result) {
-                toSuccess(listener,data);
+                toSuccess(listener, data);
             }
+
             @Override
             public void error(String code, String errorMsg) {
-                toError(listener,code,errorMsg);
+                toError(listener, code, errorMsg);
             }
         });
     }
-    public void getHomeArticleList(int page,final RequestListener listener){
-        TheOkHttp.startGet(NetUrl.HOME_ARTICLE_LIST+(page-1)+NetUrl.HOME_ARTICLE_LIST_END, new HttpCallback<List<HomeArticleBean>>() {
+
+    public void getHomeArticleList(int page, final RequestListener listener) {
+        TheOkHttp.startGet(NetUrl.HOME_ARTICLE_LIST + (page - 1) + NetUrl.URL_JSON, new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
-                toSuccess(listener,data);
+                toSuccess(listener, data);
             }
+
             @Override
             public void error(String code, String errorMsg) {
-                toError(listener,code,errorMsg);
+                toError(listener, code, errorMsg);
             }
 
             @Override
@@ -48,15 +54,51 @@ public class HomeModel extends SingleClass {
             }
         });
     }
-    public void getHomeTopArticleList(final RequestListener listener){
+
+    public void getHomeTopArticleList(final RequestListener listener) {
         TheOkHttp.startGet(NetUrl.HOME_TOP_ARTICLE_LIST, new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
-                toSuccess(listener,data);
+                toSuccess(listener, data);
+            }
+
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener, code, errorMsg);
+            }
+        });
+    }
+
+    public void getHotSearchRecord(final RequestListener<List<SearchHotBean>> listener) {
+        TheOkHttp.get()./*setOkHttpClient(new OkHttpClient.Builder().cache(new Cache(MyApplication.getContext().getCacheDir(),5*1014*1024)).build()).*/
+                start(NetUrl.HOME_HOT_SEARCH_RECORD, new HttpCallback<List<SearchHotBean>>() {
+            @Override
+            public void success(List<SearchHotBean> data, BaseResponse server, String result) {
+                toSuccess(listener, data);
             }
             @Override
             public void error(String code, String errorMsg) {
-                toError(listener,code,errorMsg);
+                toError(listener, code, errorMsg);
+            }
+        });
+    }
+
+    public void getSearchArticleList(int page, String searchKey,final RequestListener<List<HomeArticleBean>> listener) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("k",searchKey);
+        TheOkHttp.postForm(map).start(NetUrl.HOME_SEARCH_ARTICLE + (page - 1) + NetUrl.URL_JSON, new HttpCallback<List<HomeArticleBean>>() {
+            @Override
+            public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
+                toSuccess(listener, data);
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener, code, errorMsg);
+            }
+
+            @Override
+            public String getContentJson(JSONObject jsonObject) {
+                return jsonObject.optJSONObject("data").optJSONArray("datas").toString();
             }
         });
     }

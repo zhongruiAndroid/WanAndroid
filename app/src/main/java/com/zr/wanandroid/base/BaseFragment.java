@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.android.basecore.fragment.MVPBaseFragment;
 import com.android.basecore.presenter._BasePresenter;
 import com.android.basecore.presenter._BaseView;
+import com.github.interbus.BusCallback;
+import com.github.interbus.InterBus;
 import com.github.progresslayout.ProgressFrameLayout;
 import com.github.progresslayout.ProgressInter;
 import com.github.progresslayout.ProgressLinearLayout;
@@ -77,8 +79,10 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     }
     @Override
     public void initViewAfter() {
-
+        initBus();
     }
+
+    public void initBus(){};
 
     protected void getOtherData() {
     }
@@ -139,5 +143,13 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     @Override
     public void showToast(String content) {
         ToastUtils.showToast(content);
+    }
+    public <T> void setEvent(Class<T> clazz, BusCallback<T> busCallback) {
+        InterBus.get().setEvent(this,clazz,busCallback);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        InterBus.get().unSubscribeAll();
     }
 }

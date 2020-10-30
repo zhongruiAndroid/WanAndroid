@@ -1,28 +1,13 @@
 package com.zr.wanandroid.module.home.presenter;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.text.method.Touch;
-import android.util.Log;
-import android.view.View;
-
-import com.android.basecore.widget.adapter.CustomAdapter;
-import com.android.basecore.widget.adapter.CustomViewHolder;
-import com.android.basecore.widget.adapter.LoadInter;
-import com.android.basecore.widget.adapter.LoadMoreAdapter;
-import com.zr.wanandroid.R;
+import com.github.adapter.LoadListener;
+import com.github.adapter.LoadMoreAdapter;
 import com.zr.wanandroid.base.BasePresenter;
-import com.zr.wanandroid.bridge.ActBridge;
 import com.zr.wanandroid.common.listener.RequestListener;
-import com.zr.wanandroid.module.home.activity.HomeActivity;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
 import com.zr.wanandroid.module.home.fragment.HomeFragment;
-import com.zr.wanandroid.module.home.layout.BannerLayout;
 import com.zr.wanandroid.module.home.model.HomeModel;
 
 import java.util.ArrayList;
@@ -33,17 +18,9 @@ public class HomeFragPresenter extends BasePresenter<HomeFragment> implements Lo
     private List<HomeArticleBean> topArticleList;
     public HomeAdapter initAdapter() {
         topArticleList=new ArrayList<>();
-        adapter=new HomeAdapter();
+        adapter=new HomeAdapter(getView().getActivity());
         adapter.setList(topArticleList);
         adapter.setOnLoadMoreListener(this);
-        adapter.setOnItemClickListener(new CustomAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                HomeArticleBean homeArticleBean = adapter.getList().get(position);
-                ActBridge.toWebActivity(getView().getActivity(),homeArticleBean.getTitle(),homeArticleBean.getLink());
-            }
-        });
-
         return adapter;
     }
 
@@ -106,7 +83,7 @@ public class HomeFragPresenter extends BasePresenter<HomeFragment> implements Lo
     }
 
     @Override
-    public void loadMore(LoadInter loadInter) {
+    public void loadMore(LoadListener loadListener) {
         getData(pageNum,true);
     }
 }

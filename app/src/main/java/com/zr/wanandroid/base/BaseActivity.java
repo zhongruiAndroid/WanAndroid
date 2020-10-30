@@ -11,37 +11,43 @@ import android.view.Window;
 
 import com.android.basecore.act.MVPBaseActivity;
 import com.android.basecore.presenter._BasePresenter;
+import com.github.interbus.BusCallback;
+import com.github.interbus.InterBus;
 import com.github.progresslayout.ProgressFrameLayout;
 import com.github.progresslayout.ProgressInter;
 import com.github.progresslayout.ProgressLinearLayout;
 import com.github.progresslayout.ProgressListener;
 import com.github.progresslayout.ProgressRelativeLayout;
 import com.zr.wanandroid.R;
+import com.zr.wanandroid.module.home.event.SearchArticleEvent;
 import com.zr.wanandroid.widget.TitleView;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
-public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements ProgressListener.ErrorOnClickListener,  ProgressListener.NoNetworkOnClickListener ,BaseView{
+public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActivity<P> implements ProgressListener.ErrorOnClickListener, ProgressListener.NoNetworkOnClickListener, BaseView {
 
     public int pageNum = 2;
     public int pageSize = 15;
     private ProgressInter progressInter;
     protected PtrClassicFrameLayout pcflRefresh;
     public TitleView titleView;
-    public int color(@ColorRes int colorId){
-        return ContextCompat.getColor(this,colorId);
+
+    public int color(@ColorRes int colorId) {
+        return ContextCompat.getColor(this, colorId);
     }
-    public void refreshComplete(){
+
+    public void refreshComplete() {
         if (pcflRefresh != null) {
             pcflRefresh.refreshComplete();
         }
     }
+
     @Override
     protected final void initViewPrevious() {
         View rlTitleView = findViewById(R.id.titleView);
-        if(rlTitleView!=null){
+        if (rlTitleView != null) {
             titleView = (TitleView) rlTitleView;
         }
         View pcflRefreshView = findViewById(R.id.pcflRefresh);
@@ -69,10 +75,16 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
             }
         }
     }
+
     @Override
     public void initViewAfter() {
-
+        initBus();
     }
+
+    public void initBus() {
+    }
+
+    ;
 
     protected void getOtherData() {
     }
@@ -80,33 +92,34 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
     protected void getData(int page, final boolean isLoad) {
     }
 
-    public void showError(){
+    public void showError() {
         if (progressInter != null) {
             progressInter.showError();
         }
     }
 
-    public void showEmpty(){
+    public void showEmpty() {
         if (progressInter != null) {
             progressInter.showEmpty();
         }
 
     }
 
-    public void showProgress(){
+    public void showProgress() {
         if (progressInter != null) {
             progressInter.showProgress();
         }
 
     }
 
-    public void showContent(){
+    public void showContent() {
         if (progressInter != null) {
             progressInter.showContent();
         }
 
     }
-    public void showNoNetwork(){
+
+    public void showNoNetwork() {
         if (progressInter != null) {
             progressInter.showNoNetwork();
         }
@@ -115,11 +128,22 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
     @Override
     public void errorOnClick() {
         getOtherData();
-        getData(1,false);
+        getData(1, false);
     }
+
     @Override
     public void noNetworkOnClick() {
         getOtherData();
-        getData(1,false);
+        getData(1, false);
+    }
+
+    public <T> void setEvent(Class<T> clazz, BusCallback<T> busCallback) {
+        InterBus.get().setEvent(this,clazz,busCallback);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        InterBus.get().unSubscribeAll();
     }
 }

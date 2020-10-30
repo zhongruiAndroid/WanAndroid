@@ -2,6 +2,7 @@ package com.zr.wanandroid.application;
 
 import android.app.Application;
 
+import com.github.developtools.SPUtils;
 import com.github.theokhttp.NetworkUtils;
 import com.github.theokhttp.TheOkClientManager;
 import com.github.theokhttp.TheOkHttp;
@@ -14,5 +15,6 @@ public class AppHelper {
         TheOkHttp.setDebug(BuildConfig.DEBUG);
         NetworkUtils.init(application);
         ToastUtils.init(application);
+        SPUtils.init(application);
     }
 }
