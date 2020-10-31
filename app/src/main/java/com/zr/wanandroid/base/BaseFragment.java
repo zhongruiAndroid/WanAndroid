@@ -79,10 +79,8 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     }
     @Override
     public void initViewAfter() {
-        initBus();
     }
 
-    public void initBus(){};
 
     protected void getOtherData() {
     }

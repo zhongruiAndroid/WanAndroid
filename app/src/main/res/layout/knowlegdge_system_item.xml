@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="2dp">
+
+    <com.github.fastshape.MyTextView
+        android:id="@+id/tvKnowledgeClassify"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="3sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        tools:text="知识体系知识体系知识体系"/>
+
+    <com.github.fastshape.MyTextView
+        android:id="@+id/tvKnowledgeClassifyTag"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        app:radius="3dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="2dp"
+        app:solidColor="@color/colorAccent" />
+</FrameLayout>

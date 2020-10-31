@@ -77,6 +77,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
         initViewPrevious();
         initView();
         initViewAfter();
+        initBus();
         return mView;
     }
 
@@ -175,6 +176,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
 
     public abstract void initData();
 
+    public void initBus(){};
 
     public long getNoDoubleClickInterval() {
         return 900;

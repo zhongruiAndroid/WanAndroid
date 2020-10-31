@@ -78,14 +78,7 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
 
     @Override
     public void initViewAfter() {
-        initBus();
     }
-
-    public void initBus() {
-    }
-
-    ;
-
     protected void getOtherData() {
     }
 

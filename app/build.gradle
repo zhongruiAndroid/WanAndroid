@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.github:MyPermissions:1.0.2'//权限请求
     implementation 'com.github:StatusBarUtils:1.0.1'//沉浸式状态栏
     implementation(name: 'TheOkHttp', ext: 'aar')
-    implementation(name: 'LoadMoreAdapter', ext: 'aar')
+    implementation(name: 'LoadMoreAdapter-release', ext: 'aar')
 //    implementation 'com.github:TheOkHttp:1.0.3'//okHttp网球请求封装
     implementation 'com.github:SimpleDialog:1.0.3'//魔改dialog
     implementation 'com.github:FlowLayout:1.0.2'//流式布局

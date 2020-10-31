@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvKnowledgeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimary"
+        android:text="开发体系" />
+    <com.github.flowview.FlowLayout
+        android:id="@+id/flKnowledge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bothGap="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="2dp"
+        />
+</LinearLayout>

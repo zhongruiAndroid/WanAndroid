@@ -11,4 +11,6 @@ public class NetUrl {
     public static final String HOME_HOT_SEARCH_RECORD=NetHost.API_HOST+"hotkey/json";
     /*热门搜索词,k ： 搜索关键词*/
     public static final String HOME_SEARCH_ARTICLE=NetHost.API_HOST+"article/query/%s/json";
+    /*体系数据*/
+    public static final String KNOWLEDGE_SYSTEM=NetHost.API_HOST+"tree/json";
 }

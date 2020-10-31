@@ -93,9 +93,11 @@ public abstract class _BaseActivity extends AppCompatActivity implements View.On
         initViewPrevious();
         initView();
         initViewAfter();
+        initBus();
         initData();
     }
 
+    public void initBus(){};
     protected void initViewPrevious() {
 
     }
