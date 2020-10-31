@@ -88,7 +88,7 @@ public class KnowledgeSystemBean implements Serializable {
         this.children = children;
     }
 
-    public static class ChildrenBean {
+    public static class ChildrenBean implements Serializable {
         /**
          * children : []
          * courseId : 13

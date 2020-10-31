@@ -3,27 +3,18 @@ package com.zr.wanandroid.module.knowledgesystem.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
-import com.android.basecore.listener.NoDoubleClickListener;
 import com.github.interbus.BusCallback;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
-import com.zr.wanandroid.bridge.ActBridge;
-import com.zr.wanandroid.module.home.fragment.HomeFragment;
 import com.zr.wanandroid.module.knowledgesystem.adapter.KnowledgeSystemAdapter;
 import com.zr.wanandroid.module.knowledgesystem.event.SelectKnowledgeEvent;
-import com.zr.wanandroid.module.knowledgesystem.presenter.KnowledgeSystemPresenter;
+import com.zr.wanandroid.module.knowledgesystem.presenter.KnowledgeSystemFragmentPresenter;
 
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
-
-public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemPresenter> {
+public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmentPresenter> {
     private RecyclerView rvKnowledgeSystemListClassify;
     private RecyclerView rvKnowledgeSystemListClassifySecond;
     private KnowledgeSystemAdapter knowledgeSystemAdapter;

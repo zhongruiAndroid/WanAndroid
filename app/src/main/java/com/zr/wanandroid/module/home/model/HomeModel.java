@@ -61,7 +61,11 @@ public class HomeModel extends SingleClass {
 
             @Override
             public String getContentJson(JSONObject jsonObject) {
-                return jsonObject.optJSONObject("data").optJSONArray("datas").toString();
+                JSONArray jsonArray = jsonObject.optJSONObject("data").optJSONArray("datas");
+                if(jsonArray==null){
+                    return "";
+                }
+                return jsonArray.toString();
             }
         });
     }

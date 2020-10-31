@@ -11,7 +11,7 @@ import com.zr.wanandroid.module.knowledgesystem.model.KnowledgeSystemModel;
 
 import java.util.List;
 
-public class KnowledgeSystemPresenter extends BasePresenter<KnowledgeSystemFragment> {
+public class KnowledgeSystemFragmentPresenter extends BasePresenter<KnowledgeSystemFragment> {
     private KnowledgeSystemAdapter adapter;
     private KnowledgeSystemSecondAdapter adapterSecond;
     public KnowledgeSystemAdapter initAdapter() {

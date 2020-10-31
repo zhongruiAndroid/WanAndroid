@@ -36,13 +36,13 @@ public class KnowledgeSystemSecondAdapter extends CustomAdapter<KnowledgeSystemB
         flKnowledge.removeAllViews();
         if (!N.isEmpty(children)) {
             for (KnowledgeSystemBean.ChildrenBean childrenBean : children) {
-                View itemView = getItemView(holder.itemView.getContext(), childrenBean.getName());
+                View itemView = getItemView(holder.itemView.getContext(), childrenBean.getName(),item);
                 flKnowledge.addView(itemView);
             }
         }
     }
 
-    private View getItemView(Context context, String name) {
+    private View getItemView(Context context, String name,KnowledgeSystemBean item) {
         MyTextView textView = new MyTextView(context);
         int dp10 = DensityUtils.dp2px(10);
         int dp30 = DensityUtils.dp2px(30);
@@ -55,7 +55,7 @@ public class KnowledgeSystemSecondAdapter extends CustomAdapter<KnowledgeSystemB
         textView.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View var1) {
-//                ActBridge.toWebActivity(ActivityUtils.findActivity(context),);
+                ActBridge.toKnowledgeSystemArticleActivity(ActivityUtils.findActivity(context),item);
 
             }
         });
