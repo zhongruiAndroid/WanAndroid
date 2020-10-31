@@ -11,6 +11,7 @@ import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.home.bean.HomeBannerBean;
 import com.zr.wanandroid.module.home.bean.SearchHotBean;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -94,13 +95,22 @@ public class HomeModel extends SingleClass {
         });
     }
 
-    public void getSearchArticleList(int page, String searchKey, final RequestListener<List<HomeArticleBean>> listener) {
+    public void getSearchArticleList(int page, String searchKey, final BaseRequestListener<List<HomeArticleBean>,Boolean> listener) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("k", searchKey);
         TheOkHttp.postForm(map).start(String.format(NetUrl.HOME_SEARCH_ARTICLE, (page - 1)), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);
+                try {
+                    JSONObject jsonObject=new JSONObject(result);
+                    boolean isOver = jsonObject.optJSONObject("data").optBoolean("over");
+                    if (listener != null) {
+                        listener.onCustomSuccess(data,!isOver);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -110,7 +120,11 @@ public class HomeModel extends SingleClass {
 
             @Override
             public String getContentJson(JSONObject jsonObject) {
-                return jsonObject.optJSONObject("data").optJSONArray("datas").toString();
+                JSONArray jsonArray = jsonObject.optJSONObject("data").optJSONArray("datas");
+                if(jsonArray==null){
+                    return "";
+                }
+                return jsonArray.toString();
             }
         });
     }

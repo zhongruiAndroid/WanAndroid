@@ -2,7 +2,9 @@ package com.zr.wanandroid.module.home.presenter;
 
 import com.github.adapter.LoadListener;
 import com.github.adapter.LoadMoreAdapter;
+import com.github.developtools.KeyboardUtils;
 import com.zr.wanandroid.base.BasePresenter;
+import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
@@ -25,9 +27,10 @@ public class SearchResultPresenter extends BasePresenter<SearchResultFragment> i
     }
     public void getData(int page, String text, boolean isLoad) {
         searchText=text;
-        HomeModel.getInstance().getSearchArticleList(page, text, new RequestListener<List<HomeArticleBean>>() {
+        HomeModel.getInstance().getSearchArticleList(page, text, new BaseRequestListener<List<HomeArticleBean>,Boolean>() {
             @Override
             public void onSuccess(List<HomeArticleBean> obj) {
+                KeyboardUtils.hiddenKeyBoard(getView().getActivity());
                 loadResult(isLoad);
                 if(isLoad){
                     adapter.addList(obj,true);
@@ -37,7 +40,12 @@ public class SearchResultPresenter extends BasePresenter<SearchResultFragment> i
                 }
             }
             @Override
+            public void onCustomSuccess(List<HomeArticleBean> obj, Boolean hasLoadMore) {
+                adapter.loadHasMore(hasLoadMore);
+            }
+            @Override
             public void onError(String code, String errorMsg) {
+                KeyboardUtils.hiddenKeyBoard(getView().getActivity());
                 showToast(errorMsg);
                 loadError(null);
                 if(!isLoad){

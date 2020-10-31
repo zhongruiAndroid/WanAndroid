@@ -1,23 +1,16 @@
 package com.zr.wanandroid.module.home.activity;
 
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.basecore.tools.ActTools;
 import com.github.developtools.N;
 import com.github.fastshape.MyEditText;
-import com.github.flowview.FlowLayout;
 import com.github.interbus.BusCallback;
-import com.github.interbus.InterBus;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.event.SearchArticleEvent;
@@ -82,6 +75,9 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
     }
 
     private void showHistorySearch() {
+        if (searchHistoryFragment != null) {
+            searchHistoryFragment.getHistorySearch();
+        }
         ActTools.showFragment(this, searchHistoryFragment);
         ActTools.hideFragment(this, searchResultFragment);
     }
@@ -94,6 +90,11 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
         }else{
             searchResultFragment.searchByText(searchText);
             ActTools.showFragment(this, searchResultFragment);
+        }
+
+        getPresenter().addSearchToCache(searchText);
+        if (searchHistoryFragment != null) {
+            searchHistoryFragment.getHistorySearch();
         }
     }
 

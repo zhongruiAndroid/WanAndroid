@@ -5,6 +5,8 @@ import com.zr.wanandroid.utils.HtmlUtils;
 import org.junit.Test;
 
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -47,5 +49,16 @@ public class ExampleUnitTest {
         System.out.println(3<<1);
         System.out.println(3<<2);
         System.out.println(3<<3);
+    }
+    @Test
+    public void sddd() {
+        List<String> list=new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.remove("c");
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+            System.out.println(s);
+        }
     }
 }

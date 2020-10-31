@@ -59,7 +59,9 @@ public class SearchHistoryFragment extends BaseFragment<SearchHistoryPresenter> 
         getPresenter().getHotSearch();
         getPresenter().getHistorySearch();
     }
-
+    public void getHistorySearch(){
+        getPresenter().getHistorySearch();
+    }
     @Override
     public void onNoDoubleClick(View v) {
         switch (v.getId()) {

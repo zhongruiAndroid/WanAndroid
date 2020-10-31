@@ -1,5 +1,11 @@
 package com.zr.wanandroid.module.home.bean;
 
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
+import com.github.developtools.N;
+import com.github.developtools.StringUtils;
+
 import java.io.Serializable;
 
 public class SearchHotBean implements Serializable {
@@ -16,6 +22,13 @@ public class SearchHotBean implements Serializable {
     private String name;
     private String order;
     private String visible;
+
+    public SearchHotBean() {
+    }
+
+    public SearchHotBean(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;
@@ -55,5 +68,20 @@ public class SearchHotBean implements Serializable {
 
     public void setVisible(String visible) {
         this.visible = visible;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj==this){
+            return true;
+        }
+        if(! (obj instanceof SearchHotBean)){
+            return false;
+        }
+        SearchHotBean hotBean= (SearchHotBean )obj;
+        if(TextUtils.equals(hotBean.name,this.name)){
+            return true;
+        }
+        return super.equals(obj);
     }
 }

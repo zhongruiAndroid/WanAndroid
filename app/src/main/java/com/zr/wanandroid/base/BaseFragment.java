@@ -56,7 +56,7 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
 //            pcfl.disableWhenHorizontalMove(true);
             pcflRefresh.setYOffsetMultiple(3);
             pcflRefresh.setXOffsetMultiple(3);
-            pcflRefresh.setScaledTouchMultiple(0.5f);
+            pcflRefresh.setScaledTouchMultiple(1.5f);
             pcflRefresh.setPtrHandler(new PtrDefaultHandler() {
                 @Override
                 public void onRefreshBegin(PtrFrameLayout ptrFrameLayout) {

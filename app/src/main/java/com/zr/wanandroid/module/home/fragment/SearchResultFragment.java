@@ -38,6 +38,11 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> {
     @Override
     public void initData() {
         showProgress();
+        getData(1,false);
+    }
+
+    @Override
+    protected void getData(int page, boolean isLoad) {
         String text = getArguments().getString(SEARCH_TEXT);
         getPresenter().getData(1,text,false);
     }

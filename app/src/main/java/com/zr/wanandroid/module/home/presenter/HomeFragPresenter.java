@@ -79,9 +79,7 @@ public class HomeFragPresenter extends BasePresenter<HomeFragment> implements Lo
             }
             @Override
             public void onCustomSuccess(List<HomeArticleBean> obj, Boolean hasLoadMore) {
-                if(isLoad){
-                    adapter.loadHasMore(hasLoadMore);
-                }
+                adapter.loadHasMore(hasLoadMore);
             }
             @Override
             public void onError(String code, String errorMsg) {
