@@ -35,7 +35,7 @@ public class SearchHistoryPresenter extends BasePresenter<SearchHistoryFragment>
             }
             @Override
             public void onError(String code, String errorMsg) {
-
+                showToast(errorMsg);
             }
         });
     }

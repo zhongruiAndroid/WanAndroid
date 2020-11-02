@@ -38,7 +38,10 @@ public class NavigationPresenter extends BasePresenter<NavigationFragment> {
             }
             @Override
             public void onError(String code, String errorMsg) {
-                getView().showError();
+                showToast(errorMsg);
+                if(!isLoad){
+                    getView().showError();
+                }
             }
         });
     }

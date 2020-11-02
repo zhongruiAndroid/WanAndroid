@@ -3,6 +3,7 @@ package com.zr.wanandroid.module.home.presenter;
 import com.github.adapter.LoadListener;
 import com.github.adapter.LoadMoreAdapter;
 import com.github.developtools.KeyboardUtils;
+import com.github.developtools.N;
 import com.zr.wanandroid.base.BasePresenter;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
@@ -32,6 +33,10 @@ public class SearchResultPresenter extends BasePresenter<SearchResultFragment> i
             public void onSuccess(List<HomeArticleBean> obj) {
                 KeyboardUtils.hiddenKeyBoard(getView().getActivity());
                 loadResult(isLoad);
+                if(N.isEmpty(obj)){
+                    getView().showEmpty();
+                    return;
+                }
                 if(isLoad){
                     adapter.addList(obj,true);
                 }else{

@@ -17,4 +17,6 @@ public class NetUrl {
     public static final String KNOWLEDGE_SYSTEM_ARTICLE=NetHost.API_HOST+"article/list/%s/json";
     /*导航数据*/
     public static final String NAVIGATION_LIST=NetHost.API_HOST+"navi/json";
+    /*公众号列表*/
+    public static final String OFFICIAL_ACCOUNT_LIST=NetHost.API_HOST+"chapters/json";
 }

@@ -2,6 +2,7 @@ package com.zr.wanandroid.module.knowledgesystem.presenter;
 
 import com.github.adapter.LoadListener;
 import com.github.adapter.LoadMoreAdapter;
+import com.github.developtools.N;
 import com.zr.wanandroid.base.BasePresenter;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
@@ -29,6 +30,10 @@ public class KnowledgeSystemArticleFragmentPresenter extends BasePresenter<Knowl
             @Override
             public void onSuccess(List<HomeArticleBean> obj) {
                 loadResult(isLoad);
+                if(N.isEmpty(obj)){
+                    getView().showEmpty();
+                    return;
+                }
                 if (!isLoad) {
                     adapter.setList(obj,true);
                     getView().showContent();
@@ -43,9 +48,10 @@ public class KnowledgeSystemArticleFragmentPresenter extends BasePresenter<Knowl
             @Override
             public void onError(String code, String errorMsg) {
                 showToast(errorMsg);
-                loadError(adapter);
                 if (!isLoad) {
                     getView().showError();
+                }else{
+                    loadError(adapter);
                 }
             }
         });

@@ -38,7 +38,9 @@ public class KnowledgeSystemFragmentPresenter extends BasePresenter<KnowledgeSys
             @Override
             public void onError(String code, String errorMsg) {
                 showToast(errorMsg);
-                getView().showError();
+                if(!isLoad){
+                    getView().showError();
+                }
             }
         });
     }
