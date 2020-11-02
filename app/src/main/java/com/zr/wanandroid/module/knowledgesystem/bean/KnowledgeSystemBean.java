@@ -1,5 +1,7 @@
 package com.zr.wanandroid.module.knowledgesystem.bean;
 
+import com.zr.wanandroid.module.home.bean.HomeArticleBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class KnowledgeSystemBean implements Serializable {
     private String userControlSetTop;
     private String visible;
     private List<ChildrenBean> children;
+    private List<HomeArticleBean> articles;
 
     public String getCourseId() {
         return courseId;
@@ -86,6 +89,14 @@ public class KnowledgeSystemBean implements Serializable {
 
     public void setChildren(List<ChildrenBean> children) {
         this.children = children;
+    }
+
+    public List<HomeArticleBean> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<HomeArticleBean> articles) {
+        this.articles = articles;
     }
 
     public static class ChildrenBean implements Serializable {

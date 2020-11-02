@@ -5,25 +5,26 @@ import com.zr.wanandroid.base.BasePresenter;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.module.knowledgesystem.adapter.KnowledgeSystemAdapter;
 import com.zr.wanandroid.module.knowledgesystem.adapter.KnowledgeSystemSecondAdapter;
+import com.zr.wanandroid.module.knowledgesystem.adapter.NavigationSecondAdapter;
 import com.zr.wanandroid.module.knowledgesystem.bean.KnowledgeSystemBean;
-import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeSystemFragment;
+import com.zr.wanandroid.module.knowledgesystem.fragment.NavigationFragment;
 import com.zr.wanandroid.module.knowledgesystem.model.KnowledgeSystemModel;
 
 import java.util.List;
 
-public class KnowledgeSystemFragmentPresenter extends BasePresenter<KnowledgeSystemFragment> {
+public class NavigationPresenter extends BasePresenter<NavigationFragment> {
     private KnowledgeSystemAdapter adapter;
-    private KnowledgeSystemSecondAdapter adapterSecond;
+    private NavigationSecondAdapter adapterSecond;
     public KnowledgeSystemAdapter initAdapter() {
-        adapter=new KnowledgeSystemAdapter(true);
+        adapter=new KnowledgeSystemAdapter(false);
         return adapter;
     }
-    public KnowledgeSystemSecondAdapter initSecondAdapter() {
-        adapterSecond=new KnowledgeSystemSecondAdapter(1);
+    public NavigationSecondAdapter initSecondAdapter() {
+        adapterSecond=new NavigationSecondAdapter(1);
         return adapterSecond;
     }
     public void getData(int page, boolean isLoad) {
-        KnowledgeSystemModel.getInstance().getKnowledgeSystemList(new RequestListener<List<KnowledgeSystemBean>>() {
+        KnowledgeSystemModel.getInstance().getNavigationList(new RequestListener<List<KnowledgeSystemBean>>() {
             @Override
             public void onSuccess(List<KnowledgeSystemBean> obj) {
                 loadResult(isLoad);
@@ -37,7 +38,6 @@ public class KnowledgeSystemFragmentPresenter extends BasePresenter<KnowledgeSys
             }
             @Override
             public void onError(String code, String errorMsg) {
-                showToast(errorMsg);
                 getView().showError();
             }
         });

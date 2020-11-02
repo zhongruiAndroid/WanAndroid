@@ -52,7 +52,7 @@
             app:normal_drawable_top="@drawable/tixi_tab"
             app:normal_drawable_top_color="@color/c_666666"
             app:normal_textColor="@color/c_666666" />
-
+<!--
         <com.github.fastshape.MyRadioButton
             android:id="@+id/rbNavigationTab"
             android:layout_width="0dp"
@@ -66,7 +66,7 @@
             app:checked_textColor="@color/c_57b7e9"
             app:normal_drawable_top="@drawable/navigation_tab"
             app:normal_drawable_top_color="@color/c_666666"
-            app:normal_textColor="@color/c_666666" />
+            app:normal_textColor="@color/c_666666" />-->
 
         <com.github.fastshape.MyRadioButton
             android:id="@+id/rbOfficialAccountTab"

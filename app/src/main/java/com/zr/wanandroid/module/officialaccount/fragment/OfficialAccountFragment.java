@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.zr.wanandroid.base.BaseFragment;
-import com.zr.wanandroid.module.navigation.fragment.NavigationFragment;
 
 public class OfficialAccountFragment extends BaseFragment {
     @Override

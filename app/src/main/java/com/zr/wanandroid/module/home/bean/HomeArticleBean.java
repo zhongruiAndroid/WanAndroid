@@ -1,8 +1,9 @@
 package com.zr.wanandroid.module.home.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class HomeArticleBean {
+public class HomeArticleBean implements Serializable {
     /**
      * apkLink :
      * audit : 1
@@ -70,7 +71,7 @@ public class HomeArticleBean {
     private String visible;
     private String zan;
     private List<TagBean> tags;
-    public static class TagBean{
+    public static class TagBean implements Serializable{
 
         /**
          * name : 本站发布

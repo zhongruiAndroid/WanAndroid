@@ -15,4 +15,6 @@ public class NetUrl {
     public static final String KNOWLEDGE_SYSTEM=NetHost.API_HOST+"tree/json";
     /*知识体系下的文章*/
     public static final String KNOWLEDGE_SYSTEM_ARTICLE=NetHost.API_HOST+"article/list/%s/json";
+    /*导航数据*/
+    public static final String NAVIGATION_LIST=NetHost.API_HOST+"navi/json";
 }

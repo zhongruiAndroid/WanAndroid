@@ -2,6 +2,7 @@ package com.zr.wanandroid.module.knowledgesystem.model;
 
 import com.github.theokhttp.TheOkHttp;
 import com.github.theokhttp.TheOkHttpCallback;
+import com.zr.wanandroid.MyApplication;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.common.net.NetUrl;
@@ -18,6 +19,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 
 public class KnowledgeSystemModel extends SingleClass {
 
@@ -26,7 +31,10 @@ public class KnowledgeSystemModel extends SingleClass {
     }
 
     public void getKnowledgeSystemList(RequestListener<List<KnowledgeSystemBean>> listener){
-        TheOkHttp.startGet(NetUrl.KNOWLEDGE_SYSTEM, new HttpCallback<List<KnowledgeSystemBean>>() {
+        CacheControl.Builder builder = new CacheControl.Builder();
+        builder.maxAge(4, TimeUnit.SECONDS);
+        builder.maxStale(5,TimeUnit.MINUTES);
+        TheOkHttp.get().cacheControl(builder.build()).start(NetUrl.KNOWLEDGE_SYSTEM, new HttpCallback<List<KnowledgeSystemBean>>() {
             @Override
             public void success(List<KnowledgeSystemBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);
@@ -65,6 +73,23 @@ public class KnowledgeSystemModel extends SingleClass {
                     return "";
                 }
                 return jsonArray.toString();
+            }
+        });
+    }
+
+
+    public void getNavigationList(RequestListener<List<KnowledgeSystemBean>> listener){
+        CacheControl.Builder builder = new CacheControl.Builder();
+        builder.maxAge(4, TimeUnit.SECONDS);
+        builder.maxStale(5,TimeUnit.MINUTES);
+        TheOkHttp.get().cacheControl(builder.build()).start(NetUrl.NAVIGATION_LIST, new HttpCallback<List<KnowledgeSystemBean>>() {
+            @Override
+            public void success(List<KnowledgeSystemBean> data, BaseResponse server, String result) {
+                toSuccess(listener,data);
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener,code,errorMsg);
             }
         });
     }

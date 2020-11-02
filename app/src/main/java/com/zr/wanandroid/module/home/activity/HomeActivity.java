@@ -1,22 +1,21 @@
 package com.zr.wanandroid.module.home.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.FrameLayout;
 
 import com.android.basecore.tools.ActTools;
-import com.github.developtools.ActivityUtils;
-import com.github.developtools.N;
 import com.github.fastshape.MyRadioButton;
 import com.github.statusbar.StatusBarUtils;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.module.home.fragment.HomeFragment;
 import com.zr.wanandroid.module.home.presenter.HomeActPresenter;
-import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeSystemFragment;
+import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeNavigationFragment;
+import com.zr.wanandroid.module.knowledgesystem.fragment.NavigationFragment;
 import com.zr.wanandroid.module.my.fragment.MyFragment;
-import com.zr.wanandroid.module.navigation.fragment.NavigationFragment;
 import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountFragment;
 import com.zr.wanandroid.module.question.fragment.QuestionFragment;
 
@@ -29,7 +28,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     private MyRadioButton selectView;
     private MyRadioButton rbHomeTab;
     private MyRadioButton rbKnowledgeSystemTab;
-    private MyRadioButton rbNavigationTab;
+//    private MyRadioButton rbNavigationTab;
     private MyRadioButton rbOfficialAccountTab;
     private MyRadioButton rbQuestionTab;
     private MyRadioButton rbMyTab;
@@ -40,7 +39,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     private OfficialAccountFragment officialAccountFragment;
     private QuestionFragment questionFragment;
     private MyFragment myFragment;
-    private KnowledgeSystemFragment knowledgeSystemFragment;
+    private KnowledgeNavigationFragment knowledgeNavigationFragment;
 
     private Map<Integer, Fragment> fragmentMap = new HashMap<>();
 
@@ -56,7 +55,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         flHomeContent = findViewById(R.id.flHomeContent);
         rbHomeTab = findViewById(R.id.rbHomeTab);
         rbKnowledgeSystemTab = findViewById(R.id.rbKnowledgeSystemTab);
-        rbNavigationTab = findViewById(R.id.rbNavigationTab);
+//        rbNavigationTab = findViewById(R.id.rbNavigationTab);
         rbOfficialAccountTab = findViewById(R.id.rbOfficialAccountTab);
         rbQuestionTab = findViewById(R.id.rbQuestionTab);
         rbMyTab = findViewById(R.id.rbMyTab);
@@ -68,10 +67,12 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     public void initViewAfter() {
         rbHomeTab.setOnClickListener(this);
         rbKnowledgeSystemTab.setOnClickListener(this);
-        rbNavigationTab.setOnClickListener(this);
+//        rbNavigationTab.setOnClickListener(this);
         rbOfficialAccountTab.setOnClickListener(this);
         rbQuestionTab.setOnClickListener(this);
         rbMyTab.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -80,15 +81,15 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         ActTools.addFragment(this, R.id.flHomeContent, homeFragment);
 
 
-        knowledgeSystemFragment = KnowledgeSystemFragment.newInstance();
+        knowledgeNavigationFragment = KnowledgeNavigationFragment.newInstance();
         navigationFragment = NavigationFragment.newInstance();
         officialAccountFragment = OfficialAccountFragment.newInstance();
         questionFragment = QuestionFragment.newInstance();
         myFragment = MyFragment.newInstance();
 
         fragmentMap.put(R.id.rbHomeTab, homeFragment);
-        fragmentMap.put(R.id.rbKnowledgeSystemTab, knowledgeSystemFragment);
-        fragmentMap.put(R.id.rbNavigationTab, navigationFragment);
+        fragmentMap.put(R.id.rbKnowledgeSystemTab, knowledgeNavigationFragment);
+//        fragmentMap.put(R.id.rbNavigationTab, navigationFragment);
         fragmentMap.put(R.id.rbOfficialAccountTab, officialAccountFragment);
         fragmentMap.put(R.id.rbQuestionTab, questionFragment);
         fragmentMap.put(R.id.rbMyTab, myFragment);

@@ -15,8 +15,10 @@ import com.zr.wanandroid.module.knowledgesystem.event.SelectKnowledgeEvent;
 
 public class KnowledgeSystemAdapter extends CustomAdapter<KnowledgeSystemBean> {
     private int selectPosition;
-    public KnowledgeSystemAdapter(int layoutId) {
+    private boolean isKnowledgeSystem;
+    public KnowledgeSystemAdapter(boolean isKnowledgeSystem) {
         super(R.layout.knowlegdge_system_item);
+        this.isKnowledgeSystem=isKnowledgeSystem;
         setOnItemClickListener(new NoDoubleAdapterOnClickListener() {
             @Override
             public void onNoDoubleClick(View view, int position) {
@@ -24,7 +26,7 @@ public class KnowledgeSystemAdapter extends CustomAdapter<KnowledgeSystemBean> {
                 selectPosition=position;
                 notifyItemChanged(prePosition);
                 notifyItemChanged(selectPosition);
-                InterBus.get().post(new SelectKnowledgeEvent(selectPosition));
+                InterBus.get().post(new SelectKnowledgeEvent(selectPosition,isKnowledgeSystem));
             }
         });
     }
@@ -41,7 +43,6 @@ public class KnowledgeSystemAdapter extends CustomAdapter<KnowledgeSystemBean> {
             tvKnowledgeClassify.setTextColor(ContextCompat.getColor(holder.itemView.getContext(),R.color.colorText));
         }
     }
-
     public void setSelectPosition(int itemPosition) {
         int prePosition=selectPosition;
         selectPosition=itemPosition;

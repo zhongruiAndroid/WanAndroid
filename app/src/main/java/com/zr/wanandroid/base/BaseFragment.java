@@ -43,6 +43,11 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     public int color(@ColorRes int colorId){
         return ContextCompat.getColor(getActivity(),colorId);
     }
+
+    public TitleView getTitleView() {
+        return titleView==null?new TitleView(getActivity()):titleView;
+    }
+
     @Override
     protected final void initViewPrevious() {
         View rlTitleView = findViewById(R.id.titleView);

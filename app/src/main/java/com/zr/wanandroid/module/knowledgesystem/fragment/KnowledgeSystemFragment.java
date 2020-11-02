@@ -36,7 +36,10 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
         setEvent(SelectKnowledgeEvent.class, new BusCallback<SelectKnowledgeEvent>() {
             @Override
             public void accept(SelectKnowledgeEvent event) {
-                rvKnowledgeSystemListClassifySecond.smoothScrollToPosition(event.position);
+                if (event.isKnowledgeSystem) {
+                    rvKnowledgeSystemListClassify.setTag(true);
+                    rvKnowledgeSystemListClassifySecond.smoothScrollToPosition(event.position);
+                }
             }
         });
     }
@@ -45,10 +48,10 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
     @Override
     public void initView() {
 
-        titleView.setAppTitle("知识体系");
-        titleView.setAppTitleBackground(color(R.color.colorAccent));
-        titleView.setAppTitleColor(color(R.color.c_white));
-        titleView.setAppBackIcon(null);
+        getTitleView().setAppTitle("知识体系");
+        getTitleView().setAppTitleBackground(color(R.color.colorAccent));
+        getTitleView().setAppTitleColor(color(R.color.c_white));
+        getTitleView().setAppBackIcon(null);
 
         rvKnowledgeSystemListClassify = findViewById(R.id.rvKnowledgeSystemListClassify);
         rvKnowledgeSystemListClassifySecond = findViewById(R.id.rvKnowledgeSystemListClassifySecond);
@@ -60,6 +63,11 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if(newState==RecyclerView.SCROLL_STATE_IDLE){
+                    Object tag = rvKnowledgeSystemListClassify.getTag();
+                    if(tag!=null){
+                        rvKnowledgeSystemListClassify.setTag(null);
+                        return;
+                    }
                     if (layoutManager == null) {
                         layoutManager = (LinearLayoutManager) rvKnowledgeSystemListClassifySecond.getLayoutManager();
                     }
