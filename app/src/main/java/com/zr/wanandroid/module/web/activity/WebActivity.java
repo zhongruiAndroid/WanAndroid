@@ -1,10 +1,7 @@
-package com.zr.wanandroid.module.web.act;
+package com.zr.wanandroid.module.web.activity;
 
-import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 

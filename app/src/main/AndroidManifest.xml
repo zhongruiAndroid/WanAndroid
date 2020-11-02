@@ -29,13 +29,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".module.web.act.WebActivity"
+            android:name=".module.web.activity.WebActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
         <activity
             android:name=".module.home.activity.SearchActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
         <activity
             android:name=".module.knowledgesystem.activity.KnowledgeSystemActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
+        <activity android:name=".module.officialaccount.activity.OfficialAccountArticleActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
     </application>
 

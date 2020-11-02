@@ -1,7 +1,5 @@
 package com.zr.wanandroid.module.home.activity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -16,7 +14,7 @@ import com.zr.wanandroid.module.home.presenter.HomeActPresenter;
 import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeNavigationFragment;
 import com.zr.wanandroid.module.knowledgesystem.fragment.NavigationFragment;
 import com.zr.wanandroid.module.my.fragment.MyFragment;
-import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountFragment;
+import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountAuthorFragment;
 import com.zr.wanandroid.module.question.fragment.QuestionFragment;
 
 import java.util.HashMap;
@@ -36,7 +34,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 
     private HomeFragment homeFragment;
     private NavigationFragment navigationFragment;
-    private OfficialAccountFragment officialAccountFragment;
+    private OfficialAccountAuthorFragment officialAccountFragment;
     private QuestionFragment questionFragment;
     private MyFragment myFragment;
     private KnowledgeNavigationFragment knowledgeNavigationFragment;
@@ -83,7 +81,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 
         knowledgeNavigationFragment = KnowledgeNavigationFragment.newInstance();
         navigationFragment = NavigationFragment.newInstance();
-        officialAccountFragment = OfficialAccountFragment.newInstance();
+        officialAccountFragment = OfficialAccountAuthorFragment.newInstance();
         questionFragment = QuestionFragment.newInstance();
         myFragment = MyFragment.newInstance();
 

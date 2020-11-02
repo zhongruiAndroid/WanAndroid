@@ -18,5 +18,5 @@ public class NetUrl {
     /*导航数据*/
     public static final String NAVIGATION_LIST=NetHost.API_HOST+"navi/json";
     /*公众号列表*/
-    public static final String OFFICIAL_ACCOUNT_LIST=NetHost.API_HOST+"chapters/json";
+    public static final String OFFICIAL_ACCOUNT_LIST=NetHost.API_HOST+"wxarticle/chapters/json";
 }

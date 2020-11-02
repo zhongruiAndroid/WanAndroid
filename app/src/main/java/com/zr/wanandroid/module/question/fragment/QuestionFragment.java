@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zr.wanandroid.base.BaseFragment;
-import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountFragment;
 
 public class QuestionFragment extends BaseFragment {
     @Override
