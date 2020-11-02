@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.github.interbus.BusCallback;
@@ -77,10 +78,17 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> {
                     }
                     int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
                     if (lastCompletelyVisibleItemPosition < itemPosition) {
+                        if(itemPosition==-1){
+                            itemPosition = layoutManagerSecond.findFirstVisibleItemPosition();
+                        }
                         rvNavigationListClassify.smoothScrollToPosition(itemPosition);
                     } else {
                         int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
                         if (firstCompletelyVisibleItemPosition > itemPosition) {
+                            if(itemPosition==-1){
+                                itemPosition = layoutManagerSecond.findFirstVisibleItemPosition()+1;
+                                adapter.setSelectPosition(itemPosition);
+                            }
                             rvNavigationListClassify.smoothScrollToPosition(itemPosition);
                         }
                     }

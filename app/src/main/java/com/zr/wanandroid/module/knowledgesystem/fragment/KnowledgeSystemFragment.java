@@ -80,10 +80,17 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
                     }
                     int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
                     if(lastCompletelyVisibleItemPosition<itemPosition){
+                        if(itemPosition==-1){
+                            itemPosition = layoutManagerSecond.findFirstVisibleItemPosition();
+                        }
                         rvKnowledgeSystemListClassify.smoothScrollToPosition(itemPosition);
                     }else{
                         int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
                         if(firstCompletelyVisibleItemPosition>itemPosition){
+                            if(itemPosition==-1){
+                                itemPosition = layoutManagerSecond.findFirstVisibleItemPosition()+1;
+                                knowledgeSystemAdapter.setSelectPosition(itemPosition);
+                            }
                             rvKnowledgeSystemListClassify.smoothScrollToPosition(itemPosition);
                         }
                     }
