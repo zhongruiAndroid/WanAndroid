@@ -54,6 +54,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> {
         rvNavigationListClassifySecond.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
             private LinearLayoutManager layoutManager;
+            private LinearLayoutManager layoutManagerSecond;
 
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -64,11 +65,25 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> {
                         rvNavigationListClassify.setTag(null);
                         return;
                     }
-                    if (layoutManager == null) {
-                        layoutManager = (LinearLayoutManager) rvNavigationListClassifySecond.getLayoutManager();
+                    if (layoutManagerSecond == null) {
+                        layoutManagerSecond = (LinearLayoutManager) rvNavigationListClassifySecond.getLayoutManager();
                     }
-                    int itemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                    int itemPosition = layoutManagerSecond.findFirstCompletelyVisibleItemPosition();
                     adapter.setSelectPosition(itemPosition);
+
+
+                    if (layoutManager == null) {
+                        layoutManager = (LinearLayoutManager) rvNavigationListClassify.getLayoutManager();
+                    }
+                    int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                    if (lastCompletelyVisibleItemPosition < itemPosition) {
+                        rvNavigationListClassify.smoothScrollToPosition(itemPosition);
+                    } else {
+                        int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                        if (firstCompletelyVisibleItemPosition > itemPosition) {
+                            rvNavigationListClassify.smoothScrollToPosition(itemPosition);
+                        }
+                    }
 
                 }
             }

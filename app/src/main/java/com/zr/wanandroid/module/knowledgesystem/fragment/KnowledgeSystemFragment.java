@@ -58,6 +58,7 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
         rvKnowledgeSystemListClassifySecond.setOnScrollListener(new RecyclerView.OnScrollListener() {
 
             private LinearLayoutManager layoutManager;
+            private LinearLayoutManager layoutManagerSecond;
 
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -68,11 +69,24 @@ public class KnowledgeSystemFragment extends BaseFragment<KnowledgeSystemFragmen
                         rvKnowledgeSystemListClassify.setTag(null);
                         return;
                     }
-                    if (layoutManager == null) {
-                        layoutManager = (LinearLayoutManager) rvKnowledgeSystemListClassifySecond.getLayoutManager();
+                    if (layoutManagerSecond == null) {
+                        layoutManagerSecond = (LinearLayoutManager) rvKnowledgeSystemListClassifySecond.getLayoutManager();
                     }
-                    int itemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                    int itemPosition = layoutManagerSecond.findFirstCompletelyVisibleItemPosition();
                     knowledgeSystemAdapter.setSelectPosition(itemPosition);
+
+                    if (layoutManager == null) {
+                        layoutManager = (LinearLayoutManager) rvKnowledgeSystemListClassify.getLayoutManager();
+                    }
+                    int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                    if(lastCompletelyVisibleItemPosition<itemPosition){
+                        rvKnowledgeSystemListClassify.smoothScrollToPosition(itemPosition);
+                    }else{
+                        int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                        if(firstCompletelyVisibleItemPosition>itemPosition){
+                            rvKnowledgeSystemListClassify.smoothScrollToPosition(itemPosition);
+                        }
+                    }
                 }
             }
         });
