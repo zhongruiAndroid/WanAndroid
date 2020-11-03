@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.progresslayout.ProgressLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/plLoad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@id/pcflRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_resistance="2.1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+</com.github.progresslayout.ProgressLinearLayout>

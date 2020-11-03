@@ -15,7 +15,7 @@ import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeNavigationFrag
 import com.zr.wanandroid.module.knowledgesystem.fragment.NavigationFragment;
 import com.zr.wanandroid.module.my.fragment.MyFragment;
 import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountAuthorFragment;
-import com.zr.wanandroid.module.question.fragment.QuestionFragment;
+import com.zr.wanandroid.module.question.fragment.QuestionAndSquareFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
     private HomeFragment homeFragment;
     private NavigationFragment navigationFragment;
     private OfficialAccountAuthorFragment officialAccountFragment;
-    private QuestionFragment questionFragment;
+    private QuestionAndSquareFragment questionFragment;
     private MyFragment myFragment;
     private KnowledgeNavigationFragment knowledgeNavigationFragment;
 
@@ -82,7 +82,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         knowledgeNavigationFragment = KnowledgeNavigationFragment.newInstance();
         navigationFragment = NavigationFragment.newInstance();
         officialAccountFragment = OfficialAccountAuthorFragment.newInstance();
-        questionFragment = QuestionFragment.newInstance();
+        questionFragment = QuestionAndSquareFragment.newInstance();
         myFragment = MyFragment.newInstance();
 
         fragmentMap.put(R.id.rbHomeTab, homeFragment);

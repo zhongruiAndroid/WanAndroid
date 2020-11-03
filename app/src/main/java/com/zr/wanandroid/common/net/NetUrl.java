@@ -21,4 +21,8 @@ public class NetUrl {
     public static final String OFFICIAL_ACCOUNT_LIST=NetHost.API_HOST+"wxarticle/chapters/json";
     /*公众号作者文章列表*/
     public static final String OFFICIAL_ACCOUNT_ARTICLE_LIST=NetHost.API_HOST+"wxarticle/list/%s/%s/json";
+    /*问答*/
+    public static final String QUESTION_ANSWER=NetHost.API_HOST+"wenda/list/%s/json";
+    /*广场*/
+    public static final String SQUARE_LIST=NetHost.API_HOST+"user_article/list/%s/json";
 }
