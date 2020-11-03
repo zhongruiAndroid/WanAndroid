@@ -116,4 +116,16 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         selectView= (MyRadioButton) v;
         selectView.setChecked(true);
     }
+
+    private long lastClickTime;
+    @Override
+    public void onBackPressed() {
+        long time = System.currentTimeMillis();
+        if(time-lastClickTime>1200){
+            lastClickTime=time;
+            showToast("再按一次返回键退出应用");
+            return;
+        }
+        super.onBackPressed();
+    }
 }

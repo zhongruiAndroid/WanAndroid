@@ -20,6 +20,7 @@ import com.github.progresslayout.ProgressListener;
 import com.github.progresslayout.ProgressRelativeLayout;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.module.home.event.SearchArticleEvent;
+import com.zr.wanandroid.utils.ToastUtils;
 import com.zr.wanandroid.widget.TitleView;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -43,7 +44,10 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
             pcflRefresh.refreshComplete();
         }
     }
-
+    @Override
+    public void showToast(String content) {
+        ToastUtils.showToast(content);
+    }
     @Override
     protected final void initViewPrevious() {
         View rlTitleView = findViewById(R.id.titleView);
