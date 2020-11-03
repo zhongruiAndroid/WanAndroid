@@ -12,7 +12,6 @@ import com.zr.wanandroid.common.adapter.FragmentListAdapter;
 import com.zr.wanandroid.module.knowledgesystem.bean.KnowledgeSystemBean;
 import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeSystemArticleFragment;
 import com.zr.wanandroid.module.knowledgesystem.presenter.KnowledgeSystemArticleFragmentPresenter;
-import com.zr.wanandroid.test.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

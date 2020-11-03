@@ -1,5 +1,6 @@
 package com.zr.wanandroid.module.officialaccount.model;
 
+import com.github.developtools.N;
 import com.github.theokhttp.TheOkHttp;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
@@ -14,7 +15,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OfficialAccountModel extends SingleClass {
     public static OfficialAccountModel getInstance() {
@@ -32,9 +35,14 @@ public class OfficialAccountModel extends SingleClass {
             }
         });
     }
-    public void getOfficialArticleListByAuthor(int page, String authorId, BaseRequestListener<List<HomeArticleBean>,Boolean> listener){
+    public void getOfficialArticleListByAuthor(int page, String authorId,BaseRequestListener<List<HomeArticleBean>,Boolean> listener){
+        getOfficialArticleListByAuthor(page,authorId,null,listener);
+    }
+    public void getOfficialArticleListByAuthor(int page, String authorId,String searchText,BaseRequestListener<List<HomeArticleBean>,Boolean> listener){
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("k", N.trimToEmptyNull(searchText)?"":searchText);
         /*此处page从1开始，有些接口从0开始*/
-        TheOkHttp.startGet(String.format(NetUrl.OFFICIAL_ACCOUNT_ARTICLE_LIST,authorId,(page)), new HttpCallback<List<HomeArticleBean>>() {
+        TheOkHttp.get(map).start(String.format(NetUrl.OFFICIAL_ACCOUNT_ARTICLE_LIST,authorId,(page+"")), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);

@@ -14,11 +14,7 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".test.activity.MainActivity"></activity>
-        <activity android:name=".test.activity.TestActivity" />
-        <activity android:name=".test.activity.Test2Activity" />
-        <activity android:name=".test.activity.EmptyActivity" />
-        <activity android:name=".test.activity.Test3Activity" />
+
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard">
@@ -36,6 +32,8 @@
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
         <activity
             android:name=".module.knowledgesystem.activity.KnowledgeSystemActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
+        <activity android:name=".module.officialaccount.activity.OfficialAccountArticleActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
     </application>
 

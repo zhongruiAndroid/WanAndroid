@@ -7,33 +7,35 @@ import com.zr.wanandroid.base.BasePresenter;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.module.home.adapter.HomeAdapter;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
-import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountArticleFragment;
+import com.zr.wanandroid.module.officialaccount.activity.OfficialAccountArticleActivity;
 import com.zr.wanandroid.module.officialaccount.model.OfficialAccountModel;
 
 import java.util.List;
 
-public class OfficialAccountArticlePresenter extends BasePresenter<OfficialAccountArticleFragment> implements LoadMoreAdapter.OnLoadMoreListener {
+public class OfficialAccountSearchPresenter extends BasePresenter<OfficialAccountArticleActivity> implements LoadMoreAdapter.OnLoadMoreListener {
     private HomeAdapter adapter;
     private String authorId;
+    private String searchText;
     public HomeAdapter initAdapter(){
-        adapter=new HomeAdapter(getView().getActivity());
+        adapter=new HomeAdapter(getView() );
         adapter.setOnLoadMoreListener(this);
         return adapter;
     }
-    public void getData(int page, boolean isLoad, String authorId) {
+    public void getData(int page, boolean isLoad, String authorId,String searchText) {
         this.authorId=authorId;
-        OfficialAccountModel.getInstance().getOfficialArticleListByAuthor(page,authorId,new BaseRequestListener<List<HomeArticleBean>,Boolean>() {
+        this.searchText=searchText;
+        OfficialAccountModel.getInstance().getOfficialArticleListByAuthor(page,authorId,searchText,new BaseRequestListener<List<HomeArticleBean>,Boolean>() {
             @Override
             public void onSuccess(List<HomeArticleBean> data) {
                 loadResult(isLoad);
                 if(N.isEmpty(data)){
+                    adapter.setList(data,true);
                     getView().showEmpty();
                     return;
                 }
                 if(!isLoad){
                     adapter.setList(data,true);
                     getView().showContent();
-                    getView().getArticleSuccess();
                 }else{
                     adapter.addList(data,true);
                 }
@@ -51,9 +53,8 @@ public class OfficialAccountArticlePresenter extends BasePresenter<OfficialAccou
             }
         });
     }
-
     @Override
     public void loadMore(LoadListener loadListener) {
-        getData(pageNum,true,authorId);
+        getData(pageNum,true,authorId,searchText);
     }
 }

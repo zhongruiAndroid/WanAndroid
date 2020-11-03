@@ -64,7 +64,9 @@ public class OfficialAccountArticleFragment extends BaseFragment<OfficialAccount
     public void onNoDoubleClick(View v) {
 
     }
-
+    public String getAuthorId(){
+        return getArguments().getString(PARAM_AUTHOR_ID);
+    }
     public void getArticleSuccess() {
         boolean isFirst = getArguments().getBoolean(PARAM_IS_FIRST);
         if (isFirst) {
