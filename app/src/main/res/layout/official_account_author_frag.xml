@@ -6,9 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/app_title"></include>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvOfficialAccount"
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dlOfficialAuthor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/app_title"></include>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOfficialArticle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOfficialAccountAuthor"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@color/c_white"
+            android:clickable="true"
+            />
+    </android.support.v4.widget.DrawerLayout>
 </com.github.progresslayout.ProgressLinearLayout>

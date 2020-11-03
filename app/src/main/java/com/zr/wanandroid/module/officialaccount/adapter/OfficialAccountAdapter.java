@@ -23,7 +23,7 @@ public class OfficialAccountAdapter extends CustomAdapter<OfficialAccountBean> {
     public void bindData(CustomViewHolder holder, int i, OfficialAccountBean item) {
         TextView tvOfficialAccountAuthorName = holder.getTextView(R.id.tvOfficialAccountAuthorName);
 
-        tvOfficialAccountAuthorName.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,itemWidth));
+//        tvOfficialAccountAuthorName.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,itemWidth));
         tvOfficialAccountAuthorName.setText(item.getName());
     }
 }

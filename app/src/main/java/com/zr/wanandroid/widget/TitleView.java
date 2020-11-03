@@ -113,6 +113,12 @@ public class TitleView extends RelativeLayout {
         setAppTitleColor(ContextCompat.getColor(getContext(),R.color.c_white));
 
     }
+    public void setAppBackClickListener(OnClickListener listener){
+        if (this.appIbBack == null) {
+            return;
+        }
+        this.appIbBack.setOnClickListener(listener);
+    }
     public void hiddenBottomLine() {
         hiddenBottomLine = true;
         if (appBottomLine == null) {

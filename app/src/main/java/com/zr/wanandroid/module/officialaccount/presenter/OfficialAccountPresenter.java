@@ -22,6 +22,7 @@ public class OfficialAccountPresenter extends BasePresenter<OfficialAccountAutho
         adapter.setOnItemClickListener(new NoDoubleAdapterOnClickListener() {
             @Override
             public void onNoDoubleClick(View view, int i) {
+                getView().hiddenDrawerLayout();
                 ActBridge.toOfficialAccountArticleActivity(getView().getActivity(),adapter.getList());
             }
         });
