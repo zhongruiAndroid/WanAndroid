@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.zr.wanandroid.module.home.activity.SearchActivity;
 import com.zr.wanandroid.module.knowledgesystem.activity.KnowledgeSystemActivity;
 import com.zr.wanandroid.module.knowledgesystem.bean.KnowledgeSystemBean;
-import com.zr.wanandroid.module.officialaccount.activity.OfficialAccountArticleActivity;
+import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountArticleFragment;
 import com.zr.wanandroid.module.officialaccount.bean.OfficialAccountBean;
 import com.zr.wanandroid.module.web.activity.WebActivity;
 import com.zr.wanandroid.test.activity.EmptyActivity;
@@ -51,9 +51,5 @@ public class ActBridge {
         intent.putExtra(KnowledgeSystemActivity.INTENT_KNOWLEDGE_SYSTEM, bean);
         activity.startActivity(intent);
     }
-    public static void toOfficialAccountArticleActivity(Activity activity, List<OfficialAccountBean> bean) {
-        Intent intent = new Intent(activity, OfficialAccountArticleActivity.class);
-        intent.putExtra(OfficialAccountArticleActivity.INTENT_AUTHOR_ID, new Gson().toJson(bean));
-        activity.startActivity(intent);
-    }
+
 }

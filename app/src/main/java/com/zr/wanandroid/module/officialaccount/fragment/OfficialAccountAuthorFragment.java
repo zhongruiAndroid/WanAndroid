@@ -1,6 +1,9 @@
 package com.zr.wanandroid.module.officialaccount.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,14 +12,23 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.github.dividerline.BaseItemDivider;
+import com.github.interbus.BusCallback;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
+import com.zr.wanandroid.common.adapter.FragmentListAdapter;
+import com.zr.wanandroid.module.officialaccount.bean.OfficialAccountBean;
+import com.zr.wanandroid.module.officialaccount.event.GetArticleByAuthorEvent;
 import com.zr.wanandroid.module.officialaccount.presenter.OfficialAccountPresenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OfficialAccountAuthorFragment extends BaseFragment<OfficialAccountPresenter> {
-    private RecyclerView rvOfficialArticle;
+    private TabLayout tlOfficialAuthor;
+    private ViewPager vpOfficialArticle;
     private DrawerLayout  dlOfficialAuthor;
     private RecyclerView    rvOfficialAccountAuthor;
+    private FragmentListAdapter fragmentListAdapter;
     @Override
     public int getContentView() {
         return R.layout.official_account_author_frag;
@@ -32,7 +44,9 @@ public class OfficialAccountAuthorFragment extends BaseFragment<OfficialAccountP
 
         dlOfficialAuthor = (DrawerLayout) findViewById(R.id.dlOfficialAuthor);
         rvOfficialAccountAuthor = (RecyclerView) findViewById(R.id.rvOfficialAccountAuthor);
-        rvOfficialArticle = (RecyclerView) findViewById(R.id.rvOfficialArticle);
+
+        tlOfficialAuthor = findViewById(R.id.tlOfficialAuthor);
+        vpOfficialArticle =   findViewById(R.id.vpOfficialArticle);
 
         rvOfficialAccountAuthor.setLayoutManager(new LinearLayoutManager(mActivity));
         rvOfficialAccountAuthor.addItemDecoration(new BaseItemDivider(mActivity,2,color(R.color.c_divider)));
@@ -53,6 +67,12 @@ public class OfficialAccountAuthorFragment extends BaseFragment<OfficialAccountP
     @Override
     public void initBus() {
         super.initBus();
+        setEvent(GetArticleByAuthorEvent.class, new BusCallback<GetArticleByAuthorEvent>() {
+            @Override
+            public void accept(GetArticleByAuthorEvent event) {
+                showContent();
+            }
+        });
     }
 
     @Override
@@ -76,5 +96,26 @@ public class OfficialAccountAuthorFragment extends BaseFragment<OfficialAccountP
 
     public void hiddenDrawerLayout() {
         dlOfficialAuthor.closeDrawers();
+    }
+
+    public void setOfficialAuthor(List<OfficialAccountBean> data) {
+        fragmentListAdapter=new FragmentListAdapter(getChildFragmentManager());
+        List<Fragment>list=new ArrayList<>();
+        List<String>titleList=new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            OfficialAccountBean bean = data.get(i);
+            titleList.add(bean.getName());
+            list.add(OfficialAccountArticleFragment.newInstance(i==0,bean.getId()));
+        }
+        fragmentListAdapter.setList(list);
+        fragmentListAdapter.setTitleList(titleList);
+
+        vpOfficialArticle.setAdapter(fragmentListAdapter);
+
+        tlOfficialAuthor.setupWithViewPager(vpOfficialArticle);
+    }
+
+    public void selectItem(int i) {
+        vpOfficialArticle.setCurrentItem(i);
     }
 }

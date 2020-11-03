@@ -23,25 +23,26 @@ public class OfficialAccountPresenter extends BasePresenter<OfficialAccountAutho
             @Override
             public void onNoDoubleClick(View view, int i) {
                 getView().hiddenDrawerLayout();
-                ActBridge.toOfficialAccountArticleActivity(getView().getActivity(),adapter.getList());
+                getView().selectItem(i);
             }
         });
         return adapter;
     }
 
     public void getData(int page, boolean isLoad) {
-        OfficialAccountModel.getInstance().OfficialAccountAuthorList(new RequestListener<List<OfficialAccountBean>>() {
+        OfficialAccountModel.getInstance().getOfficialAccountAuthorList(new RequestListener<List<OfficialAccountBean>>() {
             @Override
-            public void onSuccess(List<OfficialAccountBean> obj) {
+            public void onSuccess(List<OfficialAccountBean> data) {
                 loadResult(isLoad);
-                if(N.isEmpty(obj)){
+                if(N.isEmpty(data)){
                     getView().showEmpty();
                     return;
                 }
-                adapter.setList(obj,true);
-                if(!isLoad){
+                getView().setOfficialAuthor(data);
+                adapter.setList(data,true);
+                /*if(!isLoad){
                     getView().showContent();
-                }
+                }*/
             }
             @Override
             public void onError(String code, String errorMsg) {
