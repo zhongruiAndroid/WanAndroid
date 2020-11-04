@@ -19,5 +19,5 @@ public class NetCode {
     /**
      * 107：登录token校验失败
      */
-    public static final String ERR_CODE_TOKEN = "107";
+    public static final String ERR_CODE_TOKEN = "-1001";
 }

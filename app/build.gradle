@@ -55,6 +55,7 @@ dependencies {
     implementation project(':basecore')
     implementation files('libs/utils.jar')
     implementation(name: 'mylibrary-release', ext: 'aar')
+    implementation(name: 'MyProgressLayout-1.0.4', ext: 'aar')
     implementation "com.android.support:recyclerview-v7:28.+"
 
 
@@ -71,7 +72,7 @@ dependencies {
     implementation 'com.github:InterBus:1.0.5'//事件通信
     implementation 'com.github:DividerLine:1.0.1'//recyclerview万能分割线
     implementation 'com.github:fastshape:1.0.9'//自定义属性实现shape，layer-list效果
-    implementation 'com.github:MyProgressLayout:1.0.4'//loading视图
+//    implementation 'com.github:MyProgressLayout:1.0.4'//loading视图
     implementation 'com.github:MyBanner:1.0.6'//banner
     implementation 'com.github:MyProgress:1.1.0'
 //    implementation 'com.github:LoadMoreAdapter:1.0.1'//加载更多适配器

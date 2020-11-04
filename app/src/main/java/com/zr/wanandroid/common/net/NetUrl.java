@@ -25,4 +25,8 @@ public class NetUrl {
     public static final String QUESTION_ANSWER=NetHost.API_HOST+"wenda/list/%s/json";
     /*广场*/
     public static final String SQUARE_LIST=NetHost.API_HOST+"user_article/list/%s/json";
+    /*项目分类*/
+    public static final String PROJECT_CLASSIFY=NetHost.API_HOST+"project/tree/json";
+    /*项目列表*/
+    public static final String PROJECT_LIST=NetHost.API_HOST+"project/list/%s/json";
 }

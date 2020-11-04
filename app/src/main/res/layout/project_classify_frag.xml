@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.progresslayout.ProgressFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/plLoad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/app_title"></include>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tlProjectClassify"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorAccent"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/c_white"
+            app:tabTextAppearance="@style/TabLayoutStyle"
+            app:tabTextColor="@color/c_black" />
+
+        <com.zr.wanandroid.widget.MyViewPager
+            android:id="@+id/vpProjectClassify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</com.github.progresslayout.ProgressFrameLayout>

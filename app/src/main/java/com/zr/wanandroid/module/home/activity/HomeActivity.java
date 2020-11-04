@@ -15,6 +15,7 @@ import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeNavigationFrag
 import com.zr.wanandroid.module.knowledgesystem.fragment.NavigationFragment;
 import com.zr.wanandroid.module.my.fragment.MyFragment;
 import com.zr.wanandroid.module.officialaccount.fragment.OfficialAccountAuthorFragment;
+import com.zr.wanandroid.module.project.fragment.ProjectClassifyFragment;
 import com.zr.wanandroid.module.question.fragment.QuestionAndSquareFragment;
 
 import java.util.HashMap;
@@ -29,15 +30,16 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 //    private MyRadioButton rbNavigationTab;
     private MyRadioButton rbOfficialAccountTab;
     private MyRadioButton rbQuestionTab;
-    private MyRadioButton rbMyTab;
+    private MyRadioButton rbProjectTab;
 
 
     private HomeFragment homeFragment;
     private NavigationFragment navigationFragment;
     private OfficialAccountAuthorFragment officialAccountFragment;
     private QuestionAndSquareFragment questionFragment;
-    private MyFragment myFragment;
     private KnowledgeNavigationFragment knowledgeNavigationFragment;
+    private MyFragment myFragment;
+    private ProjectClassifyFragment projectClassifyFragment;
 
     private Map<Integer, Fragment> fragmentMap = new HashMap<>();
 
@@ -56,7 +58,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 //        rbNavigationTab = findViewById(R.id.rbNavigationTab);
         rbOfficialAccountTab = findViewById(R.id.rbOfficialAccountTab);
         rbQuestionTab = findViewById(R.id.rbQuestionTab);
-        rbMyTab = findViewById(R.id.rbMyTab);
+        rbProjectTab = findViewById(R.id.rbProjectTab);
 
         selectView = rbHomeTab;
     }
@@ -68,7 +70,7 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
 //        rbNavigationTab.setOnClickListener(this);
         rbOfficialAccountTab.setOnClickListener(this);
         rbQuestionTab.setOnClickListener(this);
-        rbMyTab.setOnClickListener(this);
+        rbProjectTab.setOnClickListener(this);
 
 
     }
@@ -83,14 +85,14 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         navigationFragment = NavigationFragment.newInstance();
         officialAccountFragment = OfficialAccountAuthorFragment.newInstance();
         questionFragment = QuestionAndSquareFragment.newInstance();
-        myFragment = MyFragment.newInstance();
+        projectClassifyFragment = ProjectClassifyFragment.newInstance();
 
         fragmentMap.put(R.id.rbHomeTab, homeFragment);
         fragmentMap.put(R.id.rbKnowledgeSystemTab, knowledgeNavigationFragment);
 //        fragmentMap.put(R.id.rbNavigationTab, navigationFragment);
         fragmentMap.put(R.id.rbOfficialAccountTab, officialAccountFragment);
         fragmentMap.put(R.id.rbQuestionTab, questionFragment);
-        fragmentMap.put(R.id.rbMyTab, myFragment);
+        fragmentMap.put(R.id.rbProjectTab, projectClassifyFragment);
     }
 
     @Override

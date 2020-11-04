@@ -90,6 +90,7 @@ public class OfficialAccountAuthorFragment extends BaseFragment<OfficialAccountP
 
     @Override
     public void initData() {
+        showProgress();
         getData(1,false);
     }
 

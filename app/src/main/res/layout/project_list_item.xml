@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/ivProjectImage"
+        android:layout_width="90dp"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+
+        <TextView
+            android:id="@+id/tvProjectTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingBottom="5dp"
+            android:textColor="@color/c_333333"
+            android:textSize="15sp"
+            tools:text="每日一问 | 属性动画与硬件加速的相遇，不是你想的那么简单？" />
+
+        <TextView
+            android:id="@+id/tvProjectDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingBottom="5dp"
+            android:textColor="@color/c_333333"
+            android:textSize="12sp"
+            tools:text="每当大家有在编译期间有修改字节码的需求，第一反应应该就是使用Transform吧，我们知道每个Transform都有它的输入、输出，问几个问题：\\在编译过程中，有哪些“系统Transform”执行？自定义Transform和其他系统Transform执行的顺序是怎么样的？Transform和gradletask的关系是怎么样的？" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvProjectAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:textColor="@color/c_666666"
+                android:textSize="11sp"
+                tools:text="作者:xiaoyang" />
+
+
+            <TextView
+                android:id="@+id/tvProjectTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/c_666666"
+                android:textSize="11sp"
+                tools:text="2020-10-03 11:43" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

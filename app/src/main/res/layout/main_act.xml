@@ -99,17 +99,17 @@
             app:normal_textColor="@color/c_666666" />
 
         <com.github.fastshape.MyRadioButton
-            android:id="@+id/rbMyTab"
+            android:id="@+id/rbProjectTab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="我的"
-            app:checked_drawable_top="@drawable/my_tab"
+            android:text="项目"
+            app:checked_drawable_top="@drawable/project_tab"
             app:checked_drawable_top_color="@color/c_57b7e9"
             app:checked_textColor="@color/c_57b7e9"
-            app:normal_drawable_top="@drawable/my_tab"
+            app:normal_drawable_top="@drawable/project_tab"
             app:normal_drawable_top_color="@color/c_666666"
             app:normal_textColor="@color/c_666666" />
     </RadioGroup>
