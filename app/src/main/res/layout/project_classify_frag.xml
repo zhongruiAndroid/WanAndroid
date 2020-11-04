@@ -11,12 +11,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/app_title"></include>
-
         <android.support.design.widget.TabLayout
             android:id="@+id/tlProjectClassify"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/app_title_height"
             android:background="@color/colorAccent"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/c_white"

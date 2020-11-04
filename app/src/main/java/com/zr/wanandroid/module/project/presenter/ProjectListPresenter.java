@@ -7,6 +7,7 @@ import com.github.adapter.LoadMoreAdapter;
 import com.github.adapter.listener.NoDoubleAdapterOnClickListener;
 import com.github.developtools.N;
 import com.zr.wanandroid.base.BasePresenter;
+import com.zr.wanandroid.bridge.ActBridge;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.module.home.bean.HomeArticleBean;
 import com.zr.wanandroid.module.knowledgesystem.bean.KnowledgeSystemBean;
@@ -24,7 +25,8 @@ public class ProjectListPresenter extends BasePresenter<ProjectListFragment> imp
         adapter.setOnItemClickListener(new NoDoubleAdapterOnClickListener() {
             @Override
             public void onNoDoubleClick(View view, int i) {
-
+                HomeArticleBean homeArticleBean = adapter.getList().get(i);
+                ActBridge.toWebActivity(getView().getActivity(),homeArticleBean.getTitle(),homeArticleBean.getLink());
             }
         });
         adapter.setOnLoadMoreListener(this);

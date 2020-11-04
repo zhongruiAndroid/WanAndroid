@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.text.HtmlCompat;
-import android.support.v4.view.ViewPager;
 import android.text.Spanned;
 import android.view.View;
 
@@ -43,6 +42,11 @@ public class ProjectClassifyFragment extends BaseFragment<ProjectClassifyPresent
 
     @Override
     public void initView() {
+
+        getTitleView().setAppTitle("项目");
+        getTitleView().setAppBackIcon(null);
+        getTitleView().setAppTitleBackground(color(R.color.colorAccent));
+        getTitleView().setAppTitleColor(color(R.color.c_white));
 
         tlProjectClassify = findViewById(R.id.tlProjectClassify);
         vpProjectClassify = findViewById(R.id.vpProjectClassify);
