@@ -81,6 +81,10 @@ public class HomeActivity extends BaseActivity<HomeActPresenter> {
         ActTools.addFragment(this, R.id.flHomeContent, homeFragment);
 
 
+        myFragment = MyFragment.newInstance();
+        ActTools.addFragment(this, R.id.flMyFragment, myFragment);
+
+
         knowledgeNavigationFragment = KnowledgeNavigationFragment.newInstance();
         navigationFragment = NavigationFragment.newInstance();
         officialAccountFragment = OfficialAccountAuthorFragment.newInstance();

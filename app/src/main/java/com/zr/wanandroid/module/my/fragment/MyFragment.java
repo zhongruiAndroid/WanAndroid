@@ -3,13 +3,14 @@ package com.zr.wanandroid.module.my.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
 import com.zr.wanandroid.module.knowledgesystem.fragment.KnowledgeSystemFragment;
 
 public class MyFragment extends BaseFragment {
     @Override
     public int getContentView() {
-        return 0;
+        return R.layout.my_frag;
     }
 
     @Override
