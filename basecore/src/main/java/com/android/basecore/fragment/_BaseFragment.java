@@ -62,7 +62,7 @@ public abstract class _BaseFragment extends Fragment implements View.OnClickList
     public View getView() {
         return mView;
     }
-
+    /*注意，如果fragment是通过viewpager显示，而viewpager或者viewpager父视图是gone状态(invisible不受影响)，那么fragment不会执行onAttach以及后续生命周期方法*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
