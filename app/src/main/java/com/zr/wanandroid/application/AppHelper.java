@@ -1,12 +1,15 @@
 package com.zr.wanandroid.application;
 
 import android.app.Application;
+import android.support.v4.content.ContextCompat;
 
 import com.github.developtools.SPUtils;
+import com.github.load.Loading;
 import com.github.theokhttp.NetworkUtils;
 import com.github.theokhttp.TheOkClientManager;
 import com.github.theokhttp.TheOkHttp;
 import com.zr.wanandroid.BuildConfig;
+import com.zr.wanandroid.R;
 import com.zr.wanandroid.utils.ToastUtils;
 
 import java.io.File;
@@ -20,5 +23,6 @@ public class AppHelper {
         NetworkUtils.init(application);
         ToastUtils.init(application);
         SPUtils.init(application);
+        Loading.get().setLoadViewColor(ContextCompat.getColor(application, R.color.colorAccent));
     }
 }

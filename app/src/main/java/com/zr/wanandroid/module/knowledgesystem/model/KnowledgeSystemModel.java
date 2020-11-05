@@ -5,6 +5,7 @@ import com.github.theokhttp.TheOkHttpCallback;
 import com.zr.wanandroid.MyApplication;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
+import com.zr.wanandroid.common.net.HttpUtils;
 import com.zr.wanandroid.common.net.NetUrl;
 import com.zr.wanandroid.common.net.bean.BaseResponse;
 import com.zr.wanandroid.common.net.callback.HttpCallback;
@@ -34,7 +35,7 @@ public class KnowledgeSystemModel extends SingleClass {
         CacheControl.Builder builder = new CacheControl.Builder();
         builder.maxAge(4, TimeUnit.SECONDS);
         builder.maxStale(5,TimeUnit.MINUTES);
-        TheOkHttp.get().cacheControl(builder.build()).start(NetUrl.KNOWLEDGE_SYSTEM, new HttpCallback<List<KnowledgeSystemBean>>() {
+        HttpUtils.get().cacheControl(builder.build()).start(NetUrl.KNOWLEDGE_SYSTEM, new HttpCallback<List<KnowledgeSystemBean>>() {
             @Override
             public void success(List<KnowledgeSystemBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);
@@ -48,7 +49,7 @@ public class KnowledgeSystemModel extends SingleClass {
     public void getKnowledgeSystemArticleList(int page, String cid, BaseRequestListener<List<HomeArticleBean>,Boolean> listener){
         Map<String,String> map=new HashMap<String,String>();
         map.put("cid",cid);
-        TheOkHttp.get(map).start(String.format(NetUrl.KNOWLEDGE_SYSTEM_ARTICLE,(page-1)), new HttpCallback<List<HomeArticleBean>>() {
+        HttpUtils.get(map).start(String.format(NetUrl.KNOWLEDGE_SYSTEM_ARTICLE,(page-1)), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);
@@ -82,7 +83,7 @@ public class KnowledgeSystemModel extends SingleClass {
         CacheControl.Builder builder = new CacheControl.Builder();
         builder.maxAge(4, TimeUnit.SECONDS);
         builder.maxStale(5,TimeUnit.MINUTES);
-        TheOkHttp.get().cacheControl(builder.build()).start(NetUrl.NAVIGATION_LIST, new HttpCallback<List<KnowledgeSystemBean>>() {
+        HttpUtils.get().cacheControl(builder.build()).start(NetUrl.NAVIGATION_LIST, new HttpCallback<List<KnowledgeSystemBean>>() {
             @Override
             public void success(List<KnowledgeSystemBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);

@@ -80,7 +80,14 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
         }
     }
     public <T extends View>T findViewById( @IdRes int id){
-        return  (T)getView().findViewById(id);
+        return  findViewById(id,false);
+    }
+    public <T extends View>T findViewById( @IdRes int id,boolean userClick){
+        T viewById = (T) getView().findViewById(id);
+        if(userClick){
+            viewById.setOnClickListener(this);
+        }
+        return viewById;
     }
     @Override
     public void initViewAfter() {

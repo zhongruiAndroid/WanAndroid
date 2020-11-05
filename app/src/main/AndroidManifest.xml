@@ -35,6 +35,10 @@
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
         <activity android:name=".module.officialaccount.activity.OfficialAccountArticleActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
+        <activity android:name=".module.my.activity.LoginActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard"/>
+        <activity android:name=".module.my.activity.RegisterActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard"/>
     </application>
 
 </manifest>

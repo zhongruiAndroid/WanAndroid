@@ -2,6 +2,7 @@ package com.zr.wanandroid.module.question.model;
 
 import com.github.theokhttp.TheOkHttp;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
+import com.zr.wanandroid.common.net.HttpUtils;
 import com.zr.wanandroid.common.net.NetUrl;
 import com.zr.wanandroid.common.net.bean.BaseResponse;
 import com.zr.wanandroid.common.net.callback.HttpCallback;
@@ -28,7 +29,7 @@ public class QuestionModel extends SingleClass {
     }
 
     private void getListByUrl(int page, String url, BaseRequestListener<List<HomeArticleBean>, Boolean> listBaseRequestListener) {
-        TheOkHttp.startGet(url, new HttpCallback<List<HomeArticleBean>>() {
+        HttpUtils.get().start(url, new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listBaseRequestListener, data);

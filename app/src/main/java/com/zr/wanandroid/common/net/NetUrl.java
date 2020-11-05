@@ -29,4 +29,8 @@ public class NetUrl {
     public static final String PROJECT_CLASSIFY=NetHost.API_HOST+"project/tree/json";
     /*项目列表*/
     public static final String PROJECT_LIST=NetHost.API_HOST+"project/list/%s/json";
+    /*登录*/
+    public static final String USER_LOGIN=NetHost.API_HOST+"user/login";
+    /*注册*/
+    public static final String USER_REGISTER=NetHost.API_HOST+"user/register";
 }

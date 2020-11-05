@@ -3,6 +3,7 @@ package com.zr.wanandroid.module.project.model;
 import com.github.theokhttp.TheOkHttp;
 import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
+import com.zr.wanandroid.common.net.HttpUtils;
 import com.zr.wanandroid.common.net.NetUrl;
 import com.zr.wanandroid.common.net.bean.BaseResponse;
 import com.zr.wanandroid.common.net.callback.HttpCallback;
@@ -24,7 +25,7 @@ public class ProjectClassifyModel extends SingleClass {
     }
 
     public void getProjectClassify(RequestListener<List<KnowledgeSystemBean>> listener) {
-        TheOkHttp.startGet(NetUrl.PROJECT_CLASSIFY, new HttpCallback<List<KnowledgeSystemBean>>() {
+        HttpUtils.get().start(NetUrl.PROJECT_CLASSIFY, new HttpCallback<List<KnowledgeSystemBean>>() {
             @Override
             public void success(List<KnowledgeSystemBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);
@@ -40,7 +41,7 @@ public class ProjectClassifyModel extends SingleClass {
     public void getProjectList(int page, String id, BaseRequestListener<List<HomeArticleBean>, Boolean> listener) {
         Map<String,String> map=new HashMap<String,String>();
         map.put("cid",id);
-        TheOkHttp.get(map).start(String.format(NetUrl.PROJECT_LIST,page), new HttpCallback<List<HomeArticleBean>>() {
+        HttpUtils.get(map).start(String.format(NetUrl.PROJECT_LIST,page), new HttpCallback<List<HomeArticleBean>>() {
             @Override
             public void success(List<HomeArticleBean> data, BaseResponse server, String result) {
                 toSuccess(listener, data);

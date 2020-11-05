@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.RecoverySystem;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
@@ -43,6 +44,13 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
         if (pcflRefresh != null) {
             pcflRefresh.refreshComplete();
         }
+    }
+    public <T extends View>T findViewById( @IdRes int id,boolean userClick){
+        T viewById = (T)findViewById(id);
+        if(userClick){
+            viewById.setOnClickListener(this);
+        }
+        return viewById;
     }
     @Override
     public void showToast(String content) {

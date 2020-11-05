@@ -15,6 +15,7 @@
         android:background="@color/colorAccent"
         >
         <ImageView
+            android:id="@+id/ivMyRanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/jifen_ranking"
@@ -22,6 +23,7 @@
             android:padding="10dp"
             />
         <com.github.fastshape.MyImageView
+            android:id="@+id/ivMyHead"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
@@ -31,6 +33,7 @@
             app:radius="45dp"
             />
         <TextView
+            android:id="@+id/tvMyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="去登陆"
@@ -39,6 +42,7 @@
             android:textSize="16sp"
             />
         <TextView
+            android:id="@+id/tvMyLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="等级:-- 排名:--"
