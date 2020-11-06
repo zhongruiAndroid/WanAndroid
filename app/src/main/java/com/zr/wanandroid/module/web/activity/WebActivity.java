@@ -1,7 +1,13 @@
 package com.zr.wanandroid.module.web.activity;
 
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -10,6 +16,7 @@ import com.github.developtools.WebViewUtils;
 import com.github.progress.MyProgress;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
+import com.zr.wanandroid.common.net.cookie.WebViewCookieUtils;
 import com.zr.wanandroid.module.home.helper.ViewHelper;
 
 public class WebActivity extends BaseActivity {
@@ -60,6 +67,11 @@ public class WebActivity extends BaseActivity {
             }
         });
         webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                WebViewCookieUtils.get().setCookie(url);
+                return super.shouldInterceptRequest(view, url);
+            }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (!N.trimToEmptyNull(url) && !url.startsWith("http")) {

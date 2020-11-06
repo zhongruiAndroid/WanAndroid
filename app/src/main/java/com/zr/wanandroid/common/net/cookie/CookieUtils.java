@@ -90,6 +90,8 @@ public class CookieUtils {
         SharedPreferences preferences = MyApplication.getContext().getSharedPreferences("cookieSharedPreferences", Context.MODE_PRIVATE);
         preferences.edit().clear();
         map.clear();
+
+        WebViewCookieUtils.get().clearCookie();
     }
     private boolean isCookieExpired(Cookie cookie) {
         if (cookie == null) {
