@@ -24,7 +24,7 @@ public class CoinBean {
     }
 
     public String getLevel() {
-        return level;
+        return level==null?"--":level;
     }
 
     public void setLevel(String level) {
@@ -32,7 +32,7 @@ public class CoinBean {
     }
 
     public String getRank() {
-        return rank;
+        return rank==null?"--":rank;
     }
 
     public void setRank(String rank) {

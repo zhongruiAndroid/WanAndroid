@@ -1,12 +1,19 @@
 package com.zr.wanandroid.module.my.model;
 
 import com.google.gson.Gson;
+import com.zr.wanandroid.common.listener.BaseRequestListener;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.common.net.HttpUtils;
 import com.zr.wanandroid.common.net.NetUrl;
 import com.zr.wanandroid.common.net.bean.BaseResponse;
 import com.zr.wanandroid.common.net.callback.HttpCallback;
 import com.zr.wanandroid.common.single.SingleClass;
+import com.zr.wanandroid.module.my.bean.CoinBean;
+import com.zr.wanandroid.module.my.bean.CoinRecordBean;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -58,10 +65,51 @@ public class UserModel extends SingleClass {
             }
         });
     }
-    public void getUserCoin(RequestListener<String> listener){
-        HttpUtils.get().start(NetUrl.USER_COIN, new HttpCallback<String>() {
+    public void getUserCoin(RequestListener<CoinBean> listener){
+        HttpUtils.get().start(NetUrl.USER_COIN, new HttpCallback<CoinBean>() {
             @Override
-            public void success(String data, BaseResponse server, String result) {
+            public void success(CoinBean data, BaseResponse server, String result) {
+                toSuccess(listener,data);
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener,code,errorMsg);
+            }
+        });
+    }
+    public void getUserCoinRecord(int page, BaseRequestListener<List<CoinRecordBean>,Boolean> listener){
+        HttpUtils.get().start(String.format(NetUrl.USER_COIN_RECORD,page), new HttpCallback<List<CoinRecordBean>>() {
+            @Override
+            public void success(List<CoinRecordBean> data, BaseResponse server, String result) {
+                toSuccess(listener,data);
+                try {
+                    JSONObject jsonObject=new JSONObject(result);
+                    boolean isOver = jsonObject.optJSONObject("data").optBoolean("over");
+                    if (listener != null) {
+                        listener.onCustomSuccess(data,!isOver);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener,code,errorMsg);
+            }
+            @Override
+            public String getContentJson(JSONObject jsonObject) {
+                JSONArray jsonArray = jsonObject.optJSONObject("data").optJSONArray("datas");
+                if (jsonArray == null) {
+                    return "";
+                }
+                return jsonArray.toString();
+            }
+        });
+    }
+    public void getCoinRank(int page,RequestListener<CoinBean> listener){
+        HttpUtils.get().start(String.format(NetUrl.All_USER_COIN_LIST,page), new HttpCallback<CoinBean>() {
+            @Override
+            public void success(CoinBean data, BaseResponse server, String result) {
                 toSuccess(listener,data);
             }
             @Override

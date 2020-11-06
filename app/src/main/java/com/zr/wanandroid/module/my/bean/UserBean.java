@@ -33,6 +33,15 @@ public class UserBean implements Serializable {
     private String username;
     private List<?> chapterTops;
     private List<?> collectIds;
+    private CoinBean coinBean;
+
+    public CoinBean getCoinBean() {
+        return coinBean==null?new CoinBean():coinBean;
+    }
+
+    public void setCoinBean(CoinBean coinBean) {
+        this.coinBean = coinBean;
+    }
 
     public String getAdmin() {
         return admin;

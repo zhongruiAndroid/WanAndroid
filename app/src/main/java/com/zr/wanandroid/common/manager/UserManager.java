@@ -30,6 +30,13 @@ public class UserManager {
         }
         return userBean;
     }
+    public void updateUser(){
+        setUser(new Gson().toJson(userBean));
+    }
+    public void clear(){
+        userBean=null;
+        SPUtils.setPrefString(AppXml.USER_KEY,"");
+    }
     public void setUser(String userJson){
         if(N.trimToEmptyNull(userJson)){
             return;

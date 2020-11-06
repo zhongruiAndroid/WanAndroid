@@ -1,6 +1,9 @@
 package com.zr.wanandroid.module.my.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +15,8 @@ import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseFragment;
 import com.zr.wanandroid.bridge.ActBridge;
 import com.zr.wanandroid.common.manager.UserManager;
+import com.zr.wanandroid.module.home.helper.ViewHelper;
+import com.zr.wanandroid.module.my.bean.CoinBean;
 import com.zr.wanandroid.module.my.bean.UserBean;
 import com.zr.wanandroid.module.my.event.LoginOutEvent;
 import com.zr.wanandroid.module.my.event.LoginSuccessEvent;
@@ -94,8 +99,16 @@ public class MyFragment extends BaseFragment<MyPresenter> {
         if (user == null) {
             tvMyName.setText("去登录");
             tvMyCoin.setText("");
+            tvMyLevel.setText("等级:-- 排名:--");
+            ViewHelper.setVisibility(tvMyExit,View.GONE);
         } else {
+            CoinBean coinBean = user.getCoinBean();
+            ViewHelper.setVisibility(tvMyExit,View.VISIBLE);
             tvMyName.setText(user.getNickname());
+            tvMyCoin.setText(coinBean.getCoinCount());
+            String level = coinBean.getLevel();
+            String rank = coinBean.getRank();
+            tvMyLevel.setText("等级:"+level+" 排名:"+rank);
         }
     }
 
@@ -104,13 +117,18 @@ public class MyFragment extends BaseFragment<MyPresenter> {
         switch (v.getId()) {
             case R.id.ivMyHead:
             case R.id.tvMyName:
-                ActBridge.toLoginActivity(getActivity());
+                if(UserManager.noLogin()){
+                    ActBridge.toLoginActivity(mActivity);
+                    return;
+                }
+
                 break;
             case R.id.ivMyRanking:
                 if(UserManager.noLogin()){
                     ActBridge.toLoginActivity(mActivity);
                     return;
                 }
+                getPresenter().getUserRank(1);
                 break;
             case R.id.tvMyLevel:
                 if(UserManager.noLogin()){
@@ -123,6 +141,7 @@ public class MyFragment extends BaseFragment<MyPresenter> {
                     ActBridge.toLoginActivity(mActivity);
                     return;
                 }
+                getPresenter().getUserCoinRecord(1);
                 break;
             case R.id.tvMyCollect:
                 if(UserManager.noLogin()){
@@ -155,8 +174,37 @@ public class MyFragment extends BaseFragment<MyPresenter> {
                 }
                 break;
             case R.id.tvMyExit:
-                getPresenter().loginOut();
+                loginOut();
                 break;
         }
+    }
+
+    private void loginOut() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        builder.setTitle("提示");
+        builder.setMessage("是否退出登录?");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                getPresenter().loginOut();
+                setViewByUser();
+                ViewHelper.setVisibility(tvMyExit,View.GONE);
+            }
+        });
+        builder.show();
+    }
+
+    public void setCoin(CoinBean coinBean) {
+        tvMyCoin.setText(coinBean.getCoinCount());
+        String level = coinBean.getLevel();
+        String rank = coinBean.getRank();
+        tvMyLevel.setText("等级:"+level+" 排名:"+rank);
     }
 }

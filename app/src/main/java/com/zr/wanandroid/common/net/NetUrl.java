@@ -40,5 +40,5 @@ public class NetUrl {
     /*个人积分获取列表*/
     public static final String USER_COIN_RECORD=NetHost.API_HOST+"lg/coin/list/%s/json";
     /*积分排行榜*/
-    public static final String COIN_LIST=NetHost.API_HOST+"coin/rank/%s/json";
+    public static final String All_USER_COIN_LIST=NetHost.API_HOST+"coin/rank/%s/json";
 }

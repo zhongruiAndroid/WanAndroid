@@ -20,9 +20,9 @@
       <com.github.fastshape.MyEditText
           android:id="@+id/etRegisterUserName"
           android:layout_width="match_parent"
-          android:layout_height="40dp"
+          android:layout_height="45dp"
           android:gravity="center_vertical"
-          android:textSize="15sp"
+          android:textSize="16sp"
           android:inputType="textWebEditText"
           android:imeOptions="actionNext"
           android:hint="请输入用户名"
@@ -35,9 +35,9 @@
       <com.github.fastshape.MyEditText
           android:id="@+id/etRegisterPwd"
           android:layout_width="match_parent"
-          android:layout_height="40dp"
+          android:layout_height="45dp"
           android:gravity="center_vertical"
-          android:textSize="15sp"
+          android:textSize="16sp"
           android:inputType="textWebPassword"
           android:imeOptions="actionNext"
           android:hint="请输入密码"
@@ -50,9 +50,9 @@
       <com.github.fastshape.MyEditText
           android:id="@+id/etRegisterRePwd"
           android:layout_width="match_parent"
-          android:layout_height="40dp"
+          android:layout_height="45dp"
           android:gravity="center_vertical"
-          android:textSize="15sp"
+          android:textSize="16sp"
           android:inputType="textWebPassword"
           android:imeOptions="actionNext"
           android:hint="再次请输入密码"
@@ -65,13 +65,13 @@
       <com.github.fastshape.MyTextView
           android:id="@+id/tvRegister"
           android:layout_width="match_parent"
-          android:layout_height="40dp"
+          android:layout_height="45dp"
           android:text="注册"
           android:gravity="center"
           android:layout_marginTop="20dp"
           app:solidColor="@color/colorAccent"
           app:radius="20dp"
-          android:textSize="15sp"
+          android:textSize="16sp"
           android:textColor="@color/c_white"
           />
    </LinearLayout>
