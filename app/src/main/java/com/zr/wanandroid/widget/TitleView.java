@@ -176,7 +176,9 @@ public class TitleView extends RelativeLayout {
     public void setAppTitle(String title) {
         setAppTitle(title, true, 9);
     }
-
+    public View getAppTitleView(){
+        return this.appTvTitle==null?new TextView(getContext()):this.appTvTitle;
+    }
     public void setAppRightTitle(String appRightTitle) {
         this.appRightTitle = appRightTitle;
         if (appTvRightTitle == null) {

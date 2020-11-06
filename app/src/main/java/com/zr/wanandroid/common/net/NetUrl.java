@@ -33,4 +33,12 @@ public class NetUrl {
     public static final String USER_LOGIN=NetHost.API_HOST+"user/login";
     /*注册*/
     public static final String USER_REGISTER=NetHost.API_HOST+"user/register";
+    /*退出登录*/
+    public static final String LOGOUT=NetHost.API_HOST+"user/logout/json";
+    /*个人积分*/
+    public static final String USER_COIN=NetHost.API_HOST+"lg/coin/userinfo/json";
+    /*个人积分获取列表*/
+    public static final String USER_COIN_RECORD=NetHost.API_HOST+"lg/coin/list/%s/json";
+    /*积分排行榜*/
+    public static final String COIN_LIST=NetHost.API_HOST+"coin/rank/%s/json";
 }

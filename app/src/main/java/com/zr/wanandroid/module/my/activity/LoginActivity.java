@@ -7,9 +7,12 @@ import com.android.basecore.listener.NoDoubleClickListener;
 import com.github.developtools.N;
 import com.github.fastshape.MyEditText;
 import com.github.fastshape.MyTextView;
+import com.github.interbus.BusCallback;
+import com.zr.wanandroid.BuildConfig;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.bridge.ActBridge;
+import com.zr.wanandroid.module.my.event.LoginSuccessEvent;
 import com.zr.wanandroid.module.my.presenter.LoginPresenter;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> {
@@ -33,11 +36,29 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 ActBridge.toRegisterActivity(mActivity);
             }
         });
-
+        if(BuildConfig.DEBUG){
+            titleView.getAppTitleView().setOnClickListener(new NoDoubleClickListener() {
+                @Override
+                protected void onNoDoubleClick(View var1) {
+                    etLoginUserName.setText("17621060271");
+                    etLoginPwd.setText("wanlxqwe123");
+                }
+            });
+        }
         etLoginUserName = findViewById(R.id.etLoginUserName);
         etLoginPwd = findViewById(R.id.etLoginPwd);
         tvLogin = findViewById(R.id.tvLogin);
         tvLogin.setOnClickListener(this);
+    }
+
+    @Override
+    public void initBus() {
+        setEvent(LoginSuccessEvent.class, new BusCallback<LoginSuccessEvent>() {
+            @Override
+            public void accept(LoginSuccessEvent event) {
+                finish();
+            }
+        });
     }
 
     @Override

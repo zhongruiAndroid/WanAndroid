@@ -149,6 +149,6 @@ public abstract class BaseActivity<P extends _BasePresenter> extends MVPBaseActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        InterBus.get().unSubscribeAll();
+        InterBus.get().unSubscribe(this);
     }
 }

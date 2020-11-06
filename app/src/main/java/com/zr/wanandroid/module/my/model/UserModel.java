@@ -1,11 +1,6 @@
 package com.zr.wanandroid.module.my.model;
 
-import android.util.Log;
-
-import com.github.developtools.SPUtils;
-import com.github.theokhttp.TheOkHttp;
 import com.google.gson.Gson;
-import com.zr.wanandroid.AppXml;
 import com.zr.wanandroid.common.listener.RequestListener;
 import com.zr.wanandroid.common.net.HttpUtils;
 import com.zr.wanandroid.common.net.NetUrl;
@@ -21,11 +16,11 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class RegisterModel extends SingleClass {
-    public static RegisterModel getInstance() {
-        return getInstance(RegisterModel.class);
+public class UserModel extends SingleClass {
+    public static UserModel getInstance() {
+        return getInstance(UserModel.class);
     }
-    public void register(String userName, String pwd,String rePwd ,RequestListener listener){
+    public void register(String userName, String pwd,String rePwd ,RequestListener<String> listener){
         Map<String,String> map=new HashMap<String,String>();
         map.put("username",userName);
         map.put("password",pwd);
@@ -41,7 +36,7 @@ public class RegisterModel extends SingleClass {
             }
         });
     }
-    public void login(String userName, String pwd, RequestListener listener){
+    public void login(String userName, String pwd, RequestListener<String> listener){
         Map<String,String> map=new HashMap<String,String>();
         map.put("username",userName);
         map.put("password",pwd);
@@ -50,19 +45,41 @@ public class RegisterModel extends SingleClass {
             @Override
             public void success(String data, BaseResponse server, String result) {
                 toSuccess(listener,data);
-                SPUtils.setPrefString(AppXml.COOKIE_KEY, cookie);
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                super.onResponse(call, response);
                 List<String> headers = response.headers("Set-Cookie");
                 cookie=new Gson().toJson(headers);
+                super.onResponse(call, response);
             }
             @Override
             public void error(String code, String errorMsg) {
                 toError(listener,code,errorMsg);
             }
         });
-
+    }
+    public void getUserCoin(RequestListener<String> listener){
+        HttpUtils.get().start(NetUrl.USER_COIN, new HttpCallback<String>() {
+            @Override
+            public void success(String data, BaseResponse server, String result) {
+                toSuccess(listener,data);
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener,code,errorMsg);
+            }
+        });
+    }
+    public void loginOut(RequestListener<String> listener){
+        HttpUtils.get().start(NetUrl.LOGOUT, new HttpCallback<String>() {
+            @Override
+            public void success(String data, BaseResponse server, String result) {
+                toSuccess(listener,data);
+            }
+            @Override
+            public void error(String code, String errorMsg) {
+                toError(listener,code,errorMsg);
+            }
+        });
     }
 }

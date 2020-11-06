@@ -160,6 +160,6 @@ public abstract class BaseFragment<P extends _BasePresenter> extends MVPBaseFrag
     @Override
     public void onDestroy() {
         super.onDestroy();
-        InterBus.get().unSubscribeAll();
+        InterBus.get().unSubscribe(this);
     }
 }
