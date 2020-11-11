@@ -25,7 +25,7 @@ public class CoinRecordActivity extends BaseActivity<CoinRecordPresenter> {
         baseItemDivider.setSkipEndCount(2);
         rvCoinRecord.addItemDecoration(baseItemDivider);
 
-        rvCoinRecord.setAdapter(adapter);
+        rvCoinRecord.setAdapter(getPresenter().initAdapter());
     }
 
     @Override

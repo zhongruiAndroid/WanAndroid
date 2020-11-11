@@ -25,21 +25,6 @@ public class MyPresenter extends BasePresenter<MyFragment> {
             }
         });
     }
-    public void getUserCoinRecord(int page){
-        UserModel.getInstance().getUserCoinRecord(page,new BaseRequestListener<List<CoinRecordBean>,Boolean>() {
-            @Override
-            public void onSuccess(List<CoinRecordBean> data) {
-
-            }
-            @Override
-            public void onCustomSuccess(List<CoinRecordBean> data, Boolean custom) {
-
-            }
-            @Override
-            public void onError(String code, String errorMsg) {
-            }
-        });
-    }
     public void getUserRank(int page){
         UserModel.getInstance().getCoinRank(page,new RequestListener<CoinBean>() {
             @Override
