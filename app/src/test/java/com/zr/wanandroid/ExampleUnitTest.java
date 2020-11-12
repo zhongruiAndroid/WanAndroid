@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -20,39 +22,45 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
     @Test
     public void dd() {
-        System.out.printf("100的一半是：%d", 100/2);
+        System.out.printf("100的一半是：%d", 100 / 2);
     }
+
     @Test
     public void sdd() {
         HtmlUtils.test();
     }
+
     @Test
     public void s() {
-        Exception exception=new Exception();
-        if(exception instanceof SocketTimeoutException){
+        Exception exception = new Exception();
+        if (exception instanceof SocketTimeoutException) {
             System.out.println("22222222222");
-        }else{
+        } else {
             System.out.println("1111111111");
         }
     }
-    public void testType(Object objs){
-        System.out.println("instanceof byte[]?"+(objs instanceof byte[]));
-        System.out.println("isArray?"+objs.getClass().isArray());
-        if (objs.getClass().isArray()){
-            System.out.println("getClass.getComponentType:"+objs.getClass().getComponentType());
+
+    public void testType(Object objs) {
+        System.out.println("instanceof byte[]?" + (objs instanceof byte[]));
+        System.out.println("isArray?" + objs.getClass().isArray());
+        if (objs.getClass().isArray()) {
+            System.out.println("getClass.getComponentType:" + objs.getClass().getComponentType());
         }
     }
+
     @Test
     public void sd() {
-        System.out.println(3<<1);
-        System.out.println(3<<2);
-        System.out.println(3<<3);
+        System.out.println(3 << 1);
+        System.out.println(3 << 2);
+        System.out.println(3 << 3);
     }
+
     @Test
     public void sddd() {
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");
         list.remove("c");
@@ -60,5 +68,31 @@ public class ExampleUnitTest {
             String s = list.get(i);
             System.out.println(s);
         }
+    }
+
+    @Test
+    public void sdddd() {
+        System.out.println(String.valueOf(System.currentTimeMillis() / 1000L));
+        Map<String, String> appCommonParamMap = getAppCommonParamMap();
+        tea(appCommonParamMap,0);
+    }
+
+    public void tea(Map map, int num) {
+        if (num == 5) {
+            return;
+        }
+        System.out.println(map.get("ts"));
+        tea(map, num + 1);
+    }
+
+    public static Map<String, String> getAppCommonParamMap() {
+        Map<String, String> map = new HashMap();
+        map.put("imei", "asfdasfdfsd");
+        map.put("ts", getTs());
+        return map;
+    }
+
+    public static String getTs() {
+        return String.valueOf(System.currentTimeMillis() / 1000L);
     }
 }

@@ -141,7 +141,6 @@ public class MyFragment extends BaseFragment<MyPresenter> {
                     ActBridge.toLoginActivity(mActivity);
                     return;
                 }
-                getPresenter().getUserCoinRecord(1);
                 break;
             case R.id.tvMyCollect:
                 if(UserManager.noLogin()){

@@ -76,6 +76,7 @@ dependencies {
     implementation 'com.github:MyBanner:1.0.6'//banner
     implementation 'com.github:MyProgress:1.1.0'
 //    implementation 'com.github:LoadMoreAdapter:1.0.1'//加载更多适配器
+    implementation 'com.github:TimeDown:1.0.3'
 
 
     implementation 'com.google.code.gson:gson:2.8.0'

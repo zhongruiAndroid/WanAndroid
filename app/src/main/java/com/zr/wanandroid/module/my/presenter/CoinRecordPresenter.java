@@ -47,7 +47,7 @@ public class CoinRecordPresenter extends BasePresenter<CoinRecordActivity> imple
     }
     @Override
     public void loadMore(LoadListener loadListener) {
-        getUserCoinRecord(pageNum);
+        getUserCoinRecord(pageNum,true);
     }
 
 }
