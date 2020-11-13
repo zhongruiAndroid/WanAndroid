@@ -128,7 +128,7 @@ public class MyFragment extends BaseFragment<MyPresenter> {
                     ActBridge.toLoginActivity(mActivity);
                     return;
                 }
-                getPresenter().getUserRank(1);
+                ActBridge.toCoinRankActivity(mActivity);
                 break;
             case R.id.tvMyLevel:
                 if(UserManager.noLogin()){
@@ -141,6 +141,7 @@ public class MyFragment extends BaseFragment<MyPresenter> {
                     ActBridge.toLoginActivity(mActivity);
                     return;
                 }
+                ActBridge.toCoinRecordActivity(mActivity);
                 break;
             case R.id.tvMyCollect:
                 if(UserManager.noLogin()){

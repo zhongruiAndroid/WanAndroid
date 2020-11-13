@@ -106,15 +106,32 @@ public class UserModel extends SingleClass {
             }
         });
     }
-    public void getCoinRank(int page,RequestListener<CoinBean> listener){
-        HttpUtils.get().start(String.format(NetUrl.All_USER_COIN_LIST,page), new HttpCallback<CoinBean>() {
+    public void getCoinRank(int page, BaseRequestListener<List<CoinBean>,Boolean> listener){
+        HttpUtils.get().start(String.format(NetUrl.All_USER_COIN_LIST,page), new HttpCallback<List<CoinBean>>() {
             @Override
-            public void success(CoinBean data, BaseResponse server, String result) {
+            public void success(List<CoinBean> data, BaseResponse server, String result) {
                 toSuccess(listener,data);
+                try {
+                    JSONObject jsonObject=new JSONObject(result);
+                    boolean isOver = jsonObject.optJSONObject("data").optBoolean("over");
+                    if (listener != null) {
+                        listener.onCustomSuccess(data,!isOver);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             @Override
             public void error(String code, String errorMsg) {
                 toError(listener,code,errorMsg);
+            }
+            @Override
+            public String getContentJson(JSONObject jsonObject) {
+                JSONArray jsonArray = jsonObject.optJSONObject("data").optJSONArray("datas");
+                if (jsonArray == null) {
+                    return "";
+                }
+                return jsonArray.toString();
             }
         });
     }

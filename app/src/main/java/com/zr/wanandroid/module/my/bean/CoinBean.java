@@ -1,6 +1,10 @@
 package com.zr.wanandroid.module.my.bean;
 
-public class CoinBean {
+import com.github.developtools.N;
+
+import java.io.Serializable;
+
+public class CoinBean implements Serializable {
     /**
      * coinCount : 10
      * level : 1
@@ -16,7 +20,7 @@ public class CoinBean {
     private String username;
 
     public String getCoinCount() {
-        return coinCount;
+        return N.trimToEmptyNull(coinCount)?"--":coinCount;
     }
 
     public void setCoinCount(String coinCount) {

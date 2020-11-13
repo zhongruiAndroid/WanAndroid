@@ -1,34 +1,33 @@
 package com.zr.wanandroid.module.my.activity;
 
-import android.accounts.AccountManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.github.dividerline.BaseItemDivider;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
-import com.zr.wanandroid.common.manager.UserManager;
-import com.zr.wanandroid.module.my.presenter.CoinRecordPresenter;
+import com.zr.wanandroid.module.my.presenter.CoinRankPresenter;
 
-public class CoinRecordActivity extends BaseActivity<CoinRecordPresenter> {
-    private RecyclerView rvCoinRecord;
+public class CoinRankActivity extends BaseActivity<CoinRankPresenter> {
+    private RecyclerView rvCoinRank;
     @Override
     public int getContentView() {
-        return R.layout.coin_record_act;
+        return R.layout.coin_rank_act;
     }
 
     @Override
     public void initView() {
-        titleView.setAppTitle("总积分:"+ UserManager.get().getUser().getCoinBean().getCoinCount());
-        rvCoinRecord = findViewById(R.id.rvCoinRecord);
-        rvCoinRecord.setLayoutManager(new LinearLayoutManager(mActivity));
+
+        titleView.setAppTitle("积分排行");
+        rvCoinRank = findViewById(R.id.rvCoinRank);
+        rvCoinRank.setLayoutManager(new LinearLayoutManager(mActivity));
         BaseItemDivider baseItemDivider = new BaseItemDivider(mActivity, 2, color(R.color.c_divider));
         baseItemDivider.setSkipEndCount(2);
-        rvCoinRecord.addItemDecoration(baseItemDivider);
+        rvCoinRank.addItemDecoration(baseItemDivider);
 
-        rvCoinRecord.setAdapter(getPresenter().initAdapter());
+        rvCoinRank.setAdapter(getPresenter().initAdapter());
+
     }
 
     @Override
@@ -39,7 +38,7 @@ public class CoinRecordActivity extends BaseActivity<CoinRecordPresenter> {
 
     @Override
     protected void getData(int page, boolean isLoad) {
-        getPresenter().getUserCoinRecord(1,isLoad);
+        getPresenter().getCoinRank(1,isLoad);
     }
 
     @Override

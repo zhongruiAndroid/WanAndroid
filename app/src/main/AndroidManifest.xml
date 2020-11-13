@@ -46,6 +46,8 @@
         <activity
             android:name=".module.my.activity.CoinRecordActivity"
             android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
+        <activity android:name=".module.my.activity.CoinRankActivity"
+            android:configChanges="layoutDirection|orientation|keyboardHidden|keyboard" />
     </application>
 
 </manifest>

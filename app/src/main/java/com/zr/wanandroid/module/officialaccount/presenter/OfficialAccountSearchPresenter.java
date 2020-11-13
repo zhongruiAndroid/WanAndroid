@@ -47,7 +47,9 @@ public class OfficialAccountSearchPresenter extends BasePresenter<OfficialAccoun
             @Override
             public void onError(String code, String errorMsg) {
                 showToast(errorMsg);
-                if(!isLoad){
+                if(isLoad){
+                    loadError(adapter);
+                }else{
                     getView().showError();
                 }
             }

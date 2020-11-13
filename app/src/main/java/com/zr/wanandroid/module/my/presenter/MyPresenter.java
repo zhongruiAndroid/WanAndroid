@@ -25,19 +25,7 @@ public class MyPresenter extends BasePresenter<MyFragment> {
             }
         });
     }
-    public void getUserRank(int page){
-        UserModel.getInstance().getCoinRank(page,new RequestListener<CoinBean>() {
-            @Override
-            public void onSuccess(CoinBean data) {
-                UserManager.get().getUser().setCoinBean(data);
-                UserManager.get().updateUser();
-                getView().setCoin(data);
-            }
-            @Override
-            public void onError(String code, String errorMsg) {
-            }
-        });
-    }
+
     public void loginOut() {
         UserManager.get().clear();
         UserModel.getInstance().loginOut(new RequestListener<String>() {

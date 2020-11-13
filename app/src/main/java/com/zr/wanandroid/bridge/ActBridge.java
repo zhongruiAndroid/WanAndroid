@@ -6,6 +6,8 @@ import android.content.Intent;
 import com.zr.wanandroid.module.home.activity.SearchActivity;
 import com.zr.wanandroid.module.knowledgesystem.activity.KnowledgeSystemActivity;
 import com.zr.wanandroid.module.knowledgesystem.bean.KnowledgeSystemBean;
+import com.zr.wanandroid.module.my.activity.CoinRankActivity;
+import com.zr.wanandroid.module.my.activity.CoinRecordActivity;
 import com.zr.wanandroid.module.my.activity.LoginActivity;
 import com.zr.wanandroid.module.my.activity.RegisterActivity;
 import com.zr.wanandroid.module.officialaccount.activity.OfficialAccountArticleActivity;
@@ -43,6 +45,14 @@ public class ActBridge {
     }
     public static void toRegisterActivity(Activity activity) {
         Intent intent = new Intent(activity, RegisterActivity.class);
+        activity.startActivity(intent);
+    }
+    public static void toCoinRecordActivity(Activity activity) {
+        Intent intent = new Intent(activity, CoinRecordActivity.class);
+        activity.startActivity(intent);
+    }
+    public static void toCoinRankActivity(Activity activity) {
+        Intent intent = new Intent(activity, CoinRankActivity.class);
         activity.startActivity(intent);
     }
 }
