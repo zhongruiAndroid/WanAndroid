@@ -1,9 +1,16 @@
 package com.zr.wanandroid;
 
+import android.util.Log;
+
 import com.zr.wanandroid.utils.HtmlUtils;
 
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,5 +101,36 @@ public class ExampleUnitTest {
 
     public static String getTs() {
         return String.valueOf(System.currentTimeMillis() / 1000L);
+    }
+
+
+    @Test
+    public void testzip() {
+
+        File file=new File("D:/aaaa","test_img1.png");
+        File needFile=new File("D:/aaaa/test.png");
+        System.out.println("====needFile="+needFile.exists());
+        if(true){
+            return;
+        }
+        try {
+            boolean newFile = file.createNewFile();
+            InputStream is = new FileInputStream(needFile);
+            FileOutputStream fos = new FileOutputStream(file);
+            int len;
+            byte[] buf = new byte[1024 * 2];
+            while ((len = is.read(buf)) != -1) {
+                fos.write(buf, 0, len);
+            }
+            fos.flush();
+            // 关流顺序，先打开的后关闭
+            fos.close();
+            is.close();
+            System.out.println(newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(file.exists());
+//        FileUtils.unZip(file,"D:/aaaa2",false);
     }
 }

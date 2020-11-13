@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.File;
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -21,6 +24,18 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    @Test
+    public void testzip() {
+        File file=new File("D:/aaaa","aaaa2.rar");
+        try {
+            boolean newFile = file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(file.exists());
+        Log.i("=====","====="+file.exists());
+        FileUtils.unZip(file,"D:\\aaaa2",false);
+    }
     @Test
     public void sdd() {
         HtmlUtils.test();
