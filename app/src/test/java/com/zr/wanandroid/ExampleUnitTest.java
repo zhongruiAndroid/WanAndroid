@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;
 
@@ -103,6 +104,11 @@ public class ExampleUnitTest {
         return String.valueOf(System.currentTimeMillis() / 1000L);
     }
 
+    @Test
+    public void ads() {
+        Map<String,String>map=new ConcurrentHashMap<>();
+        map.remove(null);
+    }
 
     @Test
     public void testzip() {
