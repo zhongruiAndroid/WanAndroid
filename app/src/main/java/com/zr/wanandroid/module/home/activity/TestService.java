@@ -1,5 +1,6 @@
 package com.zr.wanandroid.module.home.activity;
 
+import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,9 +16,13 @@ import android.util.Log;
 import com.github.timedown.PollingCheck;
 import com.zr.wanandroid.R;
 
-public class TestService extends Service {
+public class TestService extends IntentService {
 
     private PollingCheck pollingCheck;
+
+    public TestService() {
+        super("name");
+    }
 
     @Nullable
     @Override
@@ -26,8 +31,7 @@ public class TestService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected void onHandleIntent(@Nullable Intent intent) {
         setNotify();
         if (pollingCheck == null) {
             pollingCheck = PollingCheck.get();
@@ -50,13 +54,19 @@ public class TestService extends Service {
         });
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+    }
+
     private static final String TAG = "MyService";
     private static final String ID = "channel_1";
     private static final String NAME = "前台服务";
 
     private void setNotify() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Log.i("GameUtils","=====createNotification");
+            Log.i("GameUtils", "=====createNotification");
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             NotificationChannel channel = new NotificationChannel(ID, NAME, NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(false);
@@ -98,6 +108,6 @@ public class TestService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PollingCheck.onDestroy(pollingCheck);
+//        PollingCheck.onDestroy(pollingCheck);
     }
 }
