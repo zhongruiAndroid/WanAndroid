@@ -54,21 +54,40 @@ public class TestService extends Service {
     private static final String ID = "channel_1";
     private static final String NAME = "前台服务";
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setNotify() {
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        NotificationChannel channel = new NotificationChannel(ID, NAME, NotificationManager.IMPORTANCE_HIGH);
-        manager.createNotificationChannel(channel);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Log.i("GameUtils","=====createNotification");
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel(ID, NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(false);
+            channel.enableVibration(false);
+            channel.setVibrationPattern(new long[]{0});
+            channel.setSound(null, null);
+            manager.createNotificationChannel(channel);
 
-        Notification notification = new Notification.Builder(this, ID)
-                .setContentTitle("收到一条重要通知")
-                .setContentText("这是重要通知")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                .build();
+            Notification notification = new Notification.Builder(this, ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("正在更新关卡资源")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setTicker("正在更新关卡资源")
+                    .build();
+            startForeground(1, notification);
+            /*NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel(ID, NAME, NotificationManager.IMPORTANCE_HIGH);
+
+            manager.createNotificationChannel(channel);
+
+            Notification notification = new Notification.Builder(this, ID)
+                    .setContentTitle("收到一条重要通知")
+                    .setContentText("这是重要通知")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .build();
 
 
-        startForeground(1, notification);
+            startForeground(1, notification);*/
+
+        }
     }
 
     @Override
