@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.github.developtools.N;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zr.wanandroid.MyApplication;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,6 @@ public class CookieUtils {
     private static CookieUtils singleObj;
 
     private CookieUtils() {
-        map = new ConcurrentHashMap<>();
     }
 
     public static CookieUtils get() {
@@ -36,14 +37,22 @@ public class CookieUtils {
         return singleObj;
     }
 
+    public Map<String, Cookie> getMap() {
+        if(map==null){
+            map= new ConcurrentHashMap<>();
+        }
+        return map;
+    }
     /**********************************************************/
     public Map<String, Cookie> map;
-
     public void saveFromResponse(List<Cookie> cookies) {
         for (Cookie cache : cookies) {
             String cookieKey = getCookieKey(cache);
-            map.remove(cookieKey);
-            map.put(cookieKey, cache);
+            if(N.trimToEmptyNull(cookieKey)){
+                continue;
+            }
+            getMap().remove(cookieKey);
+            getMap().put(cookieKey, cache);
         }
         if(map!=null&&map.size()>0){
             saveCookieToLocal(map);
@@ -67,7 +76,7 @@ public class CookieUtils {
             map=getCookieFromLocal();
         }
         if (map == null||map.size()<=0) {
-            return null;
+            return Collections.emptyList();
         }
         List<Cookie> cookieCaches = new ArrayList<>();
 
