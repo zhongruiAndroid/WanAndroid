@@ -1,7 +1,7 @@
 package com.zr.wanandroid.git;
 
 public class TestGit {
-    public static void test2(){
+    public static void test2master(){
 
     }
 }
