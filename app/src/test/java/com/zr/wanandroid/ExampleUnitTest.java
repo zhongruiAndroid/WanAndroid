@@ -139,4 +139,19 @@ public class ExampleUnitTest {
 //        System.out.println(file.exists());
 //        FileUtils.unZip(file,"D:/aaaa2",false);
     }
+
+
+    @Test
+    public void testzipasfd() {
+        String str="/data/data/com.meta.box/virtual/data/user/0/com.mop.assassin/files";
+        String substring = str.substring(0, str.indexOf("com.mop.assassin"));
+        String[] strings = substring.split("/");
+        for (String string : strings) {
+            //出现包路径
+            if (string.contains(".")) {
+                if (string.split("\\.").length >= 2) {
+                }
+            }
+        }
+    }
 }

@@ -14,21 +14,27 @@ public class ToastUtils {
         context=ctx;
     }
     public static void showToast(String text){
+        showToast(context,text);
+    }
+    public static void showToast(Context context,String text){
         if(N.isTrimToEmpty(text)){
             return;
         }
         if(Looper.myLooper()==Looper.getMainLooper()){
-            showText(text);
+            showText(context,text);
         }else{
             HandlerUtils.get().post(new Runnable() {
                 @Override
                 public void run() {
-                    showText(text);
+                    showText(context,text);
                 }
             });
         }
     }
     private static void showText(String text){
+        showText(context,text);
+    }
+    private static void showText(Context context,String text){
         if(toast==null){
             toast=Toast.makeText(context,text,Toast.LENGTH_SHORT);
         }else{
