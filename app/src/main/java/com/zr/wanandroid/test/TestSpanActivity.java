@@ -1,10 +1,9 @@
 package com.zr.wanandroid.test;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.MaskFilter;
-import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.text.Layout;
 import android.text.Spannable;
@@ -13,35 +12,25 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
-import android.text.method.MovementMethod;
 import android.text.style.AlignmentSpan;
 import android.text.style.BulletSpan;
 import android.text.style.ClickableSpan;
-import android.text.style.DrawableMarginSpan;
-import android.text.style.DynamicDrawableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.text.style.MaskFilterSpan;
-import android.text.style.QuoteSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StrikethroughSpan;
-import android.text.style.StyleSpan;
 import android.text.style.TabStopSpan;
 import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.basecore.listener.NoDoubleClickListener;
 import com.zr.wanandroid.R;
 import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.test.span.CenteredImageSpan;
-import com.zr.wanandroid.test.span.NoUnderlineClickSpan;
 import com.zr.wanandroid.test.span.RoundBgColorSpan;
-import com.zr.wanandroid.test.span.TestSpan;
+import com.zr.wanandroid.test.span.BgSpan;
 import com.zr.wanandroid.test.toolkit.TextSpanBuilder;
 import com.zr.wanandroid.utils.ToastUtils;
-
-import static android.graphics.Typeface.BOLD;
 
 public class TestSpanActivity extends BaseActivity {
     TextView tvTestSpan;
@@ -207,12 +196,18 @@ public class TestSpanActivity extends BaseActivity {
                 .append("这王H")
                 .setTextColor(Color.BLUE)
                 .setTextSize(11, true)
-                .setSpan(new TestSpan())
+                .setSpan(new BgSpan())
                 .append("H结束")
                 .append("\nH结束")
 //                .setTextSize(65,false)
                 .build();
         tvTestSpan.setText(build1);
+        tvTestSpan.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View var1) {
+                startActivity(new Intent(mActivity,TestBgSpanActivity.class));
+            }
+        });
     }
 
     @Override

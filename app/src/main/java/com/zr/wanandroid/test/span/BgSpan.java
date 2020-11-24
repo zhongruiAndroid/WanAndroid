@@ -14,7 +14,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.style.ReplacementSpan;
 
-public class TestSpan extends ReplacementSpan {
+public class BgSpan extends ReplacementSpan implements Cloneable {
+    @Override
+    public BgSpan clone() {
+        try {
+            return (BgSpan) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
     public static final int ALIGN_BOTTOM = 0;
     public static final int ALIGN_TOP = 1;
     public static final int ALIGN_CENTER = 2;
@@ -37,6 +47,7 @@ public class TestSpan extends ReplacementSpan {
     private float borderDashLength;
     private int bgColor;
     private int showAlign;
+    private int tempTextColor;
     private int textColor;
 
     private int itemWidth;
@@ -46,7 +57,7 @@ public class TestSpan extends ReplacementSpan {
     private RectF pathRect;
     private Paint.FontMetrics fontMetrics;
 
-    public TestSpan() {
+    public BgSpan() {
         marginLeft = 0;
         marginTop = 0;
         marginRight = 0;
@@ -63,15 +74,13 @@ public class TestSpan extends ReplacementSpan {
         borderDashLength = 0;
         bgColor = 0;
         showAlign = ALIGN_BOTTOM;
+        tempTextColor = 0;
         textColor = 0;
 
     }
 
     @Override
     public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
-        if (textColor == 0) {
-            textColor = paint.getColor();
-        }
         float v = paint.measureText(text, start, end);
         itemWidth = (int) (v + marginLeft + marginRight + paddingLeft + paddingRight);
 
@@ -83,6 +92,7 @@ public class TestSpan extends ReplacementSpan {
         if (pathRect == null) {
             pathRect = new RectF();
         }
+        tempTextColor = paint.getColor();
         pathRect.left = x + marginLeft;
         pathRect.top = (top + marginTop);
         pathRect.right = x + itemWidth - marginRight;
@@ -92,16 +102,16 @@ public class TestSpan extends ReplacementSpan {
         if (borderWidth > 0) {
             count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
         }
+        /*计算背景范围*/
+        if (!path.isEmpty()) {
+            path.reset();
+        }
+        path.addRoundRect(pathRect, new float[]{radiusLeftTop, radiusLeftTop, radiusLeftBottom, radiusLeftBottom, radiusRightTop, radiusRightTop, radiusRightBottom, radiusRightBottom,}, Path.Direction.CW);
+        /*绘制背景*/
         if (bgColor != Color.TRANSPARENT) {
-            /*绘制背景*/
-            if (!path.isEmpty()) {
-                path.reset();
-            }
-            path.addRoundRect(pathRect, new float[]{radiusLeftTop, radiusLeftTop, radiusLeftBottom, radiusLeftBottom, radiusRightTop, radiusRightTop, radiusRightBottom, radiusRightBottom,}, Path.Direction.CW);
             paint.setColor(bgColor);
             canvas.drawPath(path, paint);
         }
-
         if (borderWidth > 0) {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(borderWidth * 2);
@@ -137,7 +147,11 @@ public class TestSpan extends ReplacementSpan {
         }
 
         paint.setStrokeWidth(0);
+
         /*绘制文字*/
+        if (textColor == Color.TRANSPARENT) {
+            textColor = tempTextColor;
+        }
         paint.setColor(textColor);
         if (showAlign == ALIGN_BOTTOM) {
             canvas.drawText(text, start, end, x + paddingLeft + marginLeft, y, paint);
@@ -154,7 +168,7 @@ public class TestSpan extends ReplacementSpan {
     }
 
     /************************************************************************************************************/
-    public TestSpan setMargin(float left, float top, float right, float bottom) {
+    public BgSpan setMargin(float left, float top, float right, float bottom) {
         setMarginLeft(left);
         setMarginTop(top);
         setMarginRight(right);
@@ -162,48 +176,48 @@ public class TestSpan extends ReplacementSpan {
         return this;
     }
 
-    public TestSpan setMarginLeft(float marginLeft) {
+    public BgSpan setMarginLeft(float marginLeft) {
         this.marginLeft = marginLeft;
         return this;
     }
 
-    public TestSpan setMarginTop(float marginTop) {
+    public BgSpan setMarginTop(float marginTop) {
         this.marginTop = marginTop;
         return this;
     }
 
-    public TestSpan setMarginRight(float marginRight) {
+    public BgSpan setMarginRight(float marginRight) {
         this.marginRight = marginRight;
         return this;
     }
 
-    public TestSpan setMarginBottom(float marginBottom) {
+    public BgSpan setMarginBottom(float marginBottom) {
         this.marginBottom = marginBottom;
         return this;
     }
 
-    public TestSpan setPadding(float padding) {
+    public BgSpan setPadding(float padding) {
         setPadding(padding, padding);
         return this;
     }
 
-    public TestSpan setPadding(float left, float right) {
+    public BgSpan setPadding(float left, float right) {
         setPaddingLeft(left);
         setPaddingRight(right);
         return this;
     }
 
-    public TestSpan setPaddingLeft(float paddingLeft) {
+    public BgSpan setPaddingLeft(float paddingLeft) {
         this.paddingLeft = paddingLeft;
         return this;
     }
 
-    public TestSpan setPaddingRight(float paddingRight) {
+    public BgSpan setPaddingRight(float paddingRight) {
         this.paddingRight = paddingRight;
         return this;
     }
 
-    public TestSpan setRadius(float radius) {
+    public BgSpan setRadius(float radius) {
         setRadiusLeftTop(radius);
         setRadiusRightTop(radius);
         setRadiusLeftBottom(radius);
@@ -211,68 +225,69 @@ public class TestSpan extends ReplacementSpan {
         return this;
     }
 
-    public TestSpan setRadiusLeftTop(float radiusLeftTop) {
+    public BgSpan setRadiusLeftTop(float radiusLeftTop) {
         this.radiusLeftTop = radiusLeftTop;
         return this;
     }
 
-    public TestSpan setRadiusLeftBottom(float radiusLeftBottom) {
+    public BgSpan setRadiusLeftBottom(float radiusLeftBottom) {
         this.radiusLeftBottom = radiusLeftBottom;
         return this;
     }
 
-    public TestSpan setRadiusRightTop(float radiusRightTop) {
+    public BgSpan setRadiusRightTop(float radiusRightTop) {
         this.radiusRightTop = radiusRightTop;
         return this;
     }
 
-    public TestSpan setRadiusRightBottom(float radiusRightBottom) {
+    public BgSpan setRadiusRightBottom(float radiusRightBottom) {
         this.radiusRightBottom = radiusRightBottom;
         return this;
     }
 
-    public TestSpan setBorderColor(@ColorInt int borderColor) {
+    public BgSpan setBorderColor(@ColorInt int borderColor) {
         this.borderColor = borderColor;
         return this;
     }
 
-    public TestSpan setBorderWidth(float borderWidth) {
+    public BgSpan setBorderWidth(float borderWidth) {
         this.borderWidth = borderWidth;
         return this;
     }
 
-    public TestSpan setBorderDashGap(float borderDashGap) {
+    public BgSpan setBorderDashGap(float borderDashGap) {
         this.borderDashGap = borderDashGap;
         return this;
     }
 
-    public TestSpan setBorderDashLength(float borderDashLength) {
+    public BgSpan setBorderDashLength(float borderDashLength) {
         this.borderDashLength = borderDashLength;
         return this;
     }
 
-    public TestSpan setBgColor(@ColorInt int bgColor) {
+    public BgSpan setBgColor(@ColorInt int bgColor) {
         this.bgColor = bgColor;
         return this;
     }
 
-    public TestSpan setShowAlignBottom() {
+    public BgSpan setShowAlignBottom() {
         this.showAlign = ALIGN_BOTTOM;
         return this;
     }
 
-    public TestSpan setShowAlignTop() {
+    public BgSpan setShowAlignTop() {
         this.showAlign = ALIGN_TOP;
         return this;
     }
 
-    public TestSpan setShowAlignCenter() {
+    public BgSpan setShowAlignCenter() {
         this.showAlign = ALIGN_CENTER;
         return this;
     }
 
-    public TestSpan setTextColor(@ColorInt int textColor) {
+    public BgSpan setTextColor(@ColorInt int textColor) {
         this.textColor = textColor;
         return this;
     }
+
 }
