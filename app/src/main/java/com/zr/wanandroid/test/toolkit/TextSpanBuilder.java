@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.AlignmentSpan;
 import android.text.style.BackgroundColorSpan;

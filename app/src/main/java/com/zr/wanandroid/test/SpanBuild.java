@@ -42,6 +42,7 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,7 +162,7 @@ public class SpanBuild {
         pointGap = 2;
         pointColor = Color.GRAY;
         needShowPoint = false;
-        alignment=null;
+        alignment = null;
 
 
         builder = new SpannableStringBuilder();
@@ -208,12 +209,6 @@ public class SpanBuild {
             builder.setSpan(new MaskFilterSpan(new BlurMaskFilter(blurRadius, blur)), start, end, flag);
             blurRadius = 5;
             blur = null;
-        }
-        if (quoteColor != defaultValue) {
-            builder.setSpan(new QuoteSpan(quoteColor, quoteStripeWidth, quoteGapWidth), start, end, flag);
-            quoteColor = defaultValue;
-            quoteStripeWidth = 0;
-            quoteGapWidth = 0;
         }
         if (scaleXSize > 0) {
             builder.setSpan(new ScaleXSpan(scaleXSize), start, end, flag);
@@ -292,13 +287,50 @@ public class SpanBuild {
             builder.setSpan(imageSpan, start, end, flag);
             imageSpan = null;
         }
-        if(needShowPoint){
-            builder.setSpan(new BulletSpan(pointGap,pointColor,pointRadius),start,end,flag);
-            needShowPoint=false;
+
+        if (quoteColor != defaultValue) {
+            Class<QuoteSpan> quoteSpanClass = QuoteSpan.class;
+            Constructor<?> constructor = null;
+            try {
+                constructor = quoteSpanClass.getConstructor(int.class);
+                Constructor c = quoteSpanClass.getConstructor(int.class, int.class, int.class);
+                if (c != null) {
+                    builder.setSpan(new QuoteSpan(quoteColor, quoteStripeWidth, quoteGapWidth), start, end, flag);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (constructor != null) {
+                    builder.setSpan(new QuoteSpan(quoteColor), start, end, flag);
+                }
+            }
+
+            quoteColor = defaultValue;
+            quoteStripeWidth = 0;
+            quoteGapWidth = 0;
         }
-        if(alignment!=null){
-            builder.setSpan(new AlignmentSpan.Standard(alignment),start,end,flag);
-            alignment=null;
+        if (needShowPoint) {
+            Class<BulletSpan> bulletSpanClass = BulletSpan.class;
+            Constructor<?> constructor = null;
+            try {
+                constructor = bulletSpanClass.getConstructor(int.class, int.class);
+                Constructor c = bulletSpanClass.getConstructor(int.class, int.class, int.class);
+                if (c != null) {
+                    builder.setSpan(new BulletSpan(pointGap, pointColor, pointRadius), start, end, flag);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (constructor != null) {
+                    builder.setSpan(new BulletSpan(pointGap, pointColor), start, end, flag);
+                }
+            }
+            pointRadius = 4;
+            pointGap = 2;
+            pointColor = Color.GRAY;
+            needShowPoint = false;
+        }
+        if (alignment != null) {
+            builder.setSpan(new AlignmentSpan.Standard(alignment), start, end, flag);
+            alignment = null;
         }
         flag = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE;
         /*因为点击和url也需要设置颜色和下划线，所以下划线和颜色最后重置*/
@@ -693,14 +725,17 @@ public class SpanBuild {
         setNewlinePoint(2);
         return this;
     }
+
     public SpanBuild setNewlinePoint(int gapWidth) {
         setNewlinePoint(gapWidth, Color.GRAY);
         return this;
     }
+
     public SpanBuild setNewlinePoint(int gapWidth, int pointColor) {
         setNewlinePoint(gapWidth, pointColor, 4);
         return this;
     }
+
     public SpanBuild setNewlinePoint(int gapWidth, int pointColor, int pointRadius) {
         this.pointRadius = pointRadius;
         this.pointGap = gapWidth;
@@ -708,24 +743,29 @@ public class SpanBuild {
         needShowPoint = true;
         return this;
     }
-    public SpanBuild setTextAlignNormal(){
-        alignment= Layout.Alignment.ALIGN_NORMAL;
+
+    public SpanBuild setTextAlignNormal() {
+        alignment = Layout.Alignment.ALIGN_NORMAL;
         return this;
     }
-    public SpanBuild setTextAlignOpposite(){
-        alignment= Layout.Alignment.ALIGN_OPPOSITE;
+
+    public SpanBuild setTextAlignOpposite() {
+        alignment = Layout.Alignment.ALIGN_OPPOSITE;
         return this;
     }
-    public SpanBuild setTextAlignCenter(){
-        alignment= Layout.Alignment.ALIGN_CENTER;
+
+    public SpanBuild setTextAlignCenter() {
+        alignment = Layout.Alignment.ALIGN_CENTER;
         return this;
     }
-    public SpanBuild setTextAlignLeft(){
-        alignment= Layout.Alignment.ALIGN_LEFT;
+
+    public SpanBuild setTextAlignLeft() {
+        alignment = Layout.Alignment.ALIGN_LEFT;
         return this;
     }
-    public SpanBuild setTextAlignRight(){
-        alignment= Layout.Alignment.ALIGN_RIGHT;
+
+    public SpanBuild setTextAlignRight() {
+        alignment = Layout.Alignment.ALIGN_RIGHT;
         return this;
     }
 

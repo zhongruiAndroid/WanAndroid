@@ -37,6 +37,7 @@ import com.zr.wanandroid.base.BaseActivity;
 import com.zr.wanandroid.test.span.CenteredImageSpan;
 import com.zr.wanandroid.test.span.NoUnderlineClickSpan;
 import com.zr.wanandroid.test.span.RoundBgColorSpan;
+import com.zr.wanandroid.test.span.TestSpan;
 import com.zr.wanandroid.test.toolkit.TextSpanBuilder;
 import com.zr.wanandroid.utils.ToastUtils;
 
@@ -150,8 +151,8 @@ public class TestSpanActivity extends BaseActivity {
 
 
           string = new SpannableString("Text with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long lineText with quote span on a long line");
-        string.setSpan(new QuoteSpan(Color.GREEN,22,22), 0, string.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+/*        string.setSpan(new QuoteSpan(Color.GREEN,22,22), 0, string.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
 
 
         SpannableStringBuilder build = SpanBuild.get("例子").append("粗体").setTextIsBold()
@@ -200,9 +201,18 @@ public class TestSpanActivity extends BaseActivity {
                 .setTextAlignRight()
                 .appendImage(new SpanBuild.MyImageSpan(mActivity,R.mipmap.android).setHeight(250).setColor(Color.RED))
                 .build(tvTestSpan);
-        tvTestSpan.setText(build);
-
-
+        SpannableStringBuilder build1 = SpanBuild.get("测试")
+//                .setTextSize(48,false)
+                .append("换行\n")
+                .append("这王H")
+                .setTextColor(Color.BLUE)
+                .setTextSize(11, true)
+                .setSpan(new TestSpan())
+                .append("H结束")
+                .append("\nH结束")
+//                .setTextSize(65,false)
+                .build();
+        tvTestSpan.setText(build1);
     }
 
     @Override
